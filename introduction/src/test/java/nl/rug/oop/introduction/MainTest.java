@@ -2,6 +2,7 @@
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertEquals;
 
+import nl.rug.oop.introduction.Main;
 import org.junit.Test;
 import org.junit.BeforeClass;
 import org.junit.Before;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.Map;
 import java.util.HashMap;
+
 
 /**
  * Tests the main class, which should
