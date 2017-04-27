@@ -7,7 +7,7 @@ public class Room extends Inspectable{
     private String descrip;
     private int roomNumber;
 
-    public Room(String s){
+    protected Room(String s){
         descrip = s;
     }
 
