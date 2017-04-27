@@ -1,17 +1,12 @@
 package nl.rug.oop.rpg;
 
-/**
+/**The Room, extends from Inspectable
  * Created by PhilO on 27-Apr-17.
  */
 public class Room extends Inspectable{
-    private String descrip;
-    private int roomNumber;
 
     protected Room(String s){
-        descrip = s;
+        super(s);
     }
 
-    public String inspect(){
-        return descrip;
-    }
 }
