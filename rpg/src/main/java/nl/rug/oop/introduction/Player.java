@@ -8,7 +8,7 @@ public class Player {
     private int inRoom;
 
     // Constructor with input of room to start in
-    public Player(int room){
+    Player(int room){
         inRoom=room;
     }
 
@@ -18,7 +18,7 @@ public class Player {
     }
 
     // Change the room currently in
-    public void updateRoom(int n){
+    void updateRoom(int n){
         inRoom = n;
     }
 }

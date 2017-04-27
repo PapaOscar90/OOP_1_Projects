@@ -4,26 +4,16 @@ package nl.rug.oop.introduction;
  * Created by PhilO on 27-Apr-17.
  */
 
-public class Inspectable {
+abstract class Inspectable {
     // The description of the object being inspected.
-    protected String description;
+    private String description;
 
     // Constructor
-    public Inspectable(String desc){
+    Inspectable(String desc){
         description=desc;
     }
 
-    // Returns string of object's description
-    public String inspect(int selection){
-        switch(selection) {
-            case 0:
-                System.out.print("You see: "+description);
-                break;
-            default:
-                System.out.println("Invalid Input");
-                break;
-        }
+    String  inspect(){
         return description;
     }
-
 }
