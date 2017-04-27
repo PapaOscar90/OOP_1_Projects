@@ -9,7 +9,7 @@ abstract class Inspectable {
     private String description;
 
     // Constructor
-    Inspectable(String desc){
+    Inspectable(String desc) {
         description=desc;
     }
 

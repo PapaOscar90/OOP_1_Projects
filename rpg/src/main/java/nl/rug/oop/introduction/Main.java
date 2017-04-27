@@ -28,13 +28,16 @@ public class Main{
             }
             input = in.nextInt();
             switch (input){
-                case 0: room0.inspect();
+                case 0: System.out.println("You see: " + room0.inspect());
                 break;
                 case 1:
                     System.out.println("You look around for doors. You see:");
                     for (int i =0; i<room0.getNumberOfDoors(); i++){
                         System.out.println("("+i+ ") " + room0.getDoorDescription(i));
                     }
+                    break;
+                default: System.out.println("You cannot do that.");
+                    break;
             }
         }while(input != -2);
 

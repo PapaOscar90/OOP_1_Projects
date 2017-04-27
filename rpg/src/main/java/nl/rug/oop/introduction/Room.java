@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by PhilO on 27-Apr-17.
  */
 
-// TODO: Add doors
+
 public class Room extends Inspectable {
     private final int roomNumber;
     private ArrayList<String> roomOptions = new ArrayList<String>();
