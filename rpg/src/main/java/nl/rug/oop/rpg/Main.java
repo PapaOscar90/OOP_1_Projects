@@ -9,6 +9,8 @@ public class Main {
     public static void main(String[] args){
         int input;
 
+        // Initializes the player, and places them in the first room
+        // TODO: Make the room generation input from files or generate them from random premade sentences
         Player player = new Player("A dark room with a white and black door.");
 
         Scanner in = new Scanner(System.in);
@@ -20,14 +22,18 @@ public class Main {
             input = in.nextInt();
             switch (input){
                 case 0: System.out.println("You see: " + player.getRoom().inspect());
+                case 1: System.out.println("You look around for doors. You see:");
+                        player.lookAtDoors();
             }
         }
     }
 
     // Temporary to display actions
-    // TODO: Add system to know what actions are available.
+    // TODO: Add system to know what actions are available. Expand this
     public static void printActions(){
         System.out.println("What do you want to do?");
         System.out.println("(0) Look around");
+        System.out.println("(1) Look for a way out");
     }
+
 }
