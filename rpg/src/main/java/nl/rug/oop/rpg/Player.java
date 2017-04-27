@@ -9,4 +9,8 @@ public class Player {
     public Player(int room){
         currentRoom = room;
     }
+
+    public int getRoom(){
+        return currentRoom;
+    }
 }
