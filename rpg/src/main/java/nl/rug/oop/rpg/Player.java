@@ -1,8 +1,5 @@
 package nl.rug.oop.rpg;
 
-import javax.sound.midi.SysexMessage;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 /**The player object
@@ -11,16 +8,11 @@ import java.util.Scanner;
 public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
-    private List<Room> RoomList = new ArrayList<Room>();
-
 
     // Constructor passes in a description of the first room
     // TODO: Create way to load rooms from file or generate random rooms
-    public Player(String s){
-        currentRoom = new Room(s);
-        currentRoom.addDoor("A black door");
-        currentRoom.addDoor("A white door");
-        RoomList.add(currentRoom);
+    public Player(String s, String...doorDescriptions){
+        currentRoom = new Room(s, doorDescriptions);
     }
 
     // Returns the room object currently in
@@ -28,13 +20,15 @@ public class Player {
         return currentRoom;
     }
 
-    // This is the action of looking for a way out. Prints by: (door number) Door description
-    public void lookAtDoors(){
+    private void printDoorDescriptions(){
         int numberOfDoors = currentRoom.getNumberOfDoors();
         for (int i = 0; i < numberOfDoors; i++){
-            System.out.println("("+i+")"+currentRoom.getDoorDescription(i));
+            System.out.println(currentRoom.getDoorDescription(i));
         }
+    }
 
+    private void printChoices(){
+        int numberOfDoors = currentRoom.getNumberOfDoors();
         System.out.println("\nWhat would you like to do?");
         for (int i=0; i< numberOfDoors+1; i++){
             if(i == 0){
@@ -43,13 +37,37 @@ public class Player {
                 System.out.println("("+i+") Enter "+currentRoom.getDoorDescription(i-1));
             }
         }
+    }
 
+    private int chooseDoor(){
+        int numberOfDoors = currentRoom.getNumberOfDoors();
         Scanner in = new Scanner(System.in);
-        int input = in.nextInt();
-        if (input>=0 && input<numberOfDoors) {
-            currentRoom = currentRoom.enterDoor(input);
-        }else{
-            return;
+        int choice;
+        while(true){
+            choice = in.nextInt();
+            if (choice>=0 && choice<numberOfDoors+1) {
+                break;
+            }else{
+                System.out.println("Incorrect input, try again");
+            }
         }
+        return choice;
+
+    }
+
+    private void handleDoorChoice(int choice){
+        if (choice != 0){
+            System.out.println("You enter through the door");
+            currentRoom = currentRoom.enterDoor(choice - 1);
+        } else {
+            System.out.println("You do nothing.");
+        }
+    }
+
+    public void handleDoorChoices(){
+        printDoorDescriptions();
+        printChoices();
+        int choice = chooseDoor();
+        handleDoorChoice(choice);
     }
 }

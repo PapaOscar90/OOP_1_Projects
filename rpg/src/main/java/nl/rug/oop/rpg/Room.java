@@ -7,10 +7,14 @@ import java.util.List;
  * Created by PhilO on 27-Apr-17.
  */
 public class Room extends Inspectable{
-    private List<Door> doorsList = new ArrayList<Door>();
+    private List<Door> doorsList;
 
-    protected Room(String s){
+    protected Room(String s, String...doorDescriptions){
         super(s);
+        this.doorsList = new ArrayList<>();
+        for (String description : doorDescriptions){
+            addDoor(description);
+        }
     }
 
     // Method to add a door, so that they can be different in each room
@@ -29,7 +33,7 @@ public class Room extends Inspectable{
     }
 
     public Room enterDoor(int doorNumber){
-        Room newRoom = doorsList.get(doorNumber).getRoom();
+        Room newRoom = doorsList.get(doorNumber).interact();
         return newRoom;
     }
 }

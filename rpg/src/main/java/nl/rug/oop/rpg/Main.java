@@ -6,25 +6,27 @@ import java.util.Scanner;
  * Created by PhilO on 27-Apr-17.
  */
 public class Main {
+
+    //TODO: fix main
     public static void main(String[] args){
         int input;
         // Test
         // Initializes the player, and places them in the first room
         // TODO: Make the room generation input from files or generate them from random premade sentences
-        Player player = new Player("A dark room with a white and black door.");
+        Player player = new Player("A dark room with a white and black door.", "A white door", "A black door");
 
         Scanner in = new Scanner(System.in);
 
         // While true just for debugging
         // TODO: Create a win condition or end on death
         while (true){
-            printActions();
+            printRoomActions();
             input = in.nextInt();
             switch (input){
                 case 0: System.out.println("You see: " + player.getRoom().inspect());
                         break;
                 case 1: System.out.println("You look around for doors. You see:");
-                        player.lookAtDoors();
+                        player.handleDoorChoices();
                         break;
                 default: System.out.println("Incorrect input");
             }
@@ -33,7 +35,7 @@ public class Main {
 
     // Temporary to display actions
     // TODO: Add system to know what actions are available. Expand this
-    private static void printActions(){
+    private static void printRoomActions(){
         System.out.println("What do you want to do?");
         System.out.println("(0) Look around");
         System.out.println("(1) Look for a way out");

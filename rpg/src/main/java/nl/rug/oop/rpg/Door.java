@@ -9,26 +9,31 @@ import java.util.Random;
  */
 public class Door extends Inspectable{
     private Room goesTo;
-    private List<String> descriptionList = new ArrayList<String>();
+    private List<String> roomDescriptionList;
+   // private List<String> doorDescriptionList;
     private int random = new Random().nextInt(5);
 
     // The door "points" to a room.
     // TODO: Add description import from file maybe
     public Door(String s){
         super(s);
-        descriptionList.add("A dark room");
-        descriptionList.add("A large room");
-        descriptionList.add("A small room");
-        descriptionList.add(("A massive room"));
+        roomDescriptionList = new ArrayList<>();
+       // doorDescriptionList = new ArrayList<String>();
+
+        roomDescriptionList.add("A dark room");
+        roomDescriptionList.add("A large room");
+        roomDescriptionList.add("A small room");
+        roomDescriptionList.add("A massive room");
+        roomDescriptionList.add("A bright room");
+
         randomDescription();
 
     }
-
     private void randomDescription(){
-        goesTo = new Room(descriptionList.get(random));
+        goesTo = new Room(roomDescriptionList.get(random));
     }
 
-    public Room getRoom(){
+    public Room interact(){
         return goesTo;
     }
 }
