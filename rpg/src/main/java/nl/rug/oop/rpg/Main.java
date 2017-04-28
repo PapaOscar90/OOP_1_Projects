@@ -22,8 +22,11 @@ public class Main {
             input = in.nextInt();
             switch (input){
                 case 0: System.out.println("You see: " + player.getRoom().inspect());
+                        break;
                 case 1: System.out.println("You look around for doors. You see:");
                         player.lookAtDoors();
+                        break;
+                default: System.out.println("Incorrect input");
             }
         }
     }
