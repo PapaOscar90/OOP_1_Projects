@@ -27,4 +27,9 @@ public class Room extends Inspectable{
     public String getDoorDescription(int doorNumber){
         return doorsList.get(doorNumber).inspect();
     }
+
+    public Room enterDoor(int doorNumber){
+        Room newRoom = doorsList.get(doorNumber).getRoom();
+        return newRoom;
+    }
 }

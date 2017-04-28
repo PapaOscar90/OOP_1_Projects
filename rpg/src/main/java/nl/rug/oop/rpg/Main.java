@@ -39,4 +39,5 @@ public class Main {
         System.out.println("(1) Look for a way out");
     }
 
+
 }

@@ -1,5 +1,8 @@
 package nl.rug.oop.rpg;
 
+import javax.sound.midi.SysexMessage;
+import java.util.Scanner;
+
 /**The player object
  * Created by PhilO on 27-Apr-17.
  */
@@ -22,8 +25,26 @@ public class Player {
 
     // This is the action of looking for a way out. Prints by: (door number) Door description
     public void lookAtDoors(){
-        for (int i = 0; i < currentRoom.getNumberOfDoors(); i++){
+        int numberOfDoors = currentRoom.getNumberOfDoors();
+        for (int i = 0; i < numberOfDoors; i++){
             System.out.println("("+i+")"+currentRoom.getDoorDescription(i));
+        }
+
+        System.out.println("What would you like to do?");
+        for (int i=0; i< numberOfDoors+1; i++){
+            if(i == 0){
+                System.out.println("(0) Stay Here");
+            }else{
+                System.out.println("("+i+") Enter "+currentRoom.getDoorDescription(i-1));
+            }
+        }
+
+        Scanner in = new Scanner(System.in);
+        int input = in.nextInt();
+        if (input>=0 && input<numberOfDoors) {
+            currentRoom = currentRoom.enterDoor(input);
+        }else{
+            return;
         }
     }
 }

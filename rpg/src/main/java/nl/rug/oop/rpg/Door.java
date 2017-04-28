@@ -21,9 +21,14 @@ public class Door extends Inspectable{
         descriptionList.add("A small room");
         descriptionList.add(("A massive room"));
         randomDescription();
+
     }
 
     private void randomDescription(){
         goesTo = new Room(descriptionList.get(random));
+    }
+
+    public Room getRoom(){
+        return goesTo;
     }
 }
