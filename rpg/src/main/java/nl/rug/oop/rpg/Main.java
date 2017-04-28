@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
         int input;
-
+        // Test
         // Initializes the player, and places them in the first room
         // TODO: Make the room generation input from files or generate them from random premade sentences
         Player player = new Player("A dark room with a white and black door.");
@@ -30,7 +30,7 @@ public class Main {
 
     // Temporary to display actions
     // TODO: Add system to know what actions are available. Expand this
-    public static void printActions(){
+    private static void printActions(){
         System.out.println("What do you want to do?");
         System.out.println("(0) Look around");
         System.out.println("(1) Look for a way out");
