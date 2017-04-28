@@ -1,6 +1,8 @@
 package nl.rug.oop.rpg;
 
 import javax.sound.midi.SysexMessage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**The player object
@@ -9,6 +11,8 @@ import java.util.Scanner;
 public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
+    private List<Room> RoomList = new ArrayList<Room>();
+
 
     // Constructor passes in a description of the first room
     // TODO: Create way to load rooms from file or generate random rooms
@@ -16,6 +20,7 @@ public class Player {
         currentRoom = new Room(s);
         currentRoom.addDoor("A black door");
         currentRoom.addDoor("A white door");
+        RoomList.add(currentRoom);
     }
 
     // Returns the room object currently in
@@ -30,7 +35,7 @@ public class Player {
             System.out.println("("+i+")"+currentRoom.getDoorDescription(i));
         }
 
-        System.out.println("What would you like to do?");
+        System.out.println("\nWhat would you like to do?");
         for (int i=0; i< numberOfDoors+1; i++){
             if(i == 0){
                 System.out.println("(0) Stay Here");
