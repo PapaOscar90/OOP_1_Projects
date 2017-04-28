@@ -13,11 +13,9 @@ public class Room extends Inspectable{
         super(s);
     }
 
-    // Method to add doors, so that they can be different in each room
-    // TODO: Add one door each call, with one argument.
-    public void addDoor(String one, String two){
-        doorsList.add(new Door(one));
-        doorsList.add(new Door(two));
+    // Method to add a door, so that they can be different in each room
+    public void addDoor(String descrip){
+        doorsList.add(new Door(descrip));
     }
 
     // Returns size of door list for iterating through them

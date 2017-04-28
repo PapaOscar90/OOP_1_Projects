@@ -11,7 +11,8 @@ public class Player {
     // TODO: Create way to load rooms from file or generate random rooms
     public Player(String s){
         currentRoom = new Room(s);
-        currentRoom.addDoor("A black door", "A white door");
+        currentRoom.addDoor("A black door");
+        currentRoom.addDoor("A white door");
     }
 
     // Returns the room object currently in
