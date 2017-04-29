@@ -11,7 +11,7 @@ public class Room extends Inspectable{
 
     protected Room(String s, String...doorDescriptions){
         super(s);
-        this.doorsList = new ArrayList<>();
+        doorsList = new ArrayList<>();
         for (String description : doorDescriptions){
             addDoor(description);
         }

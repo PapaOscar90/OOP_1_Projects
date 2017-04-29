@@ -1,6 +1,7 @@
 package nl.rug.oop.rpg;
 
-/**An abstract object to super other objects that have instpectable descriptions
+/**
+ * An abstract object to super other objects that have instpectable descriptions
  * Contains a description
  * Created by PhilO on 27-Apr-17.
  */
@@ -9,11 +10,11 @@ abstract class Inspectable {
     private String description;
 
     public Inspectable(String s) {
-        description = s;
+        this.description = s;
     }
 
     // Return the description when inspect is called.
-    public String inspect(){
+    public String inspect() {
         return description;
     }
 }

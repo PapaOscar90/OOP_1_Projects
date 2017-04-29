@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**Door class, "points" to a new room.
+/**
+ * Door class, "points" to a new room.
  * Created by PhilO on 27-Apr-17.
  */
-public class Door extends Inspectable{
+public class Door extends Inspectable {
     private Room goesTo;
     private List<String> roomDescriptionList;
-   // private List<String> doorDescriptionList;
+    // private List<String> doorDescriptionList;
     private int random = new Random().nextInt(5);
 
     // The door "points" to a room.
     // TODO: Add description import from file maybe
-    public Door(String s){
+    public Door(String s) {
         super(s);
         roomDescriptionList = new ArrayList<>();
-       // doorDescriptionList = new ArrayList<String>();
+        // doorDescriptionList = new ArrayList<String>();
 
         roomDescriptionList.add("A dark room");
         roomDescriptionList.add("A large room");
@@ -29,11 +30,12 @@ public class Door extends Inspectable{
         randomDescription();
 
     }
-    private void randomDescription(){
+
+    private void randomDescription() {
         goesTo = new Room(roomDescriptionList.get(random));
     }
 
-    public Room interact(){
+    public Room interact() {
         return goesTo;
     }
 }
