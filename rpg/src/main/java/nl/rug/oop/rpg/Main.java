@@ -44,7 +44,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.DOORS_PER_ROOM);
+        List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors);
         Player player = new Player(startingRoom);
         gameLoop(player);

@@ -10,12 +10,12 @@ import java.util.List;
 public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
-    private List<Room> previousRoomsList = new ArrayList<Room>();
+    private List<Room> visitedRoomsList;
 
     // Constructor
     public Player(Room startingRoom) {
         currentRoom = startingRoom;
-        previousRoomsList.add(currentRoom);
+        visitedRoomsList = new ArrayList<>();
     }
 
     // Returns the room object currently in
@@ -26,11 +26,14 @@ public class Player {
     // Updates the current room, and adds the room to rooms visited if it has not been visited
     public void setRoom(Room room){
         currentRoom = room;
-        if(!previousRoomsList.contains(room)){
-            previousRoomsList.add(room);
+        if(!visitedRoomsList.contains(room)){
+            visitedRoomsList.add(room);
         }
     }
 
+    public List<Room> getVisitedRoomsList(){
+        return visitedRoomsList;
+    }
     // Player looks at the doors
     private void seeDoors() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
@@ -60,12 +63,7 @@ public class Player {
     private void enterDoor(int choice) {
         if (choice != 0) {
             System.out.println("You enter through the door");
-            if (previousRoomsList.contains(currentRoom.getDoor(choice-1).getRoom())){
-                currentRoom = currentRoom.getDoor(choice-1).getRoom();
-                return;
-            }else {
-                currentRoom.getDoor(choice - 1).interact(this);
-            }
+            currentRoom.getDoor(choice - 1).interact(this);
         } else {
             System.out.println("You do nothing.");
         }

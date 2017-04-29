@@ -46,17 +46,10 @@ public class GameObjectFactory {
         return doorList;
     }
 
-    // The other one if it is creating new doors for also keeping the old room in a door.
-    public static List<Door> generateRandomDoors(int n, Room room){
-        List<String> tempDoorDescriptionList = new ArrayList<>(doorDescriptionList);
-        List<Door> doorList = new ArrayList<>();
-        while (n > 0 && !tempDoorDescriptionList.isEmpty()){
-            int randomDoorNumber = rng.nextInt(tempDoorDescriptionList.size());
-            doorList.add(new Door(tempDoorDescriptionList.get(randomDoorNumber)));
-            tempDoorDescriptionList.remove(randomDoorNumber);
-            n--;
-        }
-        doorList.add(new Door("The door you came through.", room));
+
+    public static List<Door> generateRandomDoors(int n, Room oldRoom){
+        List<Door> doorList = new ArrayList<>(generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM));
+        doorList.add(new Door("The door you came through.", oldRoom));
         return doorList;
     }
 

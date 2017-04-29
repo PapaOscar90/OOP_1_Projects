@@ -34,13 +34,13 @@ public class Room extends Inspectable{
         return doorsList.get(index);
     }
     // Returns size of door list for iterating through them
-    public int getNumberOfDoors(){
-        return doorsList.size();
-    }
 
     // Returns a string of the description of the door
     public String getDoorDescription(int doorNumber){
         return doorsList.get(doorNumber).inspect();
+    }
+    public int getNumberOfDoors(){
+        return doorsList.size();
     }
 
 }

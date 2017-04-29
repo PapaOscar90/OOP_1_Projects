@@ -1,8 +1,6 @@
 package nl.rug.oop.rpg;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Door class, "points" to a new room.
@@ -25,12 +23,14 @@ public class Door extends Inspectable {
 
     // Player interacting with door, goes through door.
     public void interact(Player p) {
-        List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.DOORS_PER_ROOM, p.getRoom());
-        roomBehindDoor.setDoors(newDoors);
+        if (!p.getVisitedRoomsList().contains(roomBehindDoor)){
+            List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM, p.getRoom());
+            roomBehindDoor.setDoors(newDoors);
+        }
         p.setRoom(roomBehindDoor);
     }
 
-    public Room getRoom(){
-        return  roomBehindDoor;
+    public Room getRoomBehindDoor(){
+        return roomBehindDoor;
     }
 }

@@ -8,7 +8,7 @@ import java.util.Scanner;
  */
 
 public class HelperClass {
-    public static final int DOORS_PER_ROOM = 2;
+    public static final int NEW_DOORS_PER_ROOM = 2;
 
     // Allows only valid choices
     public static int getValidChoice(int lowerB, int upperB) {
