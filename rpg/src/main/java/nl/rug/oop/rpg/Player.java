@@ -1,5 +1,8 @@
 package nl.rug.oop.rpg;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * The player object
  * Created by PhilO on 27-Apr-17.
@@ -7,8 +10,12 @@ package nl.rug.oop.rpg;
 public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
+    private List<Room> previousRoomsList = new ArrayList<Room>();
+
+    // Constructor
     public Player(Room startingRoom) {
         currentRoom = startingRoom;
+        previousRoomsList.add(currentRoom);
     }
 
     // Returns the room object currently in
@@ -16,18 +23,24 @@ public class Player {
         return currentRoom;
     }
 
+    // Updates the current room, and adds the room to rooms visited if it has not been visited
     public void setRoom(Room room){
         currentRoom = room;
+        if(previousRoomsList.contains(room) == false){
+            previousRoomsList.add(room);
+        }
     }
 
-    private void printDoorDescriptions() {
+    // Player looks at the doors
+    private void seeDoors() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
         for (int i = 0; i < numberOfDoors; i++) {
             System.out.println(currentRoom.getDoorDescription(i));
         }
     }
 
-    private void printChoices() {
+    // Player considers which door to enter
+    private void considerDoors() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
         System.out.println("\nWhat would you like to do?");
         System.out.println("(0) Stay Here");
@@ -36,25 +49,27 @@ public class Player {
         }
     }
 
+    // Player can choose a door
     private int chooseDoor() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
         int choice = HelperClass.getValidChoice(0, numberOfDoors);
         return choice;
     }
 
-    private void handleDoorChoice(int choice) {
+    // Steps a player takes to choose a door
+    private void enterDoor(int choice) {
         if (choice != 0) {
             System.out.println("You enter through the door");
-            currentRoom.getDoor(choice - 1).interact(this);
+            currentRoom.getDoor(choice - 1).interact(this, currentRoom);
         } else {
             System.out.println("You do nothing.");
         }
     }
 
     public void handleDoorChoices() {
-        printDoorDescriptions();
-        printChoices();
+        seeDoors();
+        considerDoors();
         int choice = chooseDoor();
-        handleDoorChoice(choice);
+        enterDoor(choice);
     }
 }

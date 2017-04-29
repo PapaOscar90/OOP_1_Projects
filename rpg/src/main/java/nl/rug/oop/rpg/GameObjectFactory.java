@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**Class to generate game objects
+/**Creates randomly generated descriptions
+ * Class to generate game objects
  * Created by saidf on 4/29/2017.
  */
 public class GameObjectFactory {

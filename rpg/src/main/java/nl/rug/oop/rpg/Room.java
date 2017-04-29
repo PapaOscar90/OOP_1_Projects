@@ -6,7 +6,9 @@ import java.util.List;
 /**The Room, extends from Inspectable
  * Created by PhilO on 27-Apr-17.
  */
+
 public class Room extends Inspectable{
+    // Room contains multiple doors
     private List<Door> doorsList;
 
     protected Room(String s){

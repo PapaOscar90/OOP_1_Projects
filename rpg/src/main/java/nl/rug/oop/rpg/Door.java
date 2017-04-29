@@ -10,14 +10,16 @@ import java.util.Random;
  */
 public class Door extends Inspectable {
     private Room roomBehindDoor;
+
     // The door "points" to a room.
-    // TODO: Add description import from file maybe
     public Door(String s) {
         super(s);
         roomBehindDoor = GameObjectFactory.generateRandomRoom(0);  // Room has zero doors at first, doors are generated when the player enters this room
     }
-    public void interact(Player p) {
+
+    public void interact(Player p, Room currentRoom) {
         List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.DOORS_PER_ROOM);
+        // TODO: Add the currentRoom to the newDoors list
         roomBehindDoor.setDoors(newDoors);
         p.setRoom(roomBehindDoor);
     }
