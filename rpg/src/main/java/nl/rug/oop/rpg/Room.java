@@ -29,6 +29,7 @@ public class Room extends Inspectable{
         doorsList = new ArrayList<>(doors);
     }
 
+    // Returns the door at index of list
     public Door getDoor(int index){
         return doorsList.get(index);
     }

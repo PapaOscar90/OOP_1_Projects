@@ -26,7 +26,7 @@ public class Player {
     // Updates the current room, and adds the room to rooms visited if it has not been visited
     public void setRoom(Room room){
         currentRoom = room;
-        if(previousRoomsList.contains(room) == false){
+        if(!previousRoomsList.contains(room)){
             previousRoomsList.add(room);
         }
     }
@@ -60,12 +60,18 @@ public class Player {
     private void enterDoor(int choice) {
         if (choice != 0) {
             System.out.println("You enter through the door");
-            currentRoom.getDoor(choice - 1).interact(this, currentRoom);
+            if (previousRoomsList.contains(currentRoom.getDoor(choice-1).getRoom())){
+                currentRoom = currentRoom.getDoor(choice-1).getRoom();
+                return;
+            }else {
+                currentRoom.getDoor(choice - 1).interact(this);
+            }
         } else {
             System.out.println("You do nothing.");
         }
     }
 
+    // The though process a player takes to enter a door
     public void handleDoorChoices() {
         seeDoors();
         considerDoors();

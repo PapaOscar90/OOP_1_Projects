@@ -17,10 +17,20 @@ public class Door extends Inspectable {
         roomBehindDoor = GameObjectFactory.generateRandomRoom(0);  // Room has zero doors at first, doors are generated when the player enters this room
     }
 
-    public void interact(Player p, Room currentRoom) {
-        List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.DOORS_PER_ROOM);
-        // TODO: Add the currentRoom to the newDoors list
+    // Room has zero doors at first, doors are generated when the player enters this room
+    public Door(String s, Room room) {
+        super(s);
+        roomBehindDoor = room;
+    }
+
+    // Player interacting with door, goes through door.
+    public void interact(Player p) {
+        List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.DOORS_PER_ROOM, p.getRoom());
         roomBehindDoor.setDoors(newDoors);
         p.setRoom(roomBehindDoor);
+    }
+
+    public Room getRoom(){
+        return  roomBehindDoor;
     }
 }

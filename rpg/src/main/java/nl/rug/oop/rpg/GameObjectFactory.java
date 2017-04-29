@@ -33,7 +33,7 @@ public class GameObjectFactory {
     }
 
     // Generates n doors with random descriptions and returns them in a list
-    // Makes sure no two doors have the same description
+    // Makes sure no two doors have the same description. This is the initial creation method
     public static List<Door> generateRandomDoors(int n){
         List<String> tempDoorDescriptionList = new ArrayList<>(doorDescriptionList);
         List<Door> doorList = new ArrayList<>();
@@ -43,6 +43,20 @@ public class GameObjectFactory {
             tempDoorDescriptionList.remove(randomDoorNumber);
             n--;
         }
+        return doorList;
+    }
+
+    // The other one if it is creating new doors for also keeping the old room in a door.
+    public static List<Door> generateRandomDoors(int n, Room room){
+        List<String> tempDoorDescriptionList = new ArrayList<>(doorDescriptionList);
+        List<Door> doorList = new ArrayList<>();
+        while (n > 0 && !tempDoorDescriptionList.isEmpty()){
+            int randomDoorNumber = rng.nextInt(tempDoorDescriptionList.size());
+            doorList.add(new Door(tempDoorDescriptionList.get(randomDoorNumber)));
+            tempDoorDescriptionList.remove(randomDoorNumber);
+            n--;
+        }
+        doorList.add(new Door("The door you came through.", room));
         return doorList;
     }
 
