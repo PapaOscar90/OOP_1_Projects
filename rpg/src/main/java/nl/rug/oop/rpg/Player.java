@@ -7,9 +7,6 @@ package nl.rug.oop.rpg;
 public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
-
-    // Constructor passes in a description of the first room
-    // TODO: Create way to load rooms from file or generate random rooms
     public Player(Room startingRoom) {
         currentRoom = startingRoom;
     }
@@ -17,6 +14,10 @@ public class Player {
     // Returns the room object currently in
     public Room getRoom() {
         return currentRoom;
+    }
+
+    public void setRoom(Room room){
+        currentRoom = room;
     }
 
     private void printDoorDescriptions() {
@@ -44,7 +45,7 @@ public class Player {
     private void handleDoorChoice(int choice) {
         if (choice != 0) {
             System.out.println("You enter through the door");
-            currentRoom = currentRoom.enterDoor(choice - 1);
+            currentRoom.getDoor(choice - 1).interact(this);
         } else {
             System.out.println("You do nothing.");
         }

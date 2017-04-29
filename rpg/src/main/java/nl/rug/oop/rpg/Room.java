@@ -23,6 +23,13 @@ public class Room extends Inspectable{
         doorsList.add(door);
     }
 
+    public void setDoors(List<Door> doors){
+        doorsList = new ArrayList<>(doors);
+    }
+
+    public Door getDoor(int index){
+        return doorsList.get(index);
+    }
     // Returns size of door list for iterating through them
     public int getNumberOfDoors(){
         return doorsList.size();
@@ -33,8 +40,4 @@ public class Room extends Inspectable{
         return doorsList.get(doorNumber).inspect();
     }
 
-    public Room enterDoor(int doorNumber){
-        Room newRoom = doorsList.get(doorNumber).interact();
-        return newRoom;
-    }
 }

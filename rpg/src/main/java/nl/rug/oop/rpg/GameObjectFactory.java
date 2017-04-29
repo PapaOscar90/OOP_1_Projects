@@ -31,6 +31,8 @@ public class GameObjectFactory {
         rng = new Random();
     }
 
+    // Generates n doors with random descriptions and returns them in a list
+    // Makes sure no two doors have the same description
     public static List<Door> generateRandomDoors(int n){
         List<String> tempDoorDescriptionList = new ArrayList<>(doorDescriptionList);
         List<Door> doorList = new ArrayList<>();
@@ -43,6 +45,7 @@ public class GameObjectFactory {
         return doorList;
     }
 
+    // Generates a room with a random description and n amount of doors
     public static Room generateRandomRoom(int n){
         int randomRoomNumber = rng.nextInt(roomDescriptionList.size());
         return new Room(roomDescriptionList.get(randomRoomNumber), generateRandomDoors(n));
