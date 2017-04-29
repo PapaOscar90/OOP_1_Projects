@@ -9,17 +9,18 @@ import java.util.List;
 public class Room extends Inspectable{
     private List<Door> doorsList;
 
-    protected Room(String s, String...doorDescriptions){
+    protected Room(String s){
+        this(s, new ArrayList<>());
+    }
+
+    protected Room(String s, List<Door> doors){
         super(s);
-        doorsList = new ArrayList<>();
-        for (String description : doorDescriptions){
-            addDoor(description);
-        }
+        doorsList = new ArrayList<>(doors);
     }
 
     // Method to add a door, so that they can be different in each room
-    public void addDoor(String descrip){
-        doorsList.add(new Door(descrip));
+    public void addDoor(Door door){
+        doorsList.add(door);
     }
 
     // Returns size of door list for iterating through them

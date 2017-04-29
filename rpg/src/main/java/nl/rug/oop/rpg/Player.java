@@ -1,7 +1,5 @@
 package nl.rug.oop.rpg;
 
-import java.util.Scanner;
-
 /**
  * The player object
  * Created by PhilO on 27-Apr-17.
@@ -39,7 +37,7 @@ public class Player {
 
     private int chooseDoor() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
-        int choice = HelperFunctions.getValidChoice(0, numberOfDoors);
+        int choice = HelperClass.getValidChoice(0, numberOfDoors);
         return choice;
     }
 
