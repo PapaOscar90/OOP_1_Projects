@@ -13,6 +13,7 @@ import java.util.Random;
 public class GameObjectFactory {
     private static List<String> roomDescriptionList;
     private static List<String> doorDescriptionList;
+    private static List<String> npcDescriptionList;
     private static Random rng;
 
     static {
@@ -29,6 +30,13 @@ public class GameObjectFactory {
                 "A green door",
                 "A red door",
                 "A blue door"
+        ));
+        npcDescriptionList = new ArrayList<>(Arrays.asList(
+                "An orc",
+                "Yet another orc",
+                "A small orc",
+                "A large orc",
+                "An omnipotent orc"
         ));
         rng = new Random();
     }
@@ -53,9 +61,22 @@ public class GameObjectFactory {
         return doorList;
     }
 
-    // Generates a room with a random description and n amount of doors
-    public static Room generateRandomRoom(int n) {
+    // Generates random NPCs based on a weight 0 - 99, corresponding to the chance of an NPC spawning.
+    // It continues trying to add NPCs based on that chance, until weight is less than or equal to a random number 0-99.
+    public static List<NPC> generateRandomNpcs(int weight) {
+        int random = rng.nextInt(100);
+        List<NPC> npcList = new ArrayList<>();
+        while (weight > random) {
+            int randomNpcNumber = rng.nextInt(npcDescriptionList.size());
+            npcList.add(new NPC(npcDescriptionList.get(randomNpcNumber)));
+            random = rng.nextInt(100);
+        }
+        return npcList;
+    }
+
+    // Generates a room with a random description and n amount of doors and random npcs.
+    public static Room generateRandomRoom(int n, int weight) {
         int randomRoomNumber = rng.nextInt(roomDescriptionList.size());
-        return new Room(roomDescriptionList.get(randomRoomNumber), generateRandomDoors(n));
+        return new Room(roomDescriptionList.get(randomRoomNumber), generateRandomDoors(n), generateRandomNpcs(weight));
     }
 }

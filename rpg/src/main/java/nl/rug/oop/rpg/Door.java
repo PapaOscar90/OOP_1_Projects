@@ -12,10 +12,9 @@ public class Door extends Inspectable implements Interactable {
     // The door "points" to a room.
     public Door(String s) {
         super(s);
-        roomBehindDoor = GameObjectFactory.generateRandomRoom(0);  // Room has zero doors at first, doors are generated when the player enters this room
+        roomBehindDoor = GameObjectFactory.generateRandomRoom(0, HelperClass.NPC_SPAWN_CHANCE);  // Room has zero doors at first, doors are generated when the player enters this room
     }
 
-    // Room has zero doors at first, doors are generated when the player enters this room
     public Door(String s, Room room) {
         super(s);
         roomBehindDoor = room;

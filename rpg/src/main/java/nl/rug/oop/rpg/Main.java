@@ -14,7 +14,8 @@ public class Main {
         System.out.println("What do you want to do?");
         System.out.println("(0) Look around");
         System.out.println("(1) Look for a way out");
-        System.out.println("(2) Kill yourself");
+        System.out.println("(2) Look for company");
+        System.out.println("(3) Kill yourself");
     }
 
     private static void lookAround(Player p) {
@@ -25,6 +26,17 @@ public class Main {
         System.out.println("You look around for doors. You see:");
         p.handleDoorChoices();
     }
+
+    private static void checkForNpcs(Player p) {
+        System.out.println("You look if there's someone here. You see:");
+        if (p.getRoom().getNumberOfnpcs() == 0) {
+            System.out.println("There's no one here.");
+            System.out.println();
+            return;
+        }
+        p.handleNpcChoices();
+    }
+
 
     private static boolean commitSuicide(Player p) {
         System.out.println("Congratulations! You have found the exit.");
@@ -37,7 +49,7 @@ public class Main {
         boolean exit = false;
         while (!exit) {
             printRoomActions();
-            int choice = HelperClass.getValidChoice(0, 2);
+            int choice = HelperClass.getValidChoice(0, 3);
             // TODO: Put all the code in each case in separate methods
             switch (choice) {
                 case 0:
@@ -47,6 +59,9 @@ public class Main {
                     checkForDoors(player);
                     break;
                 case 2:
+                    checkForNpcs(player);
+                    break;
+                case 3:
                     exit = commitSuicide(player);
                     break;
                 default:
@@ -58,7 +73,8 @@ public class Main {
 
     public static void main(String[] args) {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
-        Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors);
+        List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
+        Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         Player player = new Player(startingRoom);
         gameLoop(player);
     }

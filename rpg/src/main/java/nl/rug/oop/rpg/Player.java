@@ -39,7 +39,7 @@ public class Player {
     private void seeDoors() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
         for (int i = 0; i < numberOfDoors; i++) {
-            System.out.println(currentRoom.getDoorDescription(i));
+            System.out.println(currentRoom.getDoor(i).inspect());
         }
     }
 
@@ -49,7 +49,7 @@ public class Player {
         System.out.println("\nWhat would you like to do?");
         System.out.println("(0) Stay Here");
         for (int i = 0; i < numberOfDoors; i++) {
-            System.out.println("(" + (i + 1) + ") Enter " + currentRoom.getDoorDescription(i));
+            System.out.println("(" + (i + 1) + ") Enter " + currentRoom.getDoor(i).inspect());
         }
     }
 
@@ -70,6 +70,28 @@ public class Player {
         }
     }
 
+    private void examineNpcs() {
+        int numberOfNpcs = currentRoom.getNumberOfnpcs();
+        for (int i = 0; i < numberOfNpcs; i++) {
+            System.out.println("(" + i + ")" + currentRoom.getnpc(i).inspect());
+            System.out.println("Interact? (-1 = do nothing)");
+        }
+    }
+
+    private int chooseNpc() {
+        int numberOfNpcs = currentRoom.getNumberOfnpcs();
+        int choice = HelperClass.getValidChoice(-1, numberOfNpcs);
+        return choice;
+    }
+
+    private void interactWithNpc(int choice) {
+        if (choice == -1) {
+            System.out.println("You do nothing.");
+        } else {
+            currentRoom.getnpc(choice).interact(this);
+        }
+    }
+
     // The thought process a player takes to enter a door
     public void handleDoorChoices() {
         seeDoors();
@@ -77,4 +99,12 @@ public class Player {
         int choice = chooseDoor();
         enterDoor(choice);
     }
+
+    public void handleNpcChoices() {
+        examineNpcs();
+        int choice = chooseNpc();
+        interactWithNpc(choice);
+    }
+
+
 }

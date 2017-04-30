@@ -11,17 +11,23 @@ import java.util.List;
 public class Room extends Inspectable {
     // Room contains multiple doors
     private List<Door> doorsList;
+    private List<NPC> npcList;
 
     protected Room(String s) {
         this(s, new ArrayList<>());
     }
 
     protected Room(String s, List<Door> doors) {
-        super(s);
-        doorsList = new ArrayList<>(doors);
+        this(s, doors, new ArrayList<>());
     }
 
-    // Method to add a door, so that they can be different in each room
+    protected Room(String s, List<Door> doors, List<NPC> npcs) {
+        super(s);
+        doorsList = new ArrayList<>(doors);
+        npcList = new ArrayList<>(npcs);
+    }
+
+    // Method to add a door
     public void addDoor(Door door) {
         doorsList.add(door);
     }
@@ -36,13 +42,24 @@ public class Room extends Inspectable {
     }
     // Returns size of door list for iterating through them
 
-    // Returns a string of the description of the door
-    public String getDoorDescription(int doorNumber) {
-        return doorsList.get(doorNumber).inspect();
-    }
-
     public int getNumberOfDoors() {
         return doorsList.size();
+    }
+
+    public void addnpc(NPC npc) {
+        npcList.add(npc);
+    }
+
+    public void setnpcs(List<NPC> npcs) {
+        npcList = new ArrayList<>(npcs);
+    }
+
+    public NPC getnpc(int index) {
+        return npcList.get(index);
+    }
+
+    public int getNumberOfnpcs() {
+        return npcList.size();
     }
 
 }
