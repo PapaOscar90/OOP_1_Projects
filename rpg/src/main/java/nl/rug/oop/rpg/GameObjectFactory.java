@@ -43,7 +43,7 @@ public class GameObjectFactory {
                 "A black door"
         ));
         // Creates a list of functions that returns NPC objects
-        npcGeneratorList = new ArrayList<Function<Void, NPC>>(Arrays.asList(
+        npcGeneratorList = new ArrayList<>(Arrays.asList(
                 (Void) -> {
                     return new Enemy("A wandering Spirit. Looks menacing.", "Spirit", 20, 5, 10);
                 },
