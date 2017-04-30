@@ -11,11 +11,13 @@ public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
     private List<Room> visitedRoomsList;
+    private int health;
 
     // Constructor
     public Player(Room startingRoom) {
         currentRoom = startingRoom;
         visitedRoomsList = new ArrayList<>();
+        health = 10;
     }
 
     // Returns the room object currently in
