@@ -9,7 +9,6 @@ import java.util.List;
 public class Main {
 
     // Temporary to display actions
-    // TODO: Add system to know what actions are available. Expand this
     private static void printRoomActions() {
         System.out.println("What do you want to do?");
         System.out.println("(0) Look around");
@@ -50,7 +49,6 @@ public class Main {
             System.out.println("You have " + player.getGold() + " Gold.");
             printRoomActions();
             int choice = HelperClass.getValidChoice(0, 3);
-            // TODO: Put all the code in each case in separate methods
             switch (choice) {
                 case 0:
                     lookAround(player);
