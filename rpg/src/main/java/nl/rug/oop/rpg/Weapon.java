@@ -7,7 +7,7 @@ public class Weapon extends Item {
     private int damage;
 
     // The weapon description goes to item, and the weapon has a damage rating
-    public Weapon(){
-        super("Weapon");
+    public Weapon(String s){
+        super(s);
     }
 }
