@@ -1,6 +1,6 @@
 package nl.rug.oop.rpg;
 
-/**
+/** A weapon abstract class
  * Created by PhilO on 30-Apr-17.
  */
 abstract class Weapon extends Item {

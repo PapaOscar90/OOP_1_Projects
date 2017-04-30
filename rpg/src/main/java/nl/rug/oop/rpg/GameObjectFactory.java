@@ -34,7 +34,8 @@ public class GameObjectFactory {
         npcDescriptionList = new ArrayList<>(Arrays.asList(
                 "A wandering spirit",
                 "A grusome mangeled spirit. Must have suffered a terrible death.",
-                "An imp"
+                "An imp",
+                "A reaper"
         ));
         rng = new Random();
     }
