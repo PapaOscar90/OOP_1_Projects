@@ -6,14 +6,27 @@ package nl.rug.oop.rpg;
  * Created by saidf on 4/30/2017.
  */
 
-public class NPC extends Inspectable implements Interactable {
+abstract class NPC extends Inspectable implements Interactable{
+    String name;
+    int health;
+    int maxHealth;
 
-    public NPC(String s) {
-        super(s);
+    public NPC(String descr, String name, int health) {
+        super(descr);
+        this.name = name;
+        this.health = health;
+        maxHealth = this.health;
     }
 
-    public void interact(Player p) {
-        System.out.println("You attempt to interact, but no code for this action exists as of this version of the game. Check back later!");
+    public String getName() {
+        return name;
     }
+
+    public int getHealth() {
+        return health;
+    }
+
+
+
 
 }

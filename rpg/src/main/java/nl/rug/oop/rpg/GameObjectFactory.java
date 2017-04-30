@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
 
 /**
  * Creates randomly generated descriptions
@@ -13,29 +14,48 @@ import java.util.Random;
 public class GameObjectFactory {
     private static List<String> roomDescriptionList;
     private static List<String> doorDescriptionList;
-    private static List<String> npcDescriptionList;
+    private static List<Function<Void, NPC>> npcGeneratorList;
     private static Random rng;
 
     static {
         roomDescriptionList = new ArrayList<>(Arrays.asList(
-                "A dark and massive room with no visible ceiling. Columns descend from the abyss above you. In the distance you think you see more doors.",
+                "A dark and massive room with no visible ceiling. Columns descend from the abyss above you.",
                 "A bright room, with what appear to be bio-luminescent jelly fish, but floating in the air above you. They give the room a bright bluish tint. ",
                 "A room disturbingly quiet. The walls appear to be a sponge-like material that dampens sound. You feel that you would go crazy in a room like this if trapped here.",
                 "A common room with normal walls and a normal ceiling.",
-                "A room with a small fountain in the center. It would have been beautiful whenever it was made. Now it is just a ruin."
+                "A room with a small fountain in the center. It would have been beautiful whenever it was made. Now it is just a ruin.",
+                "A room that seems to be made entirely out of wood.",
+                "A stinky room full of flies.",
+                "A room with cracked walls. It looks like its about to collapse.",
+                "A small room with walls that seem to sporadically change color",
+                "A slightly damp, misty room that smells of depression",
+                "A large circular room",
+                "A long room, almost like a corridor",
+                "A room that seems to be slightly tilted to one side",
+                "A room that seems to have transparent walls and ceiling. Beyond the walls seems to lie a weird kind of void.",
+                "A room painted entirely orange for no reason."
         ));
         doorDescriptionList = new ArrayList<>(Arrays.asList(
-                "A white door with beautiful etchings of the sky",
-                "a black door with a skull for a knocker",
-                "a green door with vines and planets growing on it",
-                "a fiery door with magical fire that does not burn its surroundings",
-                "a blue door that seams to leak water"
+                "A white door",
+                "A green door",
+                "A red door",
+                "A blue door",
+                "A black door"
         ));
-        npcDescriptionList = new ArrayList<>(Arrays.asList(
-                "A wandering spirit",
-                "A grusome mangeled spirit. Must have suffered a terrible death.",
-                "An imp",
-                "A reaper"
+        // Creates a list of functions that returns NPC objects
+        npcGeneratorList = new ArrayList<Function<Void, NPC>>(Arrays.asList(
+                (Void) -> {
+                    return new Enemy("A wandering Spirit. Looks menacing.", "Spirit", 20, 5, 10);
+                },
+                (Void) -> {
+                    return new Enemy("A gruesome, mangled Spirit.  Must have suffered a terrible death. Looks very dangerous.", "Tenacious Spirit", 50, 10, 15);
+                },
+                (Void) -> {
+                    return new Enemy("A reaper. The most malevolent of specters.", "Reaper", 150, 20, 30);
+                },
+                (Void) -> {
+                    return new Friendly("A Spirit... doesn't look dangerous though.", "Friendly Spirit", 100);
+                }
         ));
         rng = new Random();
     }
@@ -64,13 +84,17 @@ public class GameObjectFactory {
     // It continues trying to add NPCs based on that chance, until weight is less than or equal to a random number 0-99.
     public static List<NPC> generateRandomNpcs(int weight) {
         int random = rng.nextInt(100);
-        List<NPC> npcList = new ArrayList<>();
+        List<NPC> randomNpcList = new ArrayList<>();
         while (weight > random) {
-            int randomNpcNumber = rng.nextInt(npcDescriptionList.size());
-            npcList.add(new NPC(npcDescriptionList.get(randomNpcNumber)));
+            int randomNpcNumber = rng.nextInt(npcGeneratorList.size());
+            //npcGeneratorList used here to add newly generatated npcs to another list.
+            //This is necessary because "npcGeneratorList.get(randomNpcNumber)" with a list of already created objects
+            //will pass the reference around, and since there's no obvious way of copying an object in Java (to my knowledge)
+            //using this functional method works.
+            randomNpcList.add(npcGeneratorList.get(randomNpcNumber).apply(null));
             random = rng.nextInt(100);
         }
-        return npcList;
+        return randomNpcList;
     }
 
     // Generates a room with a random description and n amount of doors and random npcs.

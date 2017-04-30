@@ -11,17 +11,25 @@ public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
     private List<Room> visitedRoomsList;
+    private Weapon weapon;
+    private Room startingRoom;
     private int health;
+    private int maxHealth;
+    private int gold;
 
     // Constructor
-    public Player(Room startingRoom) {
+    public Player(Room startingRoom, int health, Weapon weapon, int gold) {
         currentRoom = startingRoom;
+        this.startingRoom = startingRoom;
         visitedRoomsList = new ArrayList<>();
-        health = 10;
+        this.health = health;
+        maxHealth = this.health;
+        this.weapon = weapon;
+        this.gold = gold;
     }
 
     // Returns the room object currently in
-    public Room getRoom() {
+    public Room getCurrentRoom() {
         return currentRoom;
     }
 
@@ -75,7 +83,7 @@ public class Player {
     private void examineNpcs() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
         for (int i = 0; i < numberOfNpcs; i++) {
-            System.out.println("(" + i + ")" + currentRoom.getnpc(i).inspect());
+            System.out.println("(" + i + ") " + currentRoom.getnpc(i).inspect());
         }
         System.out.println("Interact? (-1 = do nothing)");
     }
@@ -90,7 +98,7 @@ public class Player {
         if (choice == -1) {
             System.out.println("You do nothing.");
         } else {
-            currentRoom.getnpc(choice).interact(this);
+            currentRoom.interactWithNpc(choice, this);
         }
     }
 
@@ -108,5 +116,50 @@ public class Player {
         interactWithNpc(choice);
     }
 
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
+    public void takeDamage(int damage) {
+        health -= damage;
+    }
+
+    public void attack(Enemy enemy) {
+        enemy.takeDamage(weapon.getDamage());
+    }
+
+    public void respawn() {
+        currentRoom = startingRoom;
+        health = maxHealth;
+    }
+
+    public int getGold() {
+        return gold;
+    }
+
+    public void setGold(int gold) {
+        this.gold = gold;
+    }
+
+    public void addGold(int gold) {
+        this.gold += gold;
+        if (gold > 0) {
+            System.out.println("You received " + gold + " Gold");
+        } else {
+            System.out.println("You lost " + gold + " Gold");
+        }
+    }
 
 }

@@ -19,7 +19,7 @@ public class Main {
     }
 
     private static void lookAround(Player p) {
-        System.out.println("You see: " + p.getRoom().inspect());
+        System.out.println("You see: " + p.getCurrentRoom().inspect());
     }
 
     private static void checkForDoors(Player p) {
@@ -29,7 +29,7 @@ public class Main {
 
     private static void checkForNpcs(Player p) {
         System.out.println("You look if there's someone here. You see:");
-        if (p.getRoom().getNumberOfnpcs() == 0) {
+        if (p.getCurrentRoom().getNumberOfnpcs() == 0) {
             System.out.println("There's no one here.");
             System.out.println();
             return;
@@ -47,6 +47,7 @@ public class Main {
         // TODO: Create a win condition or end on death
         boolean exit = false;
         while (!exit) {
+            System.out.println("You have " + player.getGold() + " Gold.");
             printRoomActions();
             int choice = HelperClass.getValidChoice(0, 3);
             // TODO: Put all the code in each case in separate methods
@@ -73,7 +74,8 @@ public class Main {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
-        Player player = new Player(startingRoom);
+        Weapon startingWeapon = new Weapon("A weapon of mass destruction", "A rusty dagger", 10, 5, 10);
+        Player player = new Player(startingRoom, 100, startingWeapon, 50);
         gameLoop(player);
     }
 }
