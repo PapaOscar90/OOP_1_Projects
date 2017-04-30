@@ -18,25 +18,23 @@ public class GameObjectFactory {
 
     static {
         roomDescriptionList = new ArrayList<>(Arrays.asList(
-                "A dark room",
-                "A bright room",
-                "A large room",
-                "A small room",
-                "A massive room"
+                "A dark and massive room with no visible ceiling. Columns descend from the abyss above you. In the distance you think you see more doors.",
+                "A bright room, with what appear to be bio-luminescent jelly fish, but floating in the air above you. They give the room a bright bluish tint. ",
+                "A room disturbingly quiet. The walls appear to be a sponge-like material that dempens sound. You feel that you would go crazy in a room like this if trapped here.",
+                "A common room with normal walls and a normal ceiling.",
+                "A room with a small fountain in the center. It would have been beuitful whenever it was made. Now it is just a ruin."
         ));
         doorDescriptionList = new ArrayList<>(Arrays.asList(
-                "A white door",
-                "A black door",
-                "A green door",
-                "A red door",
-                "A blue door"
+                "A white door with beautiful etchings of the sky",
+                "a black door with a skull for a knocker",
+                "a green door with vines and planets growing on it",
+                "a fiery door with magical fire that does not burn its surroundings",
+                "a blue door that seams to leak water"
         ));
         npcDescriptionList = new ArrayList<>(Arrays.asList(
-                "An orc",
-                "Yet another orc",
-                "A small orc",
-                "A large orc",
-                "An omnipotent orc"
+                "A wandering spirit",
+                "A grusome mangeled spirit. Must have suffered a terrible death.",
+                "An imp"
         ));
         rng = new Random();
     }
