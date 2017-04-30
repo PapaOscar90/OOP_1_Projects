@@ -20,9 +20,9 @@ public class GameObjectFactory {
         roomDescriptionList = new ArrayList<>(Arrays.asList(
                 "A dark and massive room with no visible ceiling. Columns descend from the abyss above you. In the distance you think you see more doors.",
                 "A bright room, with what appear to be bio-luminescent jelly fish, but floating in the air above you. They give the room a bright bluish tint. ",
-                "A room disturbingly quiet. The walls appear to be a sponge-like material that dempens sound. You feel that you would go crazy in a room like this if trapped here.",
+                "A room disturbingly quiet. The walls appear to be a sponge-like material that dampens sound. You feel that you would go crazy in a room like this if trapped here.",
                 "A common room with normal walls and a normal ceiling.",
-                "A room with a small fountain in the center. It would have been beuitful whenever it was made. Now it is just a ruin."
+                "A room with a small fountain in the center. It would have been beautiful whenever it was made. Now it is just a ruin."
         ));
         doorDescriptionList = new ArrayList<>(Arrays.asList(
                 "A white door with beautiful etchings of the sky",

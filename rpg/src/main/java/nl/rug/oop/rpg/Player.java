@@ -76,8 +76,8 @@ public class Player {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
         for (int i = 0; i < numberOfNpcs; i++) {
             System.out.println("(" + i + ")" + currentRoom.getnpc(i).inspect());
-            System.out.println("Interact? (-1 = do nothing)");
         }
+        System.out.println("Interact? (-1 = do nothing)");
     }
 
     private int chooseNpc() {

@@ -37,7 +37,6 @@ public class Main {
         p.handleNpcChoices();
     }
 
-
     private static boolean commitSuicide(Player p) {
         System.out.println("Congratulations! You have found the exit.");
         return true;

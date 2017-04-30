@@ -7,13 +7,10 @@ package nl.rug.oop.rpg;
  */
 
 public class NPC extends Inspectable implements Interactable {
-    private int health;
 
-    public NPC(String s, int h) {
+    public NPC(String s) {
         super(s);
-        health = h;
     }
-
 
     public void interact(Player p) {
         System.out.println("You attempt to interact, but no code for this action exists as of this version of the game. Check back later!");
