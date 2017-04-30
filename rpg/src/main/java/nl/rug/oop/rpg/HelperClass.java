@@ -2,7 +2,8 @@ package nl.rug.oop.rpg;
 
 import java.util.Scanner;
 
-/**Helper functions
+/**
+ * Helper functions
  * A class for helper functions and constants
  * Created by saidf on 4/29/2017.
  */

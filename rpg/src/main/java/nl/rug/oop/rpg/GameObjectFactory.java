@@ -5,7 +5,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-/**Creates randomly generated descriptions
+/**
+ * Creates randomly generated descriptions
  * Class to generate game objects
  * Created by saidf on 4/29/2017.
  */
@@ -34,10 +35,10 @@ public class GameObjectFactory {
 
     // Generates n doors with random descriptions and returns them in a list
     // Makes sure no two doors have the same description. This is the initial creation method
-    public static List<Door> generateRandomDoors(int n){
+    public static List<Door> generateRandomDoors(int n) {
         List<String> tempDoorDescriptionList = new ArrayList<>(doorDescriptionList);
         List<Door> doorList = new ArrayList<>();
-        while (n > 0 && !tempDoorDescriptionList.isEmpty()){
+        while (n > 0 && !tempDoorDescriptionList.isEmpty()) {
             int randomDoorNumber = rng.nextInt(tempDoorDescriptionList.size());
             doorList.add(new Door(tempDoorDescriptionList.get(randomDoorNumber)));
             tempDoorDescriptionList.remove(randomDoorNumber);
@@ -46,15 +47,14 @@ public class GameObjectFactory {
         return doorList;
     }
 
-
-    public static List<Door> generateRandomDoors(int n, Room oldRoom){
+    public static List<Door> generateRandomDoors(int n, Room oldRoom) {
         List<Door> doorList = new ArrayList<>(generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM));
         doorList.add(new Door("The door you came through.", oldRoom));
         return doorList;
     }
 
     // Generates a room with a random description and n amount of doors
-    public static Room generateRandomRoom(int n){
+    public static Room generateRandomRoom(int n) {
         int randomRoomNumber = rng.nextInt(roomDescriptionList.size());
         return new Room(roomDescriptionList.get(randomRoomNumber), generateRandomDoors(n));
     }

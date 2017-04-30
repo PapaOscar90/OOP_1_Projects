@@ -24,16 +24,17 @@ public class Player {
     }
 
     // Updates the current room, and adds the room to rooms visited if it has not been visited
-    public void setRoom(Room room){
+    public void setRoom(Room room) {
         currentRoom = room;
-        if(!visitedRoomsList.contains(room)){
+        if (!visitedRoomsList.contains(room)) {
             visitedRoomsList.add(room);
         }
     }
 
-    public List<Room> getVisitedRoomsList(){
+    public List<Room> getVisitedRoomsList() {
         return visitedRoomsList;
     }
+
     // Player looks at the doors
     private void seeDoors() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
@@ -69,7 +70,7 @@ public class Player {
         }
     }
 
-    // The though process a player takes to enter a door
+    // The thought process a player takes to enter a door
     public void handleDoorChoices() {
         seeDoors();
         considerDoors();

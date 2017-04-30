@@ -23,14 +23,14 @@ public class Door extends Inspectable {
 
     // Player interacting with door, goes through door.
     public void interact(Player p) {
-        if (!p.getVisitedRoomsList().contains(roomBehindDoor)){
+        if (!p.getVisitedRoomsList().contains(roomBehindDoor)) {
             List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM, p.getRoom());
             roomBehindDoor.setDoors(newDoors);
         }
         p.setRoom(roomBehindDoor);
     }
 
-    public Room getRoomBehindDoor(){
+    public Room getRoomBehindDoor() {
         return roomBehindDoor;
     }
 }
