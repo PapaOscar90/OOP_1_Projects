@@ -193,6 +193,7 @@ public class Player {
             Item item = getInventoryItem(i);
             System.out.println("("+ i + ") " + item);
         }
+        System.out.println("(" + inventory.size() + ") Exit inventory");
     }
 
     public void interactWithInventoryItem(){
@@ -204,5 +205,12 @@ public class Player {
             removeInventoryItem(choice);
         }
         selectedItem.interact(this);
+    }
+
+    public boolean isInventoryEmpty(){
+        if (inventory.size() == 0){
+            return true;
+        }
+        return false;
     }
 }

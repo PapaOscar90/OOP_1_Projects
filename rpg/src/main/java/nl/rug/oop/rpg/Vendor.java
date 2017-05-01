@@ -42,6 +42,9 @@ public class Vendor extends NPC implements Shop {
         int choice;
         while (true){
             choice = HelperClass.getValidChoice(0, productList.size());
+            if (choice == productList.size()){
+                return choice;
+            }
             int chosenItemPrice = getProduct(choice).getPrice();
             if (chosenItemPrice > playerGold){
                 System.out.println("Sorry, you don't have enough Gold for that. Choose something else.");
@@ -65,9 +68,13 @@ public class Vendor extends NPC implements Shop {
             int itemPrice = productList.get(i).getPrice();
             System.out.println("(" + i + ") " + itemName + "     Price: " + itemPrice + " Gold");
         }
+        System.out.println("(" + productList.size() + ") Exit shop");
         System.out.println();
         System.out.println("Pick what item you would like to buy:");
         int choice = getValidProduct(playerGold);
+        if (choice == productList.size()){
+            return;
+        }
         sellProduct(choice, p);
     }
 }

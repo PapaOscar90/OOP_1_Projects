@@ -14,7 +14,8 @@ public class Main {
         System.out.println("(0) Look around");
         System.out.println("(1) Look for a way out");
         System.out.println("(2) Look for company");
-        System.out.println("(3) Kill yourself");
+        System.out.println("(3) Check inventory");
+        System.out.println("(4) Kill yourself");
     }
 
     private static void lookAround(Player p) {
@@ -37,6 +38,16 @@ public class Main {
         p.handleNpcChoices();
     }
 
+    private static void checkInventory(Player p){
+        if (!p.isInventoryEmpty()){
+            p.lookAtInventory();
+        } else {
+            System.out.println("Your inventory is empty");
+            System.out.println();
+        }
+
+    }
+
     private static boolean commitSuicide(Player p) {
         System.out.println("Congratulations! You have found the exit.");
         return true;
@@ -49,7 +60,7 @@ public class Main {
         while (!exit) {
             System.out.println("You have " + player.getGold() + " Gold.\n");
             printRoomActions();
-            int choice = HelperClass.getValidChoice(0, 3);
+            int choice = HelperClass.getValidChoice(0, 4);
             switch (choice) {
                 case 0:
                     lookAround(player);
@@ -61,6 +72,9 @@ public class Main {
                     checkForNpcs(player);
                     break;
                 case 3:
+                    checkInventory(player);
+                    break;
+                case 4:
                     exit = commitSuicide(player);
                     break;
                 default:
