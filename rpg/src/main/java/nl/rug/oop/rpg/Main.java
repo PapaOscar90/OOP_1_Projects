@@ -29,7 +29,7 @@ public class Main {
     private static void checkForNpcs(Player p) {
         System.out.print("You look if there's someone here.");
         if (p.getCurrentRoom().getNumberOfnpcs() == 0) {
-            System.out.println("But there is nobody here.");
+            System.out.println("\nBut there is nobody here.");
             System.out.println();
             return;
         }
@@ -73,7 +73,7 @@ public class Main {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
-        Weapon startingWeapon = new Weapon("A weapon of mass destruction", "A rusty dagger", 10, 5, 10);
+        Weapon startingWeapon = new Weapon("A weapon of mass destruction", "Rusty dagger", 10, 5, 10);
         Player player = new Player(startingRoom, 100, startingWeapon, 50);
         gameLoop(player);
     }

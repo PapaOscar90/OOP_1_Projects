@@ -66,7 +66,7 @@ public class Room extends Inspectable {
         NPC npc = npcList.get(npcIndex);
         npc.interact(p);
         if (npc.getHealth() <= 0){
-            npcList.remove(npcIndex);
+            npcList.remove(npc);
         }
     }
 

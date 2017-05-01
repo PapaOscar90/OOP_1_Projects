@@ -26,7 +26,4 @@ abstract class NPC extends Inspectable implements Interactable{
         return health;
     }
 
-
-
-
 }

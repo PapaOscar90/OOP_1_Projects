@@ -11,14 +11,14 @@ public class Enemy extends NPC {
     private int maxAttackDmg;
     Random rng;
 
-    public Enemy(String descr, String name, int health, int minAttackDmg, int maxAttackDmg) {
+    private Enemy(String descr, String name, int health, int minAttackDmg, int maxAttackDmg) {
         super(descr, name, health);
         this.minAttackDmg = minAttackDmg;
         this.maxAttackDmg = maxAttackDmg;
         rng = new Random();
     }
 
-    public void attack(Player p) {
+    private void attack(Player p) {
         int damageDealt = minAttackDmg + rng.nextInt(maxAttackDmg - minAttackDmg);
         p.takeDamage(damageDealt);
     }
@@ -27,7 +27,7 @@ public class Enemy extends NPC {
         health -= damage;
     }
 
-    public void duel(Player p) {
+    private void duel(Player p) {
         while (p.getHealth() > 0 && this.health > 0) {
             try {
                 System.out.println("Your health: " + p.getHealth() + "  Enemy health: " + this.health);

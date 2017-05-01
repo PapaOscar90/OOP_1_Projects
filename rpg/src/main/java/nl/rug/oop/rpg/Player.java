@@ -11,6 +11,7 @@ public class Player {
     // Stores the room object the player is in
     private Room currentRoom;
     private List<Room> visitedRoomsList;
+    private List<Item> inventory;
     private Weapon weapon;
     private Room startingRoom;
     private int health;
@@ -26,6 +27,7 @@ public class Player {
         maxHealth = this.health;
         this.weapon = weapon;
         this.gold = gold;
+        inventory  = new ArrayList<>();
     }
 
     // Returns the room object currently in
@@ -159,8 +161,23 @@ public class Player {
         if (gold > 0) {
             System.out.println("You received " + gold + " Gold");
         } else {
-            System.out.println("You lost " + gold + " Gold");
+            System.out.println("You lost " + -(gold) + " Gold");
         }
     }
 
+    public Item getInventoryItem(int index) {
+        return inventory.get(index);
+    }
+
+    public void addInventoryItem(Item item) {
+        inventory.add(item);
+    }
+
+    public void removeInventoryItem(int index) {
+        inventory.remove(index);
+    }
+
+    public void setInventory(List<Item> items){
+        inventory = new ArrayList<>(items);
+    }
 }
