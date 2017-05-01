@@ -27,12 +27,13 @@ public class Main {
     }
 
     private static void checkForNpcs(Player p) {
-        System.out.println("You look if there's someone here. You see:");
+        System.out.print("You look if there's someone here.");
         if (p.getCurrentRoom().getNumberOfnpcs() == 0) {
-            System.out.println("There's no one here.");
+            System.out.println("But there is nobody here.");
             System.out.println();
             return;
         }
+        System.out.println(" You see:");
         p.handleNpcChoices();
     }
 
@@ -46,7 +47,7 @@ public class Main {
         // TODO: Create a win condition or end on death
         boolean exit = false;
         while (!exit) {
-            System.out.println("You have " + player.getGold() + " Gold.");
+            System.out.println("You have " + player.getGold() + " Gold.\n");
             printRoomActions();
             int choice = HelperClass.getValidChoice(0, 3);
             switch (choice) {

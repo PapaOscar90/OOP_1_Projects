@@ -82,10 +82,11 @@ public class Player {
 
     private void examineNpcs() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
+        System.out.println(":");
         for (int i = 0; i < numberOfNpcs; i++) {
             System.out.println("(" + i + ") " + currentRoom.getnpc(i).inspect());
         }
-        System.out.println("Interact? (-1 = do nothing)");
+        System.out.println("Who will you interact with? (-1 = None)");
     }
 
     private int chooseNpc() {
