@@ -12,6 +12,7 @@ import java.util.function.Function;
  * Created by saidf on 4/29/2017.
  */
 public class GameObjectFactory {
+    // Contains lists for random generation of descriptions for rooms, doors, and NPCs
     private static List<String> roomDescriptionList;
     private static List<String> doorDescriptionList;
     private static List<Function<Void, NPC>> npcGeneratorList;
@@ -74,6 +75,7 @@ public class GameObjectFactory {
         return doorList;
     }
 
+    // Creates random doors with rooms, plus a door that goes back towards the start room
     public static List<Door> generateRandomDoors(int n, Room oldRoom) {
         List<Door> doorList = new ArrayList<>(generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM));
         doorList.add(new Door("The door you came through.", oldRoom));

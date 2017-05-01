@@ -18,7 +18,7 @@ public class Player {
     private int maxHealth;
     private int gold;
 
-    // Constructor
+    // Player Constructor
     public Player(Room startingRoom, int health, Weapon weapon, int gold) {
         currentRoom = startingRoom;
         this.startingRoom = startingRoom;
@@ -82,6 +82,7 @@ public class Player {
         }
     }
 
+    // This will list the NPCs that are in the room
     private void examineNpcs() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
         System.out.println(":");
@@ -91,12 +92,14 @@ public class Player {
         System.out.println("Who will you interact with? (-1 = None)");
     }
 
+    // Only allows an allowed choice for NPC, returns the choice
     private int chooseNpc() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
         int choice = HelperClass.getValidChoice(-1, numberOfNpcs);
         return choice;
     }
 
+    // Calls the interact with the valid choice
     private void interactWithNpc(int choice) {
         if (choice == -1) {
             System.out.println("You do nothing.");
@@ -113,49 +116,61 @@ public class Player {
         enterDoor(choice);
     }
 
+    // The thought process a player takes to interact with NPCs
     public void handleNpcChoices() {
         examineNpcs();
         int choice = chooseNpc();
         interactWithNpc(choice);
     }
 
+    // Returns player health
     public int getHealth() {
         return health;
     }
 
+    // Sets player health
     public void setHealth(int health) {
         this.health = health;
     }
 
+    // Returns the player weapon
     public Weapon getWeapon() {
         return weapon;
     }
 
+    // Sets the player weapon
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
+    // Reduces the player health by int damage
     public void takeDamage(int damage) {
         health -= damage;
     }
 
+    // Player deals damage to Enemy enemy with weapon's damage
     public void attack(Enemy enemy) {
         enemy.takeDamage(weapon.getDamage());
     }
 
+    // Respawns player at start with normal health.
     public void respawn() {
         currentRoom = startingRoom;
         health = maxHealth;
+        gold = 0;
     }
 
+    // Returns player gold amount
     public int getGold() {
         return gold;
     }
 
+    // Sets player gold
     public void setGold(int gold) {
         this.gold = gold;
     }
 
+    // Adds to player's gold
     public void addGold(int gold) {
         this.gold += gold;
         if (gold > 0) {

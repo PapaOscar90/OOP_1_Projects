@@ -9,11 +9,12 @@ import java.util.Scanner;
  */
 
 public class HelperClass {
+    // Universal static final ints for easy changing later
     public static final int NEW_DOORS_PER_ROOM = 2;
     public static final int NPC_SPAWN_CHANCE = 50;
-    public static final int COMBAT_SCROLL_SPEED = 1000;
+    public static final int COMBAT_SCROLL_SPEED = 900;
 
-    // Allows only valid choices
+    // Allows only valid choices for a lower and upper bound
     public static int getValidChoice(int lowerB, int upperB) {
         Scanner in = new Scanner(System.in);
         int choice;

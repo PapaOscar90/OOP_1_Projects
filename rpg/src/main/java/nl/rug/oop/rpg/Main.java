@@ -17,15 +17,18 @@ public class Main {
         System.out.println("(3) Kill yourself");
     }
 
+    // Looks around, views room description
     private static void lookAround(Player p) {
         System.out.println("You see: " + p.getCurrentRoom().inspect());
     }
 
+    // Looks around for doors, allows for possible interaction with doors
     private static void checkForDoors(Player p) {
         System.out.println("You look around for doors. You see:");
-        p.handleDoorChoices();
+        p.handleDoorChoices(); // Checks if player wishes to interact with doors
     }
 
+    // Looks around for NPCs, then allows for possible interaction with NPCs
     private static void checkForNpcs(Player p) {
         System.out.print("You look if there's someone here.");
         if (p.getCurrentRoom().getNumberOfnpcs() == 0) {
@@ -34,15 +37,16 @@ public class Main {
             return;
         }
         System.out.println(" You see:");
-        p.handleNpcChoices();
+        p.handleNpcChoices(); // Checks if player wishes to interact with any
     }
 
+    // If the player wants to take the easy way out
     private static boolean commitSuicide(Player p) {
-        System.out.println("Congratulations! You have found the exit.");
+        System.out.println("Congratulations! You have found the easy way out.");
         return true;
     }
 
-    // The game loop, entire game takes place here. This loop ends, game over.
+    // The game loop, entire game takes place here. If this loop ends, game over.
     private static void gameLoop(Player player) {
         // TODO: Create a win condition or end on death
         boolean exit = false;
@@ -69,6 +73,7 @@ public class Main {
         }
     }
 
+    // Main game initialization
     public static void main(String[] args) {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
