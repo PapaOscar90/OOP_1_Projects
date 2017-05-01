@@ -7,7 +7,7 @@ import java.util.List;
  * Created by PhilO on 27-Apr-17.
  */
 public class Door extends Inspectable implements Interactable {
-    private Room roomBehindDoor;
+    protected Room roomBehindDoor;
 
     // The door "points" to a room.
     public Door(String s) {

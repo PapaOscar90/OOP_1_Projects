@@ -40,7 +40,7 @@ public class Main {
 
     private static void checkInventory(Player p){
         if (!p.isInventoryEmpty()){
-            p.lookAtInventory();
+            p.interactWithInventoryItem();
         } else {
             System.out.println("Your inventory is empty");
             System.out.println();
@@ -53,12 +53,24 @@ public class Main {
         return true;
     }
 
+    private static void printStatus(Player p){
+        int minWeaponDmg = p.getWeapon().getMinDamage();
+        int maxWeaponDmg = p.getWeapon().getMaxDamage();
+        String weaponName = p.getWeapon().getName();
+        System.out.println();
+        System.out.println("Status:");
+        System.out.println("    Gold: " + p.getGold());
+        System.out.println("    health: " + p.getHealth());
+        System.out.println("    Current Weapon: " + weaponName + "    | Min Dmg: " + minWeaponDmg + " |  Max dmg: " + maxWeaponDmg + " |");
+        System.out.println();
+    }
+
     // The game loop, entire game takes place here. This loop ends, game over.
     private static void gameLoop(Player player) {
         // TODO: Create a win condition or end on death
         boolean exit = false;
         while (!exit) {
-            System.out.println("You have " + player.getGold() + " Gold.\n");
+            printStatus(player);
             printRoomActions();
             int choice = HelperClass.getValidChoice(0, 4);
             switch (choice) {
@@ -94,7 +106,7 @@ public class Main {
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction", "Rusty dagger", 10, 5, 10);
-        Player player = new Player(startingRoom, 100, startingWeapon, 50);
+        Player player = new Player(startingRoom, 100, startingWeapon, 500);
         gameLoop(player);
     }
 }

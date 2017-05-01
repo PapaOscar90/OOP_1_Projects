@@ -8,9 +8,9 @@ package nl.rug.oop.rpg;
 
 abstract class NPC extends Inspectable implements Interactable{
     // All NPCs have a name, and health
-    String name;
-    int health;
-    int maxHealth;
+    protected String name;
+    protected int health;
+    protected int maxHealth;
 
     // NPC Contructor, takes a description, name, and health for current and max
     public NPC(String descr, String name, int health) {

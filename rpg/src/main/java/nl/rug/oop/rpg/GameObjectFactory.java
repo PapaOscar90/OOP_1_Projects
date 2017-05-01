@@ -58,7 +58,7 @@ public class GameObjectFactory {
                     return new Friendly("A Spirit... doesn't look dangerous though.", "Friendly Spirit", 100);
                 }
         ));
-        rng = new Random();
+        rng = new Random(System.nanoTime());
     }
 
     // Generates n doors with random descriptions and returns them in a list
@@ -77,8 +77,16 @@ public class GameObjectFactory {
 
     // Creates random doors with rooms, plus a door that goes back towards the start room
     public static List<Door> generateRandomDoors(int n, Room oldRoom) {
+        int random = rng.nextInt(100);
+        int random2 = rng.nextInt(100);
         List<Door> doorList = new ArrayList<>(generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM));
         doorList.add(new Door("The door you came through.", oldRoom));
+        if (random < 25){
+            doorList.add(new BadDoor("A bloody door with a skull for a knocker."));
+        }
+        if (random2 < 25){
+            doorList.add(new GoodDoor("A sparkly, golden door."));
+        }
         return doorList;
     }
 

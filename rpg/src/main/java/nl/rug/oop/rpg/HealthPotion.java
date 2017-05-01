@@ -10,7 +10,7 @@ public class HealthPotion extends Item{
 
     public void interact(Player p){
         p.setHealth(p.getMaxHealth());
-        System.out.print("You drank the potion and it restores all your health!");
+        System.out.println("You drank the potion and it restores all your health!");
     }
 
 }

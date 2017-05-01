@@ -95,7 +95,7 @@ public class Player {
     // Only allows an allowed choice for NPC, returns the choice
     private int chooseNpc() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
-        int choice = HelperClass.getValidChoice(-1, numberOfNpcs);
+        int choice = HelperClass.getValidChoice(-1, numberOfNpcs-1);
         return choice;
     }
 
@@ -206,8 +206,8 @@ public class Player {
     public void lookAtInventory(){
         System.out.println("You have these items: ");
         for (int i = 0; i < inventory.size(); i++){
-            Item item = getInventoryItem(i);
-            System.out.println("("+ i + ") " + item);
+            String itemName = getInventoryItem(i).getName();
+            System.out.println("("+ i + ") " + itemName);
         }
         System.out.println("(" + inventory.size() + ") Exit inventory");
     }
@@ -216,11 +216,23 @@ public class Player {
         lookAtInventory();
         System.out.println("Pick an item to interact with:");
         int choice = HelperClass.getValidChoice(0, inventory.size());
-        Item selectedItem = getInventoryItem(choice);
-        if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
-            removeInventoryItem(choice);
+        if (choice == inventory.size()){
+            return;
         }
-        selectedItem.interact(this);
+        Item selectedItem = getInventoryItem(choice);
+        System.out.println("What would you like to do with this item?");
+        System.out.println();
+        System.out.println("(0) Use");
+        System.out.println("(1) Inspect");
+        int choice2 = HelperClass.getValidChoice(0, 1);
+        if (choice2 == 0){
+            if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
+                removeInventoryItem(choice);
+            }
+            selectedItem.interact(this);
+        } else {
+            System.out.println(selectedItem.inspect());
+        }
     }
 
     public boolean isInventoryEmpty(){
