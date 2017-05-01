@@ -123,6 +123,10 @@ public class Player {
         return health;
     }
 
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
     public void setHealth(int health) {
         this.health = health;
     }
@@ -160,8 +164,6 @@ public class Player {
         this.gold += gold;
         if (gold > 0) {
             System.out.println("You received " + gold + " Gold");
-        } else {
-            System.out.println("You lost " + -(gold) + " Gold");
         }
     }
 
@@ -177,7 +179,30 @@ public class Player {
         inventory.remove(index);
     }
 
+    public void removeInventoryItem(Item item) {
+        inventory.remove(item);
+    }
+
     public void setInventory(List<Item> items){
         inventory = new ArrayList<>(items);
+    }
+
+    public void lookAtInventory(){
+        System.out.println("You have these items: ");
+        for (int i = 0; i < inventory.size(); i++){
+            Item item = getInventoryItem(i);
+            System.out.println("("+ i + ") " + item);
+        }
+    }
+
+    public void interactWithInventoryItem(){
+        lookAtInventory();
+        System.out.println("Pick an item to interact with:");
+        int choice = HelperClass.getValidChoice(0, inventory.size());
+        Item selectedItem = getInventoryItem(choice);
+        if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
+            removeInventoryItem(choice);
+        }
+        selectedItem.interact(this);
     }
 }

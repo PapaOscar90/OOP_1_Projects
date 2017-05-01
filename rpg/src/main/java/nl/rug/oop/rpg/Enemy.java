@@ -11,7 +11,7 @@ public class Enemy extends NPC {
     private int maxAttackDmg;
     Random rng;
 
-    private Enemy(String descr, String name, int health, int minAttackDmg, int maxAttackDmg) {
+    public Enemy(String descr, String name, int health, int minAttackDmg, int maxAttackDmg) {
         super(descr, name, health);
         this.minAttackDmg = minAttackDmg;
         this.maxAttackDmg = maxAttackDmg;

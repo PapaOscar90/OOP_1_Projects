@@ -72,7 +72,13 @@ public class Main {
     public static void main(String[] args) {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
+        Vendor vendor = new Vendor("A post-Material reality Merchant! He might have some useful things to buy.", "Post-material Reality vendor", 100);
+        Weapon sword = new Weapon("A steel sword. A must have over a rusty dagger.", "Steel sword", 200, 15, 30);
+        HealthPotion hp = new HealthPotion();
+        vendor.addProduct(sword);
+        vendor.addProduct(hp);
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
+        startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction", "Rusty dagger", 10, 5, 10);
         Player player = new Player(startingRoom, 100, startingWeapon, 50);
         gameLoop(player);
