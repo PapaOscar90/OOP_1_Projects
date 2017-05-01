@@ -3,7 +3,7 @@ package nl.rug.oop.rpg;
 /** An item abstract class
  * Created by PhilO on 30-Apr-17.
  */
-abstract class Item extends Inspectable {
+abstract class Item extends Inspectable implements Interactable {
     // Items have a description and price
     String name;
     int price;

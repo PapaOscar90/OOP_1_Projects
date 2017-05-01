@@ -23,4 +23,10 @@ public class Weapon extends Item {
     public int getDamage(){
         return minDamage + rng.nextInt(maxDamage - minDamage);
     }
+
+    public void interact(Player p){
+        p.addInventoryItem(p.getWeapon());
+        p.setWeapon(this);
+        System.out.print("You equipped " + p.getWeapon().name + " as your weapon!");
+    }
 }
