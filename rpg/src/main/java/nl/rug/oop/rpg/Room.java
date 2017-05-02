@@ -27,7 +27,6 @@ public class Room extends Inspectable {
         npcList = new ArrayList<>(npcs);
     }
 
-    // Method to add a door
     public void addDoor(Door door) {
         doorsList.add(door);
     }
@@ -36,11 +35,9 @@ public class Room extends Inspectable {
         doorsList = new ArrayList<>(doors);
     }
 
-    // Returns the door at index of list
     public Door getDoor(int index) {
         return doorsList.get(index);
     }
-    // Returns size of door list for iterating through them
 
     public int getNumberOfDoors() {
         return doorsList.size();
@@ -48,10 +45,6 @@ public class Room extends Inspectable {
 
     public void addnpc(NPC npc) {
         npcList.add(npc);
-    }
-
-    public void setnpcs(List<NPC> npcs) {
-        npcList = new ArrayList<>(npcs);
     }
 
     public NPC getnpc(int index) {
@@ -62,10 +55,11 @@ public class Room extends Inspectable {
         return npcList.size();
     }
 
-    public void interactWithNpc(int npcIndex, Player p){
+    //More easily enables interactions with NPCs in the room
+    public void interactWithNpc(int npcIndex, Player p) {
         NPC npc = npcList.get(npcIndex);
         npc.interact(p);
-        if (npc.getHealth() <= 0){
+        if (npc.getHealth() <= 0) {
             npcList.remove(npc);
         }
     }

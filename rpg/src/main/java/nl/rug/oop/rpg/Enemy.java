@@ -18,15 +18,18 @@ public class Enemy extends NPC {
         rng = new Random();
     }
 
+    //Attacks the player with a calculated damage
     private void attack(Player p) {
         int damageDealt = minAttackDmg + rng.nextInt(maxAttackDmg - minAttackDmg);
         p.takeDamage(damageDealt);
     }
 
+    //Health gets subtracted by damage amount
     public void takeDamage(int damage) {
         health -= damage;
     }
 
+    // The process of a duel. The health status of both parties is updated continuously until one or the other dies
     private void duel(Player p) {
         while (p.getHealth() > 0 && this.health > 0) {
             try {
@@ -58,9 +61,9 @@ public class Enemy extends NPC {
 
     }
 
+    //Enemy interaction just implements duel.
     public void interact(Player p) {
         duel(p);
     }
-
 
 }

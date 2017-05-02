@@ -32,6 +32,7 @@ public class Main {
         p.handleDoorChoices();
     }
 
+    // Prints the types of NPCs in the room
     private static void checkForNpcs(Player p) {
         System.out.print("You look if there's someone here.");
         if (p.getCurrentRoom().getNumberOfnpcs() == 0) {
@@ -43,6 +44,7 @@ public class Main {
         p.handleNpcChoices();
     }
 
+    // Prints the items in the inventory
     private static void checkInventory(Player p){
         if (!p.isInventoryEmpty()){
             p.getInventory().interact(p);
@@ -53,10 +55,12 @@ public class Main {
 
     }
 
+    // Attempting suicide
     private static boolean commitSuicide(Player p) {
         return p.suicide();
     }
 
+    // Prints current status of the player to the screen (gold, health, current weapon);
     private static void printStatus(Player p){
         int minWeaponDmg = p.getWeapon().getMinDamage();
         int maxWeaponDmg = p.getWeapon().getMaxDamage();
@@ -68,7 +72,7 @@ public class Main {
         System.out.println();
     }
 
-    // The game loop, entire game takes place here. This loop ends, game over.
+    // The game loop.
     private static void gameLoop(Player player) {
         System.out.println();
         System.out.println("You awaken in an unknown place with only a rusty dagger in your hand. \n" +
@@ -107,6 +111,7 @@ public class Main {
         }
     }
 
+    // Loads the game
     private static Player initializeGame(){
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
@@ -119,7 +124,7 @@ public class Main {
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction.", "Rusty dagger", 10, 5, 10);
-        return new Player(startingRoom, 100, startingWeapon, 100);
+        return new Player(startingRoom, 100, startingWeapon, 25);
     }
 
     public static void main(String[] args) {

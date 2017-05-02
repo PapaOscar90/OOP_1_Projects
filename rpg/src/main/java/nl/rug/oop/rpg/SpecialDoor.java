@@ -1,6 +1,6 @@
 package nl.rug.oop.rpg;
 
-/**
+/** An abstract class for a special door
  * Created by saidf on 5/2/2017.
  */
 abstract class SpecialDoor extends Door{

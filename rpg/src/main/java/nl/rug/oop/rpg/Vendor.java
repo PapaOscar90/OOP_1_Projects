@@ -24,14 +24,11 @@ public class Vendor extends NPC implements Shop {
         return productList.get(product);
     }
 
-    public void setProducts(List<Item> products) {
-        productList = new ArrayList<>(products);
-    }
-
     public void removeProduct(int index) {
         productList.remove(index);
     }
 
+    // When you buy the enchanted stone, this dialogue initiates
     private void vendorDialogue(){
         try {
             Thread.sleep(1000);
@@ -47,6 +44,7 @@ public class Vendor extends NPC implements Shop {
         }
     }
 
+    // The process of selling a product
     public void sellProduct(int index, Player p) {
         Item Product = productList.get(index);
         int itemPrice = Product.getPrice();
@@ -63,11 +61,13 @@ public class Vendor extends NPC implements Shop {
         p.getInventory().addInventoryItem(Product);
     }
 
+    // Makes sure the input choice is correct and the player has enough gold to purchase the product
     private int getValidProduct(int playerGold){
         int choice;
         while (true){
             choice = HelperClass.getValidChoice(0, productList.size());
             if (choice == productList.size()){
+                // Exited the shop
                 return choice;
             }
             int chosenItemPrice = getProduct(choice).getPrice();
@@ -80,6 +80,7 @@ public class Vendor extends NPC implements Shop {
         return choice;
     }
 
+    //Lists the items available for sale and attempts to transact. Continues until player exits.
     private void transactionProcess(Player p){
         while (true) {
             int playerGold = p.getGold();
@@ -104,6 +105,7 @@ public class Vendor extends NPC implements Shop {
         }
     }
 
+    //Initiates the transaction process with some descriptions (+ dialogues) before and after.
     public void interact(Player p) {
         if (productList.size() == 0){
             System.out.println("You approach the " + name + " but he does not have anything for sale!");

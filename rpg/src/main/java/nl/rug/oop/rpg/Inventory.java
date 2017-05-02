@@ -3,7 +3,7 @@ package nl.rug.oop.rpg;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
+/**An inventory to be used by Player
  * Created by saidf on 5/2/2017.
  */
 public class Inventory implements Interactable {
@@ -12,12 +12,7 @@ public class Inventory implements Interactable {
     public Inventory(){
         inventory = new ArrayList<>();
     }
-    public void setInventory(List<Item> items){
-        inventory = new ArrayList<>(items);
-    }
-    public List<Item> getInventory(){
-        return inventory;
-    }
+
     public Item getInventoryItem(int index) {
         return inventory.get(index);
     }
@@ -30,11 +25,11 @@ public class Inventory implements Interactable {
         inventory.remove(index);
     }
 
-
     public int getSize(){
         return inventory.size();
     }
 
+    //Prints the items in the inventory to the screen
     private void lookAtInventory(){
         System.out.println("You have these items: ");
         for (int i = 0; i < inventory.size(); i++){
@@ -45,10 +40,12 @@ public class Inventory implements Interactable {
         System.out.println("(" + inventory.size() + ") Exit inventory");
     }
 
+    //Enables interaction with all the items in the inventory
     private void interactWithInventoryItem(Player p){
         System.out.println("Pick an item to interact with:");
         int choice = HelperClass.getValidChoice(0, inventory.size());
         if (choice == inventory.size()){
+            //Exit option was selected
             return;
         }
         Item selectedItem = getInventoryItem(choice);
@@ -59,6 +56,8 @@ public class Inventory implements Interactable {
         int choice2 = HelperClass.getValidChoice(0, 1);
         if (choice2 == 0){
             if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
+                //Interaction with a weapon equips it, removing it from inventory
+                //A health potion will be used up, so also removed
                 removeInventoryItem(choice);
             }
             selectedItem.interact(p);

@@ -8,7 +8,6 @@ import java.util.List;
  * Created by PhilO on 27-Apr-17.
  */
 public class Player {
-    // Stores the room object the player is in
     private Room currentRoom;
     private List<Room> visitedRoomsList;
     private Inventory inventory;
@@ -19,7 +18,6 @@ public class Player {
     private int gold;
     private Boolean hasSuicideWeapon;
 
-    // Player Constructor
     public Player(Room startingRoom, int health, Weapon weapon, int gold) {
         currentRoom = startingRoom;
         this.startingRoom = startingRoom;
@@ -33,32 +31,26 @@ public class Player {
         hasSuicideWeapon = false;
     }
 
-    // Returns player health
     public int getHealth() {
         return health;
     }
 
-    // Sets player health
     public int getMaxHealth() {
         return maxHealth;
     }
 
-    // Sets player health
     public void setHealth(int health) {
         this.health = health;
     }
 
-    // Returns the player weapon
     public Weapon getWeapon() {
         return weapon;
     }
 
-    // Sets the player weapon
     public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
-    // Returns the room object currently in
     public Room getCurrentRoom() {
         return currentRoom;
     }
@@ -172,7 +164,6 @@ public class Player {
         gold = 0;
     }
 
-    // Returns player gold amount
     public int getGold() {
         return gold;
     }
@@ -189,6 +180,7 @@ public class Player {
         return inventory;
     }
 
+    // This function enables suicide if the suicide weapon is present.
     public boolean suicide() {
         if (hasSuicideWeapon) {
             System.out.println("The stone glows brightly in your pocket... \n" +
