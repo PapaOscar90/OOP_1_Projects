@@ -3,9 +3,9 @@ package nl.rug.oop.rpg;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * RPG game
- * Created by PhilO on 27-Apr-17.
+/** TODO: Allow spirits to immediatly attack when player enters room, adds small danger to each room
+ *  RPG game
+ *  Created by PhilO on 27-Apr-17.
  */
 public class Main {
 

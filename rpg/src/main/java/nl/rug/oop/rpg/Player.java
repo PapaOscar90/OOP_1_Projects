@@ -117,7 +117,6 @@ public class Player {
     // This will list the NPCs that are in the room
     private void examineNpcs() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
-        System.out.println(":");
         for (int i = 0; i < numberOfNpcs; i++) {
             System.out.println("(" + i + ") " + currentRoom.getnpc(i).inspect());
         }
