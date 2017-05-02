@@ -16,6 +16,8 @@ public class Main {
         System.out.println("(2) Look for company");
         System.out.println("(3) Check inventory");
         System.out.println("(4) Kill yourself");
+        System.out.println();
+        System.out.println("(5) Exit game (You lose all progress!)");
     }
 
     private static void lookAround(Player p) {
@@ -49,8 +51,7 @@ public class Main {
     }
 
     private static boolean commitSuicide(Player p) {
-        System.out.println("Congratulations! You have found the exit.");
-        return true;
+        return p.suicide();
     }
 
     private static void printStatus(Player p){
@@ -72,7 +73,7 @@ public class Main {
         while (!exit) {
             printStatus(player);
             printRoomActions();
-            int choice = HelperClass.getValidChoice(0, 4);
+            int choice = HelperClass.getValidChoice(0, 5);
             switch (choice) {
                 case 0:
                     lookAround(player);
@@ -89,24 +90,35 @@ public class Main {
                 case 4:
                     exit = commitSuicide(player);
                     break;
+                case 5:
+                    exit = true;
+                    break;
                 default:
                     System.out.println("Incorrect input");
             }
         }
     }
 
-    public static void main(String[] args) {
+    private static Player initializeGame(){
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
-        Vendor vendor = new Vendor("A post-Material reality Merchant! He might have some useful things to buy.", "Post-material Reality vendor", 100);
+        Vendor vendor = new Vendor("A Post-Material Merchant! He might have some useful things to buy.", "Post-material Reality vendor", 100);
         Weapon sword = new Weapon("A steel sword. A must have over a rusty dagger.", "Steel sword", 200, 15, 30);
+        Weapon scythe = new Weapon("A scythe... no one will stand a chance.", "Scythe", 500, 50, 100);
+        EnchantedStone theEnd = new EnchantedStone("A glowing, red stone...", "Enchanted Stone", 1000);
         HealthPotion hp = new HealthPotion();
-        vendor.addProduct(sword);
         vendor.addProduct(hp);
+        vendor.addProduct(sword);
+        vendor.addProduct(scythe);
+        vendor.addProduct(theEnd);
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction", "Rusty dagger", 10, 5, 10);
-        Player player = new Player(startingRoom, 100, startingWeapon, 500);
+        return new Player(startingRoom, 100, startingWeapon, 2000);
+    }
+
+    public static void main(String[] args) {
+        Player player = initializeGame();
         gameLoop(player);
     }
 }

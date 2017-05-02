@@ -17,6 +17,7 @@ public class Player {
     private int health;
     private int maxHealth;
     private int gold;
+    private Boolean hasSuicideWeapon;
 
     // Player Constructor
     public Player(Room startingRoom, int health, Weapon weapon, int gold) {
@@ -28,6 +29,7 @@ public class Player {
         this.weapon = weapon;
         this.gold = gold;
         inventory  = new ArrayList<>();
+        hasSuicideWeapon = false;
     }
 
     // Returns the room object currently in
@@ -233,6 +235,21 @@ public class Player {
         } else {
             System.out.println(selectedItem.inspect());
         }
+    }
+
+    public boolean suicide(){
+        if (hasSuicideWeapon){
+            System.out.println("The stone glows brightly... \n" +
+                    "You manage to pierce your chest with the blade and you no longer are. \n" +
+                    "Congratulations! You have found the exit.");
+            return true;
+        }
+        System.out.println("Your blade cannot pierce your skin. You sit there confused and slightly saddened");
+        return false;
+    }
+
+    public void setHasSuicideWeapon(Boolean hasSuicideWeapon) {
+        this.hasSuicideWeapon = hasSuicideWeapon;
     }
 
     public boolean isInventoryEmpty(){

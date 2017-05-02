@@ -81,10 +81,10 @@ public class GameObjectFactory {
         int random2 = rng.nextInt(100);
         List<Door> doorList = new ArrayList<>(generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM));
         doorList.add(new Door("The door you came through.", oldRoom));
-        if (random < 25){
+        if (random < HelperClass.SPECIAL_DOOR_SPAWN_CHANCE){
             doorList.add(new BadDoor("A bloody door with a skull for a knocker."));
         }
-        if (random2 < 25){
+        if (random2 < HelperClass.SPECIAL_DOOR_SPAWN_CHANCE){
             doorList.add(new GoodDoor("A sparkly, golden door."));
         }
         return doorList;

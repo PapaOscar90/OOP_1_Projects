@@ -39,6 +39,9 @@ public class Vendor extends NPC implements Shop {
         if (item instanceof HealthPotion){
             addProduct(new HealthPotion());
         }
+        if (item instanceof EnchantedStone){
+            p.setHasSuicideWeapon(true);
+        }
         p.addInventoryItem(item);
     }
 
@@ -65,11 +68,13 @@ public class Vendor extends NPC implements Shop {
             for (int i = 0; i < productList.size(); i++) {
                 String itemName = productList.get(i).getName();
                 int itemPrice = productList.get(i).getPrice();
-                System.out.println("(" + i + ") " + itemName + "     Price: " + itemPrice + " Gold");
+                System.out.println("(" + i + ") " + itemName + "                     Price: " + itemPrice + " Gold");
             }
             System.out.println("(" + productList.size() + ") Exit shop");
             System.out.println();
-            System.out.println("Pick what item you would like to buy:");
+            System.out.println("Gold left: " + p.getGold());
+            System.out.println();
+            System.out.println("Pick the item you would like to buy:");
             int choice = getValidProduct(playerGold);
             if (choice == productList.size()) {
                 return;
