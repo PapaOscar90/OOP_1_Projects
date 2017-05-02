@@ -6,12 +6,11 @@ import java.util.List;
  * Created by saidf on 5/2/2017.
  */
 public class BadDoor extends SpecialDoor {
-    private boolean wentThrough;
-    private boolean usageNoticeRecieved;
     public BadDoor(String s){
         super(s);
         wentThrough = false;
-        usageNoticeRecieved = false;
+        usageNoticeReceived = false;
+
     }
 
     private boolean applyBadDoorEffects(Player p){
@@ -28,13 +27,24 @@ public class BadDoor extends SpecialDoor {
     }
     public void interact(Player p) {
         if (!p.getVisitedRoomsList().contains(roomBehindDoor)) {
-            List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM, p.getCurrentRoom());
+            List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
             roomBehindDoor.setDoors(newDoors);
+            roomBehindDoor.addDoor(this);
             wentThrough = applyBadDoorEffects(p);
-        } else if (wentThrough && !usageNoticeRecieved){
+        } else if (wentThrough && !usageNoticeReceived){
             System.out.println("The door does not hurt you anymore.");
-            usageNoticeRecieved = true;
+            usageNoticeReceived = true;
         }
-        p.setRoom(roomBehindDoor);
+        if (leadsBack){
+            setDescription(HelperClass.BAD_DOOR_DESCRIPTION);
+            leadsBack = false;
+        } else {
+            setDescription(HelperClass.BAD_DOOR_DESCRIPTION + " (Leads back a room)");
+            leadsBack = true;
+        }
+
+        Room currentRoom = p.getCurrentRoom();
+        p.setCurrentRoom(roomBehindDoor);
+        roomBehindDoor = currentRoom;
     }
 }

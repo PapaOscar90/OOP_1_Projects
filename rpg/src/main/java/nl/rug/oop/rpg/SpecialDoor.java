@@ -6,10 +6,12 @@ package nl.rug.oop.rpg;
 abstract class SpecialDoor extends Door{
     protected boolean wentThrough;
     protected boolean usageNoticeReceived;
+    protected boolean leadsBack;
 
     public SpecialDoor(String s){
         super(s);
         wentThrough = false;
         usageNoticeReceived = false;
+        leadsBack = false;
     }
 }

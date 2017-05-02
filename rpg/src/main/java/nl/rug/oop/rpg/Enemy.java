@@ -44,7 +44,7 @@ public class Enemy extends NPC {
                 attack(p);
                 Thread.sleep(HelperClass.COMBAT_SCROLL_SPEED);
             } catch (InterruptedException e) {
-                System.out.println(e);
+                e.printStackTrace();
             }
 
         }

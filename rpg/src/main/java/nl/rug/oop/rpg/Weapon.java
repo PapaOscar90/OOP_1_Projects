@@ -24,12 +24,6 @@ public class Weapon extends Item {
         return minDamage + rng.nextInt(maxDamage - minDamage);
     }
 
-    public void interact(Player p){
-        p.addInventoryItem(p.getWeapon());
-        p.setWeapon(this);
-        System.out.println("You equipped " + p.getWeapon().name + " as your weapon!");
-    }
-
     public int getMinDamage() {
         return minDamage;
     }
@@ -37,4 +31,11 @@ public class Weapon extends Item {
     public int getMaxDamage() {
         return maxDamage;
     }
+    public void interact(Player p){
+        p.getInventory().addInventoryItem(p.getWeapon());
+        p.setWeapon(this);
+        System.out.println("You equipped " + p.getWeapon().name + " as your weapon!");
+    }
+
+
 }

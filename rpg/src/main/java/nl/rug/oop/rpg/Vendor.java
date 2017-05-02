@@ -8,10 +8,12 @@ import java.util.List;
  */
 public class Vendor extends NPC implements Shop {
     private List<Item> productList;
+    private boolean neverShopped;
 
-    public Vendor(String descr, String name, int health){
+    public Vendor(String descr, String name, int health, List<Item> products){
         super(descr, name, health);
-        productList = new ArrayList<>();
+        productList = new ArrayList<>(products);
+        neverShopped = true;
     }
 
     public void addProduct(Item product) {
@@ -30,19 +32,35 @@ public class Vendor extends NPC implements Shop {
         productList.remove(index);
     }
 
+    private void vendorDialogue(){
+        try {
+            Thread.sleep(1000);
+            System.out.println();
+            System.out.println("The vendor eyes you, crestfallen, and says...");
+            System.out.println();
+            Thread.sleep(5000);
+            System.out.println("\"Oh, you too? I guess I'm the only one who enjoys this place...\"");
+            System.out.println();
+            Thread.sleep(6000);
+        } catch (InterruptedException e){
+            e.printStackTrace();
+        }
+    }
+
     public void sellProduct(int index, Player p) {
-        Item item = productList.get(index);
-        int itemPrice = item.getPrice();
+        Item Product = productList.get(index);
+        int itemPrice = Product.getPrice();
         p.addGold(-itemPrice);
-        System.out.println("You buy a " + item.getName() + " for " + itemPrice + " Gold!");
+        System.out.println("You buy a " + Product.getName() + " for " + itemPrice + " Gold!");
         removeProduct(index);
-        if (item instanceof HealthPotion){
+        if (Product instanceof HealthPotion){
             addProduct(new HealthPotion());
         }
-        if (item instanceof EnchantedStone){
+        if (Product instanceof EnchantedStone){
             p.setHasSuicideWeapon(true);
+            vendorDialogue();
         }
-        p.addInventoryItem(item);
+        p.getInventory().addInventoryItem(Product);
     }
 
     private int getValidProduct(int playerGold){
@@ -68,7 +86,7 @@ public class Vendor extends NPC implements Shop {
             for (int i = 0; i < productList.size(); i++) {
                 String itemName = productList.get(i).getName();
                 int itemPrice = productList.get(i).getPrice();
-                System.out.println("(" + i + ") " + itemName + "                     Price: " + itemPrice + " Gold");
+                System.out.println("(" + i + ") " + itemName + " | " + itemPrice + " Gold |");
             }
             System.out.println("(" + productList.size() + ") Exit shop");
             System.out.println();
@@ -94,5 +112,16 @@ public class Vendor extends NPC implements Shop {
         System.out.println("You approach the " + name + " and he offers you these items on sale:");
         System.out.println();
         transactionProcess(p);
+        if (neverShopped){
+            System.out.println("The vendor gives you an object and says...");
+            System.out.println();
+            System.out.println("\"Here! Something to bring you back to this room quickly.\"");
+            System.out.println();
+            System.out.println("You received a Teleportation Stone!");
+            System.out.println();
+            p.getInventory().addInventoryItem(new TeleportationStone("A mystic stone that helps you teleport back to the starting room.", "Teleportation Stone",0 ));
+            neverShopped = false;
+        }
+        System.out.println("You leave the shop.");
     }
 }
