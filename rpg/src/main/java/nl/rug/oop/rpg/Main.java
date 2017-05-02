@@ -67,7 +67,6 @@ public class Main {
 
     // The game loop, entire game takes place here. This loop ends, game over.
     private static void gameLoop(Player player) {
-        // TODO: Create a win condition or end on death
         boolean exit = false;
         while (!exit) {
             printStatus(player);

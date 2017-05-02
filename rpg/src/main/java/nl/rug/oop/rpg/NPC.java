@@ -2,7 +2,6 @@ package nl.rug.oop.rpg;
 
 /**
  * An NPC.
- * // TODO: Add proper interaction
  * Created by saidf on 4/30/2017.
  */
 
