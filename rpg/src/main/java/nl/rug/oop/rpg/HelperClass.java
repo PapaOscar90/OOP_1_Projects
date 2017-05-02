@@ -13,6 +13,9 @@ public class HelperClass {
     public static final int NEW_DOORS_PER_ROOM = 2;
     public static final int NPC_SPAWN_CHANCE = 50;
     public static final int COMBAT_SCROLL_SPEED = 900;
+    public static final int SPECIAL_DOOR_SPAWN_CHANCE = 25;
+    public static final String GOOD_DOOR_DESCRIPTION = "A sparkly, golden door";
+    public static final String BAD_DOOR_DESCRIPTION = "A bloody door with a skull for a knocker";
 
     // Allows only valid choices for a lower and upper bound
     public static int getValidChoice(int lowerB, int upperB) {
@@ -29,6 +32,11 @@ public class HelperClass {
             System.out.println("Incorrect input, try again");
         }
         return choice;
+    }
+
+    public static void getValidChoice(){
+        Scanner in = new Scanner(System.in);
+        in.nextLine();
     }
 
 }

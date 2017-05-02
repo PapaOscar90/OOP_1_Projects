@@ -14,6 +14,7 @@ public class Friendly extends NPC {
         rng = new Random();
     }
 
+    //Friendly NPC gives some gold when interacted with. Only the first time.
     public void interact(Player p){
         if (gaveGold == false){
             System.out.println("After some words of encouragement, the " + name + " decides to give you some gold.");

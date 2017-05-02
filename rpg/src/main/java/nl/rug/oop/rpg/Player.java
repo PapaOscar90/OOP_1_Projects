@@ -8,35 +8,59 @@ import java.util.List;
  * Created by PhilO on 27-Apr-17.
  */
 public class Player {
-    // Stores the room object the player is in
     private Room currentRoom;
     private List<Room> visitedRoomsList;
-    private List<Item> inventory;
+    private Inventory inventory;
     private Weapon weapon;
     private Room startingRoom;
     private int health;
     private int maxHealth;
     private int gold;
+    private Boolean hasSuicideWeapon;
 
-    // Player Constructor
     public Player(Room startingRoom, int health, Weapon weapon, int gold) {
         currentRoom = startingRoom;
         this.startingRoom = startingRoom;
         visitedRoomsList = new ArrayList<>();
+        visitedRoomsList.add(currentRoom);
         this.health = health;
         maxHealth = this.health;
         this.weapon = weapon;
         this.gold = gold;
-        inventory  = new ArrayList<>();
+        inventory = new Inventory();
+        hasSuicideWeapon = false;
     }
 
-    // Returns the room object currently in
+    public int getHealth() {
+        return health;
+    }
+
+    public int getMaxHealth() {
+        return maxHealth;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public Weapon getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
+    }
+
     public Room getCurrentRoom() {
         return currentRoom;
     }
 
+    public Room getStartingRoom() {
+        return startingRoom;
+    }
+
     // Updates the current room, and adds the room to rooms visited if it has not been visited
-    public void setRoom(Room room) {
+    public void setCurrentRoom(Room room) {
         currentRoom = room;
         if (!visitedRoomsList.contains(room)) {
             visitedRoomsList.add(room);
@@ -82,6 +106,14 @@ public class Player {
         }
     }
 
+    // The thought process a player takes to enter a door
+    public void handleDoorChoices() {
+        seeDoors();
+        considerDoors();
+        int choice = chooseDoor();
+        enterDoor(choice);
+    }
+
     // This will list the NPCs that are in the room
     private void examineNpcs() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
@@ -95,7 +127,7 @@ public class Player {
     // Only allows an allowed choice for NPC, returns the choice
     private int chooseNpc() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
-        int choice = HelperClass.getValidChoice(-1, numberOfNpcs-1);
+        int choice = HelperClass.getValidChoice(-1, numberOfNpcs - 1);
         return choice;
     }
 
@@ -108,44 +140,11 @@ public class Player {
         }
     }
 
-    // The thought process a player takes to enter a door
-    public void handleDoorChoices() {
-        seeDoors();
-        considerDoors();
-        int choice = chooseDoor();
-        enterDoor(choice);
-    }
-
     // The thought process a player takes to interact with NPCs
     public void handleNpcChoices() {
         examineNpcs();
         int choice = chooseNpc();
         interactWithNpc(choice);
-    }
-
-    // Returns player health
-    public int getHealth() {
-        return health;
-    }
-
-    // Sets player health
-    public int getMaxHealth() {
-        return maxHealth;
-    }
-
-    // Sets player health
-    public void setHealth(int health) {
-        this.health = health;
-    }
-
-    // Returns the player weapon
-    public Weapon getWeapon() {
-        return weapon;
-    }
-
-    // Sets the player weapon
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
     }
 
     // Reduces the player health by int damage
@@ -165,14 +164,8 @@ public class Player {
         gold = 0;
     }
 
-    // Returns player gold amount
     public int getGold() {
         return gold;
-    }
-
-    // Sets player gold
-    public void setGold(int gold) {
-        this.gold = gold;
     }
 
     // Adds to player's gold
@@ -183,60 +176,28 @@ public class Player {
         }
     }
 
-    public Item getInventoryItem(int index) {
-        return inventory.get(index);
+    public Inventory getInventory() {
+        return inventory;
     }
 
-    public void addInventoryItem(Item item) {
-        inventory.add(item);
-    }
-
-    public void removeInventoryItem(int index) {
-        inventory.remove(index);
-    }
-
-    public void removeInventoryItem(Item item) {
-        inventory.remove(item);
-    }
-
-    public void setInventory(List<Item> items){
-        inventory = new ArrayList<>(items);
-    }
-
-    public void lookAtInventory(){
-        System.out.println("You have these items: ");
-        for (int i = 0; i < inventory.size(); i++){
-            String itemName = getInventoryItem(i).getName();
-            System.out.println("("+ i + ") " + itemName);
+    // This function enables suicide if the suicide weapon is present.
+    public boolean suicide() {
+        if (hasSuicideWeapon) {
+            System.out.println("The stone glows brightly in your pocket... \n" +
+                    "You manage to pierce your chest with the blade and you... are no longer. \n" +
+                    "Congratulations! You have found the exit.");
+            return true;
         }
-        System.out.println("(" + inventory.size() + ") Exit inventory");
+        System.out.println("Your blade cannot pierce your skin. You sit there confused and slightly saddened");
+        return false;
     }
 
-    public void interactWithInventoryItem(){
-        lookAtInventory();
-        System.out.println("Pick an item to interact with:");
-        int choice = HelperClass.getValidChoice(0, inventory.size());
-        if (choice == inventory.size()){
-            return;
-        }
-        Item selectedItem = getInventoryItem(choice);
-        System.out.println("What would you like to do with this item?");
-        System.out.println();
-        System.out.println("(0) Use");
-        System.out.println("(1) Inspect");
-        int choice2 = HelperClass.getValidChoice(0, 1);
-        if (choice2 == 0){
-            if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
-                removeInventoryItem(choice);
-            }
-            selectedItem.interact(this);
-        } else {
-            System.out.println(selectedItem.inspect());
-        }
+    public void setHasSuicideWeapon(Boolean hasSuicideWeapon) {
+        this.hasSuicideWeapon = hasSuicideWeapon;
     }
 
-    public boolean isInventoryEmpty(){
-        if (inventory.size() == 0){
+    public boolean isInventoryEmpty() {
+        if (inventory.getSize() == 0) {
             return true;
         }
         return false;

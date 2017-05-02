@@ -30,8 +30,4 @@ abstract class Item extends Inspectable implements Interactable {
         this.name = name;
     }
 
-    // Sets the price of the item
-    public void setPrice(int price) {
-        this.price = price;
-    }
 }

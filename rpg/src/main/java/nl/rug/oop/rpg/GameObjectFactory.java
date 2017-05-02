@@ -12,7 +12,7 @@ import java.util.function.Function;
  * Created by saidf on 4/29/2017.
  */
 public class GameObjectFactory {
-    // Contains lists for random generation of descriptions for rooms, doors, and NPCs
+    // Contains lists for random generation of rooms, doors, and NPCs
     private static List<String> roomDescriptionList;
     private static List<String> doorDescriptionList;
     private static List<Function<Void, NPC>> npcGeneratorList;
@@ -62,8 +62,10 @@ public class GameObjectFactory {
     }
 
     // Generates n doors with random descriptions and returns them in a list
-    // Makes sure no two doors have the same description. This is the initial creation method
+    // Makes sure no two doors have the same description.
     public static List<Door> generateRandomDoors(int n) {
+        int random = rng.nextInt(100);
+        int random2 = rng.nextInt(100);
         List<String> tempDoorDescriptionList = new ArrayList<>(doorDescriptionList);
         List<Door> doorList = new ArrayList<>();
         while (n > 0 && !tempDoorDescriptionList.isEmpty()) {
@@ -72,21 +74,25 @@ public class GameObjectFactory {
             tempDoorDescriptionList.remove(randomDoorNumber);
             n--;
         }
+        if (random < HelperClass.SPECIAL_DOOR_SPAWN_CHANCE) {
+            doorList.add(new BadDoor(HelperClass.BAD_DOOR_DESCRIPTION));
+        }
+        if (random2 < HelperClass.SPECIAL_DOOR_SPAWN_CHANCE) {
+            doorList.add(new GoodDoor(HelperClass.GOOD_DOOR_DESCRIPTION));
+        }
         return doorList;
     }
 
-    // Creates random doors with rooms, plus a door that goes back towards the start room
+    /* Creates random doors with rooms, plus a door that goes back towards the start room
+    * Note that the normal door leading back a room are NEWLY created in this function (aka they are not the doors that the player actually walked through,
+    * but behave as such, and use this function),
+    * while special doors implement a scheme where the door just gets renamed and the rooms interchanged, and no new door is created (using the previous function
+    * generateRandomDoors(int n) and the special door's "interact()" code.)
+    * Due to time constraints, we unfortunately could not settle for just one creation scheme in ALL doors.
+    */
     public static List<Door> generateRandomDoors(int n, Room oldRoom) {
-        int random = rng.nextInt(100);
-        int random2 = rng.nextInt(100);
         List<Door> doorList = new ArrayList<>(generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM));
-        doorList.add(new Door("The door you came through.", oldRoom));
-        if (random < 25){
-            doorList.add(new BadDoor("A bloody door with a skull for a knocker."));
-        }
-        if (random2 < 25){
-            doorList.add(new GoodDoor("A sparkly, golden door."));
-        }
+        doorList.add(new Door("The door leading back a room.", oldRoom));
         return doorList;
     }
 
@@ -97,7 +103,7 @@ public class GameObjectFactory {
         List<NPC> randomNpcList = new ArrayList<>();
         while (weight > random) {
             int randomNpcNumber = rng.nextInt(npcGeneratorList.size());
-            //npcGeneratorList used here to add newly generatated npcs to another list.
+            //npcGeneratorList used here to add newly generated npcs to another list.
             //This is necessary because "npcGeneratorList.get(randomNpcNumber)" with a list of already created objects
             //will pass the reference around, and since there's no obvious way of copying an object in Java (to my knowledge)
             //using this functional method works.
