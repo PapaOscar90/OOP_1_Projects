@@ -116,15 +116,15 @@ public class Main {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
         List<Item> products = new ArrayList<>();
-        products.add(new Weapon("A steel sword. A must have over a rusty dagger.", "Steel sword", 200, 15, 30));
-        products.add(new Weapon("A scythe... no one will stand a chance.", "Scythe", 500, 50, 100));
+        products.add(new Weapon("A steel sword. A must have over a rusty dagger.", "Steel sword", 100, 15, 30));
+        products.add(new Weapon("A scythe... no one will stand a chance.", "Scythe", 300, 50, 100));
         products.add(new EnchantedStone("A glowing, red stone...", "Enchanted Stone", 1000));
         products.add(new HealthPotion());
         Vendor vendor = new Vendor("A Post-Material Merchant! He might have some useful things to buy.", "Post-Material Merchant", 100, products);
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction.", "Rusty dagger", 10, 5, 10);
-        return new Player(startingRoom, 100, startingWeapon, 25);
+        return new Player(startingRoom, 50, startingWeapon, 25);
     }
 
     public static void main(String[] args) {
