@@ -16,6 +16,7 @@ public class TeleportationStone extends Item {
         } else {
             System.out.println("You teleport back to the starting room.");
             p.setCurrentRoom(p.getStartingRoom());
+            p.correctSpecialDoors();
         }
 
     }

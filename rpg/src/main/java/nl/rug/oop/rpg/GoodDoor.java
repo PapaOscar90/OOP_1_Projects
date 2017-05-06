@@ -24,24 +24,26 @@ public class GoodDoor extends SpecialDoor {
             List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
             roomBehindDoor.setDoors(newDoors);
             roomBehindDoor.addDoor(this);
+            roomInfrontDoor = p.getCurrentRoom();
             wentThrough = applyGoodDoorEffects(p);
+            p.addVisitedSpecialDoorList(this);
         } else if (wentThrough && !usageNoticeReceived){
             System.out.println("Ha! You passed through this door already, can't fool the system that easily.");
             usageNoticeReceived = true;
         }
         //Here we alternate between two descriptions based on whether the door "leads back" (towards the starting room) or not.
         if (leadsBack){
+            p.setCurrentRoom(roomInfrontDoor);
             setDescription(HelperClass.GOOD_DOOR_DESCRIPTION);
             leadsBack = false;
         } else {
+            p.setCurrentRoom(roomBehindDoor);
             setDescription(HelperClass.GOOD_DOOR_DESCRIPTION + " (Leads back a room)");
             leadsBack = true;
         }
 
         // Here we switch 2 rooms between current room of player and room behind the door
-        Room currentRoom = p.getCurrentRoom();
         p.setCurrentRoom(roomBehindDoor);
-        roomBehindDoor = currentRoom;
     }
 }
 
