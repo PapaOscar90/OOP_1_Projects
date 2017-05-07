@@ -11,7 +11,6 @@ public class BadDoor extends SpecialDoor {
         super(s);
         wentThrough = false;
         usageNoticeReceived = false;
-
     }
 
     private boolean applyBadDoorEffects(Player p) {
@@ -33,24 +32,23 @@ public class BadDoor extends SpecialDoor {
             List<Door> newDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
             roomBehindDoor.setDoors(newDoors);
             roomBehindDoor.addDoor(this);
+            roomInfrontDoor = p.getCurrentRoom();
             wentThrough = applyBadDoorEffects(p);
+            p.addVisitedSpecialDoorList(this);
         } else if (wentThrough && !usageNoticeReceived) {
             System.out.println("The door does not hurt you anymore.");
             usageNoticeReceived = true;
         }
-
         //Here we alternate between two descriptions based on whether the special door "leads back" (towards the starting room) or not.
         if (leadsBack) {
+            p.setCurrentRoom(roomInfrontDoor);
             setDescription(HelperClass.BAD_DOOR_DESCRIPTION);
             leadsBack = false;
         } else {
+            p.setCurrentRoom(roomBehindDoor);
             setDescription(HelperClass.BAD_DOOR_DESCRIPTION + " (Leads back a room)");
             leadsBack = true;
         }
 
-        // Here we switch 2 rooms between current room of player and room behind the special door
-        Room currentRoom = p.getCurrentRoom();
-        p.setCurrentRoom(roomBehindDoor);
-        roomBehindDoor = currentRoom;
     }
 }
