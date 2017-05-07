@@ -15,6 +15,7 @@ import java.util.List;
 public class Player {
     private Room currentRoom;
     private List<Room> visitedRoomsList;
+    private List<SpecialDoor> visitedSpecialDoorList;
     private Inventory inventory;
     private Weapon weapon;
     private Room startingRoom;
@@ -28,6 +29,7 @@ public class Player {
         this.startingRoom = startingRoom;
         visitedRoomsList = new ArrayList<>();
         visitedRoomsList.add(currentRoom);
+        visitedSpecialDoorList = new ArrayList<>();
         this.health = health;
         maxHealth = this.health;
         this.weapon = weapon;
@@ -161,10 +163,23 @@ public class Player {
         enemy.takeDamage(weapon.getDamage());
     }
 
+    public void correctSpecialDoors(){
+        for (SpecialDoor door : visitedSpecialDoorList){
+            if (door.isLeadsBack()){
+                door.setLeadsBack(false);
+                if (door instanceof GoodDoor){
+                    door.setDescription(HelperClass.GOOD_DOOR_DESCRIPTION);
+                } else {
+                    door.setDescription(HelperClass.BAD_DOOR_DESCRIPTION);
+                }
+            }
+        }
+    }
     // Respawns player at start with normal health.
     public void respawn() {
         currentRoom = startingRoom;
         health = maxHealth;
+        correctSpecialDoors();
         gold = 0;
     }
 
@@ -178,6 +193,14 @@ public class Player {
         if (gold > 0) {
             System.out.println("You received " + gold + " Gold");
         }
+    }
+
+    public List<SpecialDoor> getVisitedSpecialDoorList() {
+        return visitedSpecialDoorList;
+    }
+
+    public void addVisitedSpecialDoorList(SpecialDoor door){
+        visitedSpecialDoorList.add(door);
     }
 
     public Inventory getInventory() {

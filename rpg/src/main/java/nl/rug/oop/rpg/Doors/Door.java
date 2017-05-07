@@ -32,4 +32,11 @@ public class Door extends Inspectable implements Interactable {
         p.setCurrentRoom(roomBehindDoor);
     }
 
+    public Room getRoomBehindDoor() {
+        return roomBehindDoor;
+    }
+
+    public void setRoomBehindDoor(Room roomBehindDoor) {
+        this.roomBehindDoor = roomBehindDoor;
+    }
 }

@@ -7,7 +7,7 @@ import nl.rug.oop.rpg.Player.Player;
  */
 public class HealthPotion extends Item{
     public HealthPotion(){
-        super("A health potion! This blue liquid restores full health.", "Health Potion", 100);
+        super("A health potion! This blue liquid restores full health.", "Health Potion", 50);
     }
 
     public void interact(Player p){

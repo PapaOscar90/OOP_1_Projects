@@ -135,7 +135,7 @@ public class Main {
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction.", "Rusty dagger", 10, 5, 10);
-        return new Player(startingRoom, 50, startingWeapon, 25);
+        return new Player(startingRoom, 100, startingWeapon, 25);
     }
 
     public static void main(String[] args) {
