@@ -1,5 +1,6 @@
 package nl.rug.oop.rpg;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,6 +10,7 @@ import java.util.List;
  */
 
 public class Room extends Inspectable {
+    private static final long serialVersionUID = 44L;
     // Room contains multiple doors
     private List<Door> doorsList;
     private List<NPC> npcList;

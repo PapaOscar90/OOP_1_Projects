@@ -4,6 +4,7 @@ package nl.rug.oop.rpg;
  * Created by saidf on 5/1/2017.
  */
 public class HealthPotion extends Item{
+    private static final long serialVersionUID = 52L;
     public HealthPotion(){
         super("A health potion! This blue liquid restores full health.", "Health Potion", 50);
     }

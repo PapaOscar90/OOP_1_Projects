@@ -4,6 +4,7 @@ package nl.rug.oop.rpg;
  * Created by saidf on 5/2/2017.
  */
 public class TeleportationStone extends Item {
+    private static final long serialVersionUID = 53L;
 
     public TeleportationStone(String descr, String name, int price){
         super(descr, name, price);

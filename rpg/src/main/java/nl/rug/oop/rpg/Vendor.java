@@ -7,6 +7,7 @@ import java.util.List;
  * Created by saidf on 5/1/2017.
  */
 public class Vendor extends NPC implements Shop {
+    private static final long serialVersionUID = 49L;
     private List<Item> productList;
     private boolean neverShopped;
 
@@ -65,7 +66,7 @@ public class Vendor extends NPC implements Shop {
     private int getValidProduct(int playerGold){
         int choice;
         while (true){
-            choice = HelperClass.getValidChoice(0, productList.size());
+            choice = HelperClass.pause(0, productList.size());
             if (choice == productList.size()){
                 // Exited the shop
                 return choice;

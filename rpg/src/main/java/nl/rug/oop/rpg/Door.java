@@ -1,12 +1,14 @@
 package nl.rug.oop.rpg;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Door class, "points" to a new room.
  * Created by PhilO on 27-Apr-17.
  */
-public class Door extends Inspectable implements Interactable {
+public class Door extends Inspectable implements Interactable, Serializable {
+    private static final long serialVersionUID = 43L;
     protected Room roomBehindDoor;
 
     // The door "points" to a room.

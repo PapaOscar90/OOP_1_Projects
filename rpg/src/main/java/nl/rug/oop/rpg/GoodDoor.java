@@ -6,6 +6,7 @@ import java.util.List;
  * Created by saidf on 5/2/2017.
  */
 public class GoodDoor extends SpecialDoor {
+    private static final long serialVersionUID = 46L;
     public GoodDoor(String s){
         super(s);
         wentThrough = false;

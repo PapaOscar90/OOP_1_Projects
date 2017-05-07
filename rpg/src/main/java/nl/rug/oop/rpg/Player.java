@@ -1,5 +1,6 @@
 package nl.rug.oop.rpg;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,13 +8,14 @@ import java.util.List;
  * The player object
  * Created by PhilO on 27-Apr-17.
  */
-public class Player {
+public class Player implements Serializable{
+    private static final long serialVersionUID = 42L;
     private Room currentRoom;
+    private Room startingRoom;
     private List<Room> visitedRoomsList;
     private List<SpecialDoor> visitedSpecialDoorList;
     private Inventory inventory;
     private Weapon weapon;
-    private Room startingRoom;
     private int health;
     private int maxHealth;
     private int gold;
@@ -94,7 +96,7 @@ public class Player {
     // Player can choose a door
     private int chooseDoor() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
-        int choice = HelperClass.getValidChoice(0, numberOfDoors);
+        int choice = HelperClass.pause(0, numberOfDoors);
         return choice;
     }
 
@@ -128,7 +130,7 @@ public class Player {
     // Only allows an allowed choice for NPC, returns the choice
     private int chooseNpc() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
-        int choice = HelperClass.getValidChoice(-1, numberOfNpcs - 1);
+        int choice = HelperClass.pause(-1, numberOfNpcs - 1);
         return choice;
     }
 

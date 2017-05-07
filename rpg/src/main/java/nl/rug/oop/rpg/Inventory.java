@@ -1,12 +1,14 @@
 package nl.rug.oop.rpg;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**An inventory to be used by Player
  * Created by saidf on 5/2/2017.
  */
-public class Inventory implements Interactable {
+public class Inventory implements Interactable, Serializable {
+    private static final long serialVersionUID = 50L;
     private List<Item> inventory;
 
     public Inventory(){
@@ -43,7 +45,7 @@ public class Inventory implements Interactable {
     //Enables interaction with all the items in the inventory
     private void interactWithInventoryItem(Player p){
         System.out.println("Pick an item to interact with:");
-        int choice = HelperClass.getValidChoice(0, inventory.size());
+        int choice = HelperClass.pause(0, inventory.size());
         if (choice == inventory.size()){
             //Exit option was selected
             return;
@@ -53,7 +55,7 @@ public class Inventory implements Interactable {
         System.out.println();
         System.out.println("(0) Use");
         System.out.println("(1) Inspect");
-        int choice2 = HelperClass.getValidChoice(0, 1);
+        int choice2 = HelperClass.pause(0, 1);
         if (choice2 == 0){
             if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
                 //Interaction with a weapon equips it, removing it from inventory

@@ -7,6 +7,7 @@ import java.util.Random;
  * Created by saidf on 4/30/2017.
  */
 public class Enemy extends NPC {
+    private static final long serialVersionUID = 47L;
     private int minAttackDmg;
     private int maxAttackDmg;
     Random rng;

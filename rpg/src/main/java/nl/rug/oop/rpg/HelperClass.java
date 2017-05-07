@@ -18,7 +18,7 @@ public class HelperClass {
     public static final String BAD_DOOR_DESCRIPTION = "A bloody door with a skull for a knocker";
 
     // Allows only valid choices for a lower and upper bound
-    public static int getValidChoice(int lowerB, int upperB) {
+    public static int pause(int lowerB, int upperB) {
         Scanner in = new Scanner(System.in);
         int choice;
         while (true) {
@@ -34,9 +34,20 @@ public class HelperClass {
         return choice;
     }
 
-    public static void getValidChoice(){
+    public static void pause(){
         Scanner in = new Scanner(System.in);
         in.nextLine();
     }
+
+    public static String getValidChoice(){
+        Scanner in = new Scanner(System.in);
+        String input = in.nextLine();
+        while(input.isEmpty()) {
+            System.out.println("1 more more characters please");
+            input = in.nextLine();
+        }
+        return input;
+    }
+
 
 }
