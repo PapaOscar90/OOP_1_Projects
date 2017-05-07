@@ -1,4 +1,11 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
+
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Items.EnchantedStone;
+import nl.rug.oop.rpg.Items.HealthPotion;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Items.TeleportationStone;
+import nl.rug.oop.rpg.Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;

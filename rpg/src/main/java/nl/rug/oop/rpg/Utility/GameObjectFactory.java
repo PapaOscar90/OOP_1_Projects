@@ -1,4 +1,11 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Utility;
+
+import nl.rug.oop.rpg.Doors.BadDoor;
+import nl.rug.oop.rpg.Doors.Door;
+import nl.rug.oop.rpg.Doors.GoodDoor;
+import nl.rug.oop.rpg.NPC.Enemy;
+import nl.rug.oop.rpg.NPC.Friendly;
+import nl.rug.oop.rpg.NPC.NPC;
 
 import java.util.ArrayList;
 import java.util.Arrays;

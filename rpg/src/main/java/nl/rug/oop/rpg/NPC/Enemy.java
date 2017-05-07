@@ -1,4 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
+
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Player.Player;
 
 import java.util.Random;
 

@@ -1,4 +1,9 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Doors;
+
+import nl.rug.oop.rpg.Utility.GameObjectFactory;
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Player.Player;
+import nl.rug.oop.rpg.Utility.Room;
 
 import java.util.List;
 

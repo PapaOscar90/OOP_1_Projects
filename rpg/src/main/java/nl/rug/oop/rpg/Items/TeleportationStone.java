@@ -1,4 +1,6 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Items;
+
+import nl.rug.oop.rpg.Player.Player;
 
 /**A class for an item that teleports you back to the starting room
  * Created by saidf on 5/2/2017.

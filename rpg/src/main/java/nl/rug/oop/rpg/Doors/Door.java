@@ -1,4 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Doors;
+
+import nl.rug.oop.rpg.Player.Player;
+import nl.rug.oop.rpg.Utility.*;
 
 import java.util.List;
 
