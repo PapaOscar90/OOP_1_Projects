@@ -14,9 +14,9 @@ public abstract class SaveFileController {
 
     // Handles filename selection
     private static String selectFilename(){
-        File file = new File(HelperClass.DIRECTORY_NAME);
         System.out.println("Which file ? ( -1 : none )");
         System.out.println();
+        File file = new File(HelperClass.DIRECTORY_NAME);
         List<String> serFileList = new ArrayList<>();
         String[] fileList = file.list();
         if (fileList == null){
