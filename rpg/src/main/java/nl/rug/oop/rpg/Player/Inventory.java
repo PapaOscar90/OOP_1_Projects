@@ -51,7 +51,7 @@ public class Inventory implements Interactable, Serializable {
     //Enables interaction with all the items in the inventory
     private void interactWithInventoryItem(Player p){
         System.out.println("Pick an item to interact with:");
-        int choice = HelperClass.pause(0, inventory.size());
+        int choice = HelperClass.getValidChoice(0, inventory.size());
         if (choice == inventory.size()){
             //Exit option was selected
             return;
@@ -61,7 +61,7 @@ public class Inventory implements Interactable, Serializable {
         System.out.println();
         System.out.println("(0) Use");
         System.out.println("(1) Inspect");
-        int choice2 = HelperClass.pause(0, 1);
+        int choice2 = HelperClass.getValidChoice(0, 1);
         if (choice2 == 0){
             if (selectedItem instanceof Weapon || selectedItem instanceof HealthPotion){
                 //Interaction with a weapon equips it, removing it from inventory

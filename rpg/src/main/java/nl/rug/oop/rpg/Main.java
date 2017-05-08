@@ -101,10 +101,10 @@ public class Main {
         boolean exit = false;
         while (!exit) {
             System.out.println("Press Enter to continue...");
-            HelperClass.pause();
+            HelperClass.getValidChoice();
             printStatus(player);
             printRoomActions();
-            int choice = HelperClass.pause(0, 9);
+            int choice = HelperClass.getValidChoice(0, 9);
             switch (choice) {
                 case 0:
                     lookAround(player);

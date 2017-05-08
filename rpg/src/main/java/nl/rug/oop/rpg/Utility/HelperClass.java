@@ -22,7 +22,7 @@ public abstract class HelperClass {
 
 
     // Allows only valid choices for a lower and upper bound
-    public static int pause(int lowerB, int upperB) {
+    public static int getValidChoice(int lowerB, int upperB) {
         Scanner in = new Scanner(System.in);
         int choice;
         while (true) {
@@ -38,16 +38,16 @@ public abstract class HelperClass {
         return choice;
     }
 
-    public static void pause(){
+    public static void getValidChoice(){
         Scanner in = new Scanner(System.in);
         in.nextLine();
     }
 
-    public static String getValidChoice(){
+    public static String getValidStringChoice(){
         Scanner in = new Scanner(System.in);
         String input = in.nextLine();
         while(input.isEmpty()) {
-            System.out.println("1 more more characters please");
+            System.out.println("1 or more characters please");
             input = in.nextLine();
         }
         return input;

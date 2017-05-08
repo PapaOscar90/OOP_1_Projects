@@ -1,7 +1,6 @@
 package nl.rug.oop.rpg.Utility;
 
 import nl.rug.oop.rpg.Player.Player;
-import nl.rug.oop.rpg.Utility.HelperClass;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -30,7 +29,7 @@ public abstract class SaveFileController {
         for (int i = 0; i < serFileList.size(); i++){
             System.out.println("(" + i + ") " + serFileList.get(i));
         }
-        int choice = HelperClass.pause(-1, serFileList.size() - 1);
+        int choice = HelperClass.getValidChoice(-1, serFileList.size() - 1);
         return choice == -1 ? "" : serFileList.get(choice);
     }
 
@@ -81,8 +80,7 @@ public abstract class SaveFileController {
         } catch (FileNotFoundException e) {
             System.err.println("File not found exception. " + e.getMessage());
             e.printStackTrace();
-            System.out.println("File not found. Attempting to create save-folder.\n Please Try again.");
-            new File(HelperClass.DIRECTORY_NAME).mkdir();
+            new File(HelperClass.DIRECTORY_NAME).mkdir();  //Re-create directory to make sure its present.
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -99,7 +97,7 @@ public abstract class SaveFileController {
 
     public static void save(Player player){
         System.out.println("Filename? ");
-        String fileName = HelperClass.getValidChoice();
+        String fileName = HelperClass.getValidStringChoice();
         save(player, fileName);
     }
 

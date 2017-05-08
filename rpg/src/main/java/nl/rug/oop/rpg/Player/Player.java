@@ -103,7 +103,7 @@ public class Player implements Serializable{
     // Player can choose a door
     private int chooseDoor() {
         int numberOfDoors = currentRoom.getNumberOfDoors();
-        int choice = HelperClass.pause(0, numberOfDoors);
+        int choice = HelperClass.getValidChoice(0, numberOfDoors);
         return choice;
     }
 
@@ -137,7 +137,7 @@ public class Player implements Serializable{
     // Only allows an allowed choice for NPC, returns the choice
     private int chooseNpc() {
         int numberOfNpcs = currentRoom.getNumberOfnpcs();
-        int choice = HelperClass.pause(-1, numberOfNpcs - 1);
+        int choice = HelperClass.getValidChoice(-1, numberOfNpcs - 1);
         return choice;
     }
 

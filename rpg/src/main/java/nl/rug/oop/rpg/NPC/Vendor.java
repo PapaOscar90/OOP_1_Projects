@@ -73,7 +73,7 @@ public class Vendor extends NPC implements Shop {
     private int getValidProduct(int playerGold){
         int choice;
         while (true){
-            choice = HelperClass.pause(0, productList.size());
+            choice = HelperClass.getValidChoice(0, productList.size());
             if (choice == productList.size()){
                 // Exited the shop
                 return choice;
