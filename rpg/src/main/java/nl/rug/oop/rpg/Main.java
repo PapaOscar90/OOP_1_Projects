@@ -163,7 +163,7 @@ public class Main {
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction.", "Rusty dagger", 10, 5, 10);
-        new File("Savegames").mkdir();
+        new File(HelperClass.DIRECTORY_NAME).mkdir();
         return new Player(startingRoom, 100, startingWeapon, 25);
     }
 

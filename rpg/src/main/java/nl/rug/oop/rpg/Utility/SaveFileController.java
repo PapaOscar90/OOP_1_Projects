@@ -12,8 +12,9 @@ import java.util.List;
  */
 public abstract class SaveFileController {
 
+    // Handles filename selection
     private static String selectFilename(){
-        File file = new File("Savegames");
+        File file = new File(HelperClass.DIRECTORY_NAME);
         System.out.println("Which file ? ( -1 : none )");
         System.out.println();
         List<String> serFileList = new ArrayList<>();
@@ -22,7 +23,7 @@ public abstract class SaveFileController {
             return "";
         }
         for (String fileName : fileList){
-            if (fileName.endsWith(".ser")){
+            if (fileName.endsWith(HelperClass.SAVEFILE_EXTENSION)){
                 serFileList.add(fileName);
             }
         }
@@ -41,7 +42,7 @@ public abstract class SaveFileController {
         FileInputStream fis;
         ObjectInputStream ois = null;
         Player player = null;
-        String filePath = "Savegames" + File.separatorChar + fileName;
+        String filePath = HelperClass.DIRECTORY_NAME + File.separatorChar + fileName;
         File f = new File(filePath);
         if (!f.exists()){
             return null;
@@ -74,14 +75,14 @@ public abstract class SaveFileController {
         FileOutputStream fos;
         ObjectOutputStream oos = null;
         try {
-            fos = new FileOutputStream("Savegames" + File.separatorChar + fileName + ".ser");
+            fos = new FileOutputStream(HelperClass.DIRECTORY_NAME + File.separatorChar + fileName + HelperClass.SAVEFILE_EXTENSION);
             oos = new ObjectOutputStream(fos);
             oos.writeObject(player);
         } catch (FileNotFoundException e) {
             System.err.println("File not found exception. " + e.getMessage());
             e.printStackTrace();
             System.out.println("File not found. Attempting to create save-folder.\n Please Try again.");
-            new File("Savegames").mkdir();
+            new File(HelperClass.DIRECTORY_NAME).mkdir();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -110,10 +111,10 @@ public abstract class SaveFileController {
     }
 
     public static Player quickLoad(){
-        return load("Quicksave.ser");
+        return load(HelperClass.QUICKSAVE_FILENAME + HelperClass.SAVEFILE_EXTENSION);
     }
 
     public static void quickSave(Player player){
-        save(player, "Quicksave");
+        save(player, HelperClass.QUICKSAVE_FILENAME);
     }
 }

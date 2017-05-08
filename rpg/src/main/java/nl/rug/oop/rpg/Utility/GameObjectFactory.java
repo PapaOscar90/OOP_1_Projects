@@ -19,7 +19,7 @@ import java.util.function.Function;
  * Class to generate game objects
  * Created by saidf on 4/29/2017.
  */
-public class GameObjectFactory {
+public abstract class GameObjectFactory {
     // Contains lists for random generation of rooms, doors, and NPCs
     private static List<String> roomDescriptionList;
     private static List<String> doorDescriptionList;
