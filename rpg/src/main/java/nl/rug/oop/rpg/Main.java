@@ -1,4 +1,15 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Player;
+
+import nl.rug.oop.rpg.Doors.Door;
+import nl.rug.oop.rpg.Utility.GameObjectFactory;
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Items.EnchantedStone;
+import nl.rug.oop.rpg.Items.HealthPotion;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Items.Weapon;
+import nl.rug.oop.rpg.NPC.NPC;
+import nl.rug.oop.rpg.NPC.Vendor;
+import nl.rug.oop.rpg.Utility.Room;
 
 import java.io.*;
 import java.util.ArrayList;

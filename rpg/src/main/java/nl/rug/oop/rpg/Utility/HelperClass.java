@@ -1,4 +1,4 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Utility;
 
 import java.util.Scanner;
 

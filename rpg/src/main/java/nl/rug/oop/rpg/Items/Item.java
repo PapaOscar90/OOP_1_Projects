@@ -1,9 +1,12 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Items;
+
+import nl.rug.oop.rpg.Utility.Inspectable;
+import nl.rug.oop.rpg.Utility.Interactable;
 
 /** An item abstract class
  * Created by PhilO on 30-Apr-17.
  */
-abstract class Item extends Inspectable implements Interactable {
+public abstract class Item extends Inspectable implements Interactable {
     // Items have a description and price
     String name;
     int price;

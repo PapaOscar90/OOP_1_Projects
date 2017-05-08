@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Contains a description
  * Created by PhilO on 27-Apr-17.
  */
-abstract class Inspectable implements Serializable {
+public abstract class Inspectable implements Serializable{
     private String description;
 
     public Inspectable(String s) {

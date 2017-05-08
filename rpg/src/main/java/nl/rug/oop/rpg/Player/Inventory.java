@@ -1,4 +1,10 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Player;
+
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Utility.Interactable;
+import nl.rug.oop.rpg.Items.HealthPotion;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Items.Weapon;
 
 import java.io.Serializable;
 import java.util.ArrayList;

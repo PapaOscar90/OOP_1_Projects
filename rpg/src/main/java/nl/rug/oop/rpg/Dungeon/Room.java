@@ -1,4 +1,8 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Utility;
+
+import nl.rug.oop.rpg.Doors.Door;
+import nl.rug.oop.rpg.NPC.NPC;
+import nl.rug.oop.rpg.Player.Player;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -23,7 +27,7 @@ public class Room extends Inspectable {
         this(s, doors, new ArrayList<>());
     }
 
-    protected Room(String s, List<Door> doors, List<NPC> npcs) {
+    public Room(String s, List<Door> doors, List<NPC> npcs) {
         super(s);
         doorsList = new ArrayList<>(doors);
         npcList = new ArrayList<>(npcs);

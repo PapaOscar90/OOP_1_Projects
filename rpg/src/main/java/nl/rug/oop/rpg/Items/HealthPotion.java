@@ -1,4 +1,6 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Items;
+
+import nl.rug.oop.rpg.Player.Player;
 
 /**A health Potion
  * Created by saidf on 5/1/2017.

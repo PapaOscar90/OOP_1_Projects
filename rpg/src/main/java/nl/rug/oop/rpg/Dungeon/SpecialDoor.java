@@ -1,9 +1,11 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Doors;
+
+import nl.rug.oop.rpg.Utility.Room;
 
 /** An abstract class for a special door
  * Created by saidf on 5/2/2017.
  */
-abstract class SpecialDoor extends Door{
+public abstract class SpecialDoor extends Door{
     protected boolean wentThrough;
     protected boolean usageNoticeReceived;
     protected boolean leadsBack;
