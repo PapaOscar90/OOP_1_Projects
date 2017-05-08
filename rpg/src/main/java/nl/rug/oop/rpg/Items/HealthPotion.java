@@ -6,7 +6,7 @@ import nl.rug.oop.rpg.Player.Player;
  * Created by saidf on 5/1/2017.
  */
 public class HealthPotion extends Item{
-    private static final long serialVersionUID = 52L;
+    private static final long serialVersionUID = 00L;
     public HealthPotion(){
         super("A health potion! This blue liquid restores full health.", "Health Potion", 50);
     }

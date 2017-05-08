@@ -150,7 +150,7 @@ public class Main {
         }
     }
 
-    // Loads the game
+    // Initialize the game
     private static Player initializeGame() {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);

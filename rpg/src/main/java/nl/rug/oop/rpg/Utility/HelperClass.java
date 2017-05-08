@@ -20,6 +20,7 @@ public abstract class HelperClass {
     public static final String SAVEFILE_EXTENSION = ".ser";
     public static final String QUICKSAVE_FILENAME = "Quicksave";
 
+
     // Allows only valid choices for a lower and upper bound
     public static int pause(int lowerB, int upperB) {
         Scanner in = new Scanner(System.in);

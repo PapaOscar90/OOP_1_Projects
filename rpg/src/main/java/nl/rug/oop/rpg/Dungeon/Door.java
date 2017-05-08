@@ -11,7 +11,7 @@ import java.util.List;
  * Created by PhilO on 27-Apr-17.
  */
 public class Door extends Inspectable implements Interactable, Serializable {
-    private static final long serialVersionUID = 43L;
+    private static final long serialVersionUID = 00L;
     protected Room roomBehindDoor;
 
     // The door "points" to a room.

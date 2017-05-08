@@ -6,7 +6,7 @@ import nl.rug.oop.rpg.Player.Player;
  * Created by saidf on 5/2/2017.
  */
 public class TeleportationStone extends Item {
-    private static final long serialVersionUID = 53L;
+    private static final long serialVersionUID = 00L;
 
     public TeleportationStone(String descr, String name, int price){
         super(descr, name, price);
