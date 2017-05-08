@@ -41,7 +41,8 @@ public class SaveFileController {
         FileInputStream fis;
         ObjectInputStream ois = null;
         Player player = null;
-        String filePath = "Savegames/" + fileName;
+        String ls = System.getProperty("line.separator");
+        String filePath = "Savegames" + ls + fileName;
         File f = new File(filePath);
         if (!f.exists()){
             return null;
@@ -72,8 +73,9 @@ public class SaveFileController {
     private static void save(Player player, String fileName) {
         FileOutputStream fos;
         ObjectOutputStream oos = null;
+        String ls = System.getProperty("line.separator");
         try {
-            fos = new FileOutputStream("Savegames/" + fileName + ".ser");
+            fos = new FileOutputStream("Savegames" + ls + fileName + ".ser");
             oos = new ObjectOutputStream(fos);
             oos.writeObject(player);
         } catch (FileNotFoundException e) {
