@@ -32,6 +32,9 @@ public class SaveFileController {
 
     //Loads a saved game state from a file
     private static Player load(String fileName) {
+        if (fileName.isEmpty()){
+            return null;
+        }
         FileInputStream fis;
         ObjectInputStream ois = null;
         Player player = null;
@@ -84,7 +87,7 @@ public class SaveFileController {
                 }
             }
         }
-        System.out.println("Saving..");
+        System.out.println("Saving...");
     }
 
     public static void save(Player player){
