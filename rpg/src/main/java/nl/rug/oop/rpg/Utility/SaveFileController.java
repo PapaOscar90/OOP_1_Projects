@@ -1,4 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Utility;
+
+import nl.rug.oop.rpg.Player.Player;
+import nl.rug.oop.rpg.Utility.HelperClass;
 
 import java.io.*;
 import java.util.ArrayList;

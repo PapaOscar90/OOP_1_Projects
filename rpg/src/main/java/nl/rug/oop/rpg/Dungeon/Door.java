@@ -1,4 +1,4 @@
-package nl.rug.oop.rpg.Doors;
+package nl.rug.oop.rpg.Dungeon;
 
 import nl.rug.oop.rpg.Player.Player;
 import nl.rug.oop.rpg.Utility.*;

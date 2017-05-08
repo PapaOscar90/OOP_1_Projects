@@ -1,10 +1,9 @@
-package nl.rug.oop.rpg.Utility;
+package nl.rug.oop.rpg.Dungeon;
 
-import nl.rug.oop.rpg.Doors.Door;
 import nl.rug.oop.rpg.NPC.NPC;
 import nl.rug.oop.rpg.Player.Player;
+import nl.rug.oop.rpg.Utility.Inspectable;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,8 +1,9 @@
 package nl.rug.oop.rpg.Utility;
 
-import nl.rug.oop.rpg.Doors.BadDoor;
-import nl.rug.oop.rpg.Doors.Door;
-import nl.rug.oop.rpg.Doors.GoodDoor;
+import nl.rug.oop.rpg.Dungeon.BadDoor;
+import nl.rug.oop.rpg.Dungeon.Door;
+import nl.rug.oop.rpg.Dungeon.GoodDoor;
+import nl.rug.oop.rpg.Dungeon.Room;
 import nl.rug.oop.rpg.NPC.Enemy;
 import nl.rug.oop.rpg.NPC.Friendly;
 import nl.rug.oop.rpg.NPC.NPC;

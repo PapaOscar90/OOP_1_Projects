@@ -1,6 +1,4 @@
-package nl.rug.oop.rpg.Doors;
-
-import nl.rug.oop.rpg.Utility.Room;
+package nl.rug.oop.rpg.Dungeon;
 
 /** An abstract class for a special door
  * Created by saidf on 5/2/2017.
