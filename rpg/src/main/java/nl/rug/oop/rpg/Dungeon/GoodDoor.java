@@ -46,9 +46,6 @@ public class GoodDoor extends SpecialDoor {
             setDescription(HelperClass.GOOD_DOOR_DESCRIPTION + " (Leads back a room)");
             leadsBack = true;
         }
-
-        // Here we switch 2 rooms between current room of player and room behind the door
-        p.setCurrentRoom(roomBehindDoor);
     }
 }
 
