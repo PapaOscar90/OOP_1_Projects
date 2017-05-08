@@ -10,7 +10,7 @@ import java.util.List;
 /** Handles game saving and loading
  * Created by saidf on 5/8/2017.
  */
-public class SaveFileController {
+public abstract class SaveFileController {
 
     private static String selectFilename(){
         File file = new File("Savegames");
@@ -49,6 +49,7 @@ public class SaveFileController {
         try {
             fis = new FileInputStream(filePath);
             ois = new ObjectInputStream(fis);
+            // (Player) casts the object as a player object when it is read
             player = (Player) ois.readObject();
         } catch (FileNotFoundException e) {
             System.err.println("File not found " + e.getMessage());
@@ -77,12 +78,15 @@ public class SaveFileController {
             oos = new ObjectOutputStream(fos);
             oos.writeObject(player);
         } catch (FileNotFoundException e) {
-            System.err.println("File not found " + e.getMessage());
+            System.err.println("File not found exception. " + e.getMessage());
             e.printStackTrace();
+            System.out.println("File not found. Attempting to create save-folder.\n Please Try again.");
+            new File("Savegames").mkdir();
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             if (oos != null) {
+                System.out.println("Saving...");
                 try {
                     oos.close();
                 } catch (IOException e) {
@@ -90,7 +94,6 @@ public class SaveFileController {
                 }
             }
         }
-        System.out.println("Saving...");
     }
 
     public static void save(Player player){
