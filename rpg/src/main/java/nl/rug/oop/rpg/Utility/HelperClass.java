@@ -17,6 +17,7 @@ public class HelperClass {
     public static final String GOOD_DOOR_DESCRIPTION = "A sparkly, golden door";
     public static final String BAD_DOOR_DESCRIPTION = "A bloody door with a skull for a knocker";
 
+
     // Allows only valid choices for a lower and upper bound
     public static int pause(int lowerB, int upperB) {
         Scanner in = new Scanner(System.in);

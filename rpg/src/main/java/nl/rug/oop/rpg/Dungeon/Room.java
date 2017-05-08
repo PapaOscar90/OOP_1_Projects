@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public class Room extends Inspectable {
-    private static final long serialVersionUID = 44L;
+    private static final long serialVersionUID = 00L;
     // Room contains multiple doors
     private List<Door> doorsList;
     private List<NPC> npcList;

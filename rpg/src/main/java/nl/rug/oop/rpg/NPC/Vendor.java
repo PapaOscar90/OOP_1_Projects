@@ -14,7 +14,7 @@ import java.util.List;
  * Created by saidf on 5/1/2017.
  */
 public class Vendor extends NPC implements Shop {
-    private static final long serialVersionUID = 49L;
+    private static final long serialVersionUID = 00L;
     private List<Item> productList;
     private boolean neverShopped;
 

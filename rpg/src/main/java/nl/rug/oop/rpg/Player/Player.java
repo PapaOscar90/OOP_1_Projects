@@ -16,7 +16,7 @@ import java.util.List;
  * Created by PhilO on 27-Apr-17.
  */
 public class Player implements Serializable{
-    private static final long serialVersionUID = 42L;
+    private static final long serialVersionUID = 00L;
     private Room currentRoom;
     private Room startingRoom;
     private List<Room> visitedRoomsList;
@@ -228,9 +228,6 @@ public class Player implements Serializable{
     }
 
     public boolean isInventoryEmpty() {
-        if (inventory.getSize() == 0) {
-            return true;
-        }
-        return false;
+        return inventory.getSize() == 0;
     }
 }

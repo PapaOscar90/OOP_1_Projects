@@ -11,7 +11,7 @@ import java.util.List;
  * Created by saidf on 5/2/2017.
  */
 public class BadDoor extends SpecialDoor {
-    private static final long serialVersionUID = 45L;
+    private static final long serialVersionUID = 00L;
     public BadDoor(String s) {
         super(s);
         wentThrough = false;

@@ -14,7 +14,7 @@ import java.util.List;
  * Created by saidf on 5/2/2017.
  */
 public class Inventory implements Interactable, Serializable {
-    private static final long serialVersionUID = 50L;
+    private static final long serialVersionUID = 00L;
     private List<Item> inventory;
 
     public Inventory(){
