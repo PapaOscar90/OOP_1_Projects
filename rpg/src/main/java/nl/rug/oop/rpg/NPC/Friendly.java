@@ -1,4 +1,6 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
+
+import nl.rug.oop.rpg.Player.Player;
 
 import java.util.Random;
 
@@ -6,6 +8,7 @@ import java.util.Random;
  * Created by saidf on 5/1/2017.
  */
 public class Friendly extends NPC {
+    private static final long serialVersionUID = 00L;
     private boolean gaveGold;
     private Random rng;
     public Friendly(String descr, String name, int health){

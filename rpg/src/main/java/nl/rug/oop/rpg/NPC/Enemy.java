@@ -1,4 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
+
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Player.Player;
 
 import java.util.Random;
 
@@ -7,6 +10,7 @@ import java.util.Random;
  * Created by saidf on 4/30/2017.
  */
 public class Enemy extends NPC {
+    private static final long serialVersionUID = 00L;
     private int minAttackDmg;
     private int maxAttackDmg;
     Random rng;

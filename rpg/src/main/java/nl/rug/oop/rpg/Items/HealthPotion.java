@@ -1,11 +1,14 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Items;
+
+import nl.rug.oop.rpg.Player.Player;
 
 /**A health Potion
  * Created by saidf on 5/1/2017.
  */
 public class HealthPotion extends Item{
+    private static final long serialVersionUID = 00L;
     public HealthPotion(){
-        super("A health potion! This blue liquid restores full health.", "Health Potion", 100);
+        super("A health potion! This blue liquid restores full health.", "Health Potion", 50);
     }
 
     public void interact(Player p){

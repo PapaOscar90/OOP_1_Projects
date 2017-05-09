@@ -1,4 +1,12 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Utility;
+
+import nl.rug.oop.rpg.Dungeon.BadDoor;
+import nl.rug.oop.rpg.Dungeon.Door;
+import nl.rug.oop.rpg.Dungeon.GoodDoor;
+import nl.rug.oop.rpg.Dungeon.Room;
+import nl.rug.oop.rpg.NPC.Enemy;
+import nl.rug.oop.rpg.NPC.Friendly;
+import nl.rug.oop.rpg.NPC.NPC;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +19,7 @@ import java.util.function.Function;
  * Class to generate game objects
  * Created by saidf on 4/29/2017.
  */
-public class GameObjectFactory {
+public abstract class GameObjectFactory {
     // Contains lists for random generation of rooms, doors, and NPCs
     private static List<String> roomDescriptionList;
     private static List<String> doorDescriptionList;

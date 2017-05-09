@@ -1,4 +1,11 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
+
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Items.EnchantedStone;
+import nl.rug.oop.rpg.Items.HealthPotion;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Items.TeleportationStone;
+import nl.rug.oop.rpg.Player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +14,7 @@ import java.util.List;
  * Created by saidf on 5/1/2017.
  */
 public class Vendor extends NPC implements Shop {
+    private static final long serialVersionUID = 00L;
     private List<Item> productList;
     private boolean neverShopped;
 

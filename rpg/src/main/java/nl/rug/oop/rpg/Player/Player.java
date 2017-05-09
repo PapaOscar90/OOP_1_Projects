@@ -1,5 +1,13 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Player;
 
+import nl.rug.oop.rpg.Dungeon.GoodDoor;
+import nl.rug.oop.rpg.Dungeon.SpecialDoor;
+import nl.rug.oop.rpg.Items.Weapon;
+import nl.rug.oop.rpg.NPC.Enemy;
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Dungeon.Room;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,12 +15,14 @@ import java.util.List;
  * The player object
  * Created by PhilO on 27-Apr-17.
  */
-public class Player {
+public class Player implements Serializable{
+    private static final long serialVersionUID = 00L;
     private Room currentRoom;
+    private Room startingRoom;
     private List<Room> visitedRoomsList;
+    private List<SpecialDoor> visitedSpecialDoorList;
     private Inventory inventory;
     private Weapon weapon;
-    private Room startingRoom;
     private int health;
     private int maxHealth;
     private int gold;
@@ -23,6 +33,7 @@ public class Player {
         this.startingRoom = startingRoom;
         visitedRoomsList = new ArrayList<>();
         visitedRoomsList.add(currentRoom);
+        visitedSpecialDoorList = new ArrayList<>();
         this.health = health;
         maxHealth = this.health;
         this.weapon = weapon;
@@ -156,10 +167,23 @@ public class Player {
         enemy.takeDamage(weapon.getDamage());
     }
 
+    public void correctSpecialDoors(){
+        for (SpecialDoor door : visitedSpecialDoorList){
+            if (door.isLeadsBack()){
+                door.setLeadsBack(false);
+                if (door instanceof GoodDoor){
+                    door.setDescription(HelperClass.GOOD_DOOR_DESCRIPTION);
+                } else {
+                    door.setDescription(HelperClass.BAD_DOOR_DESCRIPTION);
+                }
+            }
+        }
+    }
     // Respawns player at start with normal health.
     public void respawn() {
         currentRoom = startingRoom;
         health = maxHealth;
+        correctSpecialDoors();
         gold = 0;
     }
 
@@ -173,6 +197,14 @@ public class Player {
         if (gold > 0) {
             System.out.println("You received " + gold + " Gold");
         }
+    }
+
+    public List<SpecialDoor> getVisitedSpecialDoorList() {
+        return visitedSpecialDoorList;
+    }
+
+    public void addVisitedSpecialDoorList(SpecialDoor door){
+        visitedSpecialDoorList.add(door);
     }
 
     public Inventory getInventory() {
@@ -196,9 +228,6 @@ public class Player {
     }
 
     public boolean isInventoryEmpty() {
-        if (inventory.getSize() == 0) {
-            return true;
-        }
-        return false;
+        return inventory.getSize() == 0;
     }
 }

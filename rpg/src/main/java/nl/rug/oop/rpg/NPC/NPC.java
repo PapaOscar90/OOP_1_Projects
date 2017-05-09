@@ -1,11 +1,16 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
+
+import nl.rug.oop.rpg.Utility.Inspectable;
+import nl.rug.oop.rpg.Utility.Interactable;
+
+import java.io.Serializable;
 
 /**
  * An NPC.
  * Created by saidf on 4/30/2017.
  */
 
-abstract class NPC extends Inspectable implements Interactable{
+public abstract class NPC extends Inspectable implements Interactable {
     // All NPCs have a name, and health
     protected String name;
     protected int health;

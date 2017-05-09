@@ -1,12 +1,17 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Dungeon;
 
+import nl.rug.oop.rpg.Player.Player;
+import nl.rug.oop.rpg.Utility.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Door class, "points" to a new room.
  * Created by PhilO on 27-Apr-17.
  */
-public class Door extends Inspectable implements Interactable {
+public class Door extends Inspectable implements Interactable, Serializable {
+    private static final long serialVersionUID = 00L;
     protected Room roomBehindDoor;
 
     // The door "points" to a room.
@@ -29,4 +34,11 @@ public class Door extends Inspectable implements Interactable {
         p.setCurrentRoom(roomBehindDoor);
     }
 
+    public Room getRoomBehindDoor() {
+        return roomBehindDoor;
+    }
+
+    public void setRoomBehindDoor(Room roomBehindDoor) {
+        this.roomBehindDoor = roomBehindDoor;
+    }
 }

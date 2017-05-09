@@ -1,6 +1,7 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.NPC;
 
-import java.util.List;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Player.Player;
 
 /** An interface for a simple shop
  * Created by saidf on 5/1/2017.

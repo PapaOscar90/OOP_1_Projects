@@ -1,12 +1,20 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Player;
 
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Utility.Interactable;
+import nl.rug.oop.rpg.Items.HealthPotion;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Items.Weapon;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 /**An inventory to be used by Player
  * Created by saidf on 5/2/2017.
  */
-public class Inventory implements Interactable {
+public class Inventory implements Interactable, Serializable {
+    private static final long serialVersionUID = 00L;
     private List<Item> inventory;
 
     public Inventory(){

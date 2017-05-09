@@ -1,11 +1,26 @@
 package nl.rug.oop.rpg;
 
+import nl.rug.oop.rpg.Dungeon.Door;
+import nl.rug.oop.rpg.Player.Player;
+import nl.rug.oop.rpg.Utility.GameObjectFactory;
+import nl.rug.oop.rpg.Utility.HelperClass;
+import nl.rug.oop.rpg.Items.EnchantedStone;
+import nl.rug.oop.rpg.Items.HealthPotion;
+import nl.rug.oop.rpg.Items.Item;
+import nl.rug.oop.rpg.Items.Weapon;
+import nl.rug.oop.rpg.NPC.NPC;
+import nl.rug.oop.rpg.NPC.Vendor;
+import nl.rug.oop.rpg.Dungeon.Room;
+import nl.rug.oop.rpg.Utility.SaveFileController;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/** TODO: Allow spirits to immediatly attack when player enters room, adds small danger to each room
- *  RPG game
- *  Created by PhilO on 27-Apr-17.
+/**
+ * TODO: Allow spirits to immediatly attack when player enters room, adds small danger to each room
+ * RPG game
+ * Created by PhilO on 27-Apr-17.
  */
 public class Main {
 
@@ -17,8 +32,12 @@ public class Main {
         System.out.println("(2) Look for company");
         System.out.println("(3) Check inventory");
         System.out.println("(4) Kill yourself");
-        System.out.println();
-        System.out.println("(5) Exit game (You lose all progress!)");
+        System.out.println("-----------------------------------------------");
+        System.out.println("(5) Quicksave");
+        System.out.println("(6) Quickload");
+        System.out.println("(7) Save");
+        System.out.println("(8) Load");
+        System.out.println("(9) Exit game (All unsaved progress will be lost)");
     }
 
     // Player looks around the room and sees what kind of room it is
@@ -45,8 +64,8 @@ public class Main {
     }
 
     // Prints the items in the inventory
-    private static void checkInventory(Player p){
-        if (!p.isInventoryEmpty()){
+    private static void checkInventory(Player p) {
+        if (!p.isInventoryEmpty()) {
             p.getInventory().interact(p);
         } else {
             System.out.println("Your inventory is empty");
@@ -61,7 +80,7 @@ public class Main {
     }
 
     // Prints current status of the player to the screen (gold, health, current weapon);
-    private static void printStatus(Player p){
+    private static void printStatus(Player p) {
         int minWeaponDmg = p.getWeapon().getMinDamage();
         int maxWeaponDmg = p.getWeapon().getMaxDamage();
         String weaponName = p.getWeapon().getName();
@@ -85,7 +104,7 @@ public class Main {
             HelperClass.getValidChoice();
             printStatus(player);
             printRoomActions();
-            int choice = HelperClass.getValidChoice(0, 5);
+            int choice = HelperClass.getValidChoice(0, 9);
             switch (choice) {
                 case 0:
                     lookAround(player);
@@ -103,6 +122,26 @@ public class Main {
                     exit = commitSuicide(player);
                     break;
                 case 5:
+                    SaveFileController.quickSave(player);
+                    break;
+                case 6:
+                    Player tempPlayer = SaveFileController.quickLoad();
+                    if (tempPlayer == null){
+                        System.out.println("Nothing to load!");
+                    } else {
+                        player = tempPlayer;
+                    }
+                    break;
+                case 7:
+                    SaveFileController.save(player);
+                    break;
+                case 8:
+                    tempPlayer = SaveFileController.load();
+                    if (tempPlayer != null){
+                        player = tempPlayer;
+                    }
+                    break;
+                case 9:
                     exit = true;
                     break;
                 default:
@@ -111,8 +150,8 @@ public class Main {
         }
     }
 
-    // Loads the game
-    private static Player initializeGame(){
+    // Initialize the game
+    private static Player initializeGame() {
         List<Door> startingDoors = GameObjectFactory.generateRandomDoors(HelperClass.NEW_DOORS_PER_ROOM);
         List<NPC> startingNpcs = GameObjectFactory.generateRandomNpcs(HelperClass.NPC_SPAWN_CHANCE);
         List<Item> products = new ArrayList<>();
@@ -124,10 +163,11 @@ public class Main {
         Room startingRoom = new Room("A dark room. Filled with spiders and a cold chill in the air.", startingDoors, startingNpcs);
         startingRoom.addnpc(vendor);
         Weapon startingWeapon = new Weapon("A weapon of mass destruction.", "Rusty dagger", 10, 5, 10);
-        return new Player(startingRoom, 50, startingWeapon, 25);
+        new File(HelperClass.DIRECTORY_NAME).mkdir();
+        return new Player(startingRoom, 100, startingWeapon, 25);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Player player = initializeGame();
         gameLoop(player);
     }

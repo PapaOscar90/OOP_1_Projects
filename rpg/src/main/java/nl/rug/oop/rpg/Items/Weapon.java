@@ -1,4 +1,6 @@
-package nl.rug.oop.rpg;
+package nl.rug.oop.rpg.Items;
+
+import nl.rug.oop.rpg.Player.Player;
 
 import java.util.Random;
 
@@ -6,6 +8,7 @@ import java.util.Random;
  * Created by PhilO on 30-Apr-17.
  */
 public class Weapon extends Item {
+    private static final long serialVersionUID = 00L;
     private int minDamage;
     private int maxDamage;
     Random rng;
