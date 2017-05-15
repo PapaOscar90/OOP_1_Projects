@@ -1,4 +1,4 @@
-package cardGame.Model;
+package cardGame.model;
 
 /**
  * Represents the kinds of playing cards found in ubiquitous 54-card decks

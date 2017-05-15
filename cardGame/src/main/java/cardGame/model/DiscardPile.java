@@ -1,7 +1,7 @@
-package cardGame.Model;
+package cardGame.model;
 
-import cardGame.Utility.Emptiable;
-import cardGame.Utility.Sized;
+import cardGame.utility.Emptiable;
+import cardGame.utility.Sized;
 
 import java.util.Iterator;
 import java.util.ListIterator;

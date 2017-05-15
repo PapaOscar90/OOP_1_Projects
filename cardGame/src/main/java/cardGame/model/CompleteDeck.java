@@ -1,4 +1,4 @@
-package cardGame.Model;
+package cardGame.model;
 
 /**
  * A deck that has all possible cards

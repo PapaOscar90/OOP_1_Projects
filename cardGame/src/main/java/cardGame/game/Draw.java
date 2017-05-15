@@ -1,8 +1,8 @@
-package cardGame.Game;
+package cardGame.game;
 
-import cardGame.Model.AbstractDeck;
-import cardGame.Model.CompleteDeck;
-import cardGame.Model.DiscardPile;
+import cardGame.model.AbstractDeck;
+import cardGame.model.CompleteDeck;
+import cardGame.model.DiscardPile;
 
 import java.util.Observable;
 import java.util.Observer;

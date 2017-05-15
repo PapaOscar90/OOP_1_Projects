@@ -1,4 +1,4 @@
-package cardGame.Utility;
+package cardGame.utility;
 
 /**
  * Represents types that can possibly be empty

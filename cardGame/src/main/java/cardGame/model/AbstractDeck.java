@@ -1,4 +1,4 @@
-package cardGame.Model;
+package cardGame.model;
 
 import cardGame.util.Emptiable;
 import cardGame.util.Sized;
