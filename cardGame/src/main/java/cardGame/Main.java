@@ -9,9 +9,7 @@
 
 package cardGame;
 
-import cardGame.View.WindowFrame;
-
-import javax.swing.*;
+import cardGame.Model.WindowFrame;
 
 public class Main{
     public static void main(String[] args){

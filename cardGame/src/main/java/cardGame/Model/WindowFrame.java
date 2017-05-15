@@ -1,4 +1,4 @@
-package cardGame.View;
+package cardGame.Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,7 +10,7 @@ public class WindowFrame extends JFrame {
     JButton button1 = new JButton("Clickme!");
     JTextField textField1 = new JTextField("Default text");
 
-    public void WindowFrame(){
+    public WindowFrame(){
         this.setSize(200,100);
         this.getContentPane().setLayout(new FlowLayout());
         this.getContentPane().add(button1);
