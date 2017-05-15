@@ -1,7 +1,7 @@
 package cardGame.model;
 
-import cardGame.util.Emptiable;
-import cardGame.util.Sized;
+import cardGame.utility.Emptiable;
+import cardGame.utility.Sized;
 
 import java.util.*;
 
