@@ -9,7 +9,7 @@
 
 package cardGame;
 
-import cardGame.Model.WindowFrame;
+import cardGame.View.WindowFrame;
 
 public class Main{
     public static void main(String[] args){

@@ -1,4 +1,4 @@
-package cardGame.Model;
+package cardGame.View;
 
 import javax.swing.*;
 import java.awt.*;
