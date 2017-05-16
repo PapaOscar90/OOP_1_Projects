@@ -5,15 +5,15 @@ import java.awt.*;
 
 /**
  * Created by PhilO on 15-May-17.
+ * TODO: Make an actual view depending on what game to implement
  */
 public class WindowFrame extends JFrame {
-    JButton button1 = new JButton("Clickme!");
-    JTextField textField1 = new JTextField("Default text");
+    JButton button1 = new JButton("New Game");
+    //JTextField textField1 = new JTextField("Default text");
 
     public WindowFrame(){
-        this.setSize(200,100);
+        this.setSize(800,600);
         this.getContentPane().setLayout(new FlowLayout());
         this.getContentPane().add(button1);
-        this.getContentPane().add(textField1);
     }
 }
