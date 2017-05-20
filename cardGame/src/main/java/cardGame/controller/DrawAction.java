@@ -22,7 +22,7 @@ public class DrawAction extends AbstractAction implements Observer {
      * the resource it acts on, namely, draw.
      */
     private void fixEnabled() {
-        if(draw.getDeck().isEmpty() && draw.getMovableCard() == null)
+        if(draw.getDeck().isEmpty())
             setEnabled(false);
         else
             setEnabled(true);
@@ -43,7 +43,7 @@ public class DrawAction extends AbstractAction implements Observer {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        draw.move();
+        // TODO: Implement card flip logic
     }
     
     /**
