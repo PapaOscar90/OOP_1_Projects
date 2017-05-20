@@ -20,7 +20,7 @@ public class DrawButton extends JButton {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
         setMnemonic(KeyEvent.VK_D);
-        setToolTipText("Draw a card");
+        setToolTipText("Start Timer");
     }
     
     /**

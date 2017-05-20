@@ -21,7 +21,7 @@ public class ResetButton extends JButton {
         setVerticalTextPosition(AbstractButton.CENTER);
         setHorizontalTextPosition(AbstractButton.CENTER);
         setMnemonic(KeyEvent.VK_S);
-        setToolTipText("Shuffle all cards back into the deck");
+        setToolTipText("Reset Timer");
     }
     
     /**

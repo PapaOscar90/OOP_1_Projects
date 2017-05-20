@@ -24,7 +24,6 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setJMenuBar(new ButtonBar(draw));
         DrawPanel panel = new DrawPanel(draw);
-        CardDragger cd = new CardDragger(draw, panel);
         frame.getContentPane().add(panel);
         frame.setPreferredSize(new Dimension(800, 600));
         frame.pack();

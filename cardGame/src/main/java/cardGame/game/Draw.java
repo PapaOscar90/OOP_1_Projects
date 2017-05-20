@@ -47,7 +47,6 @@ public class Draw extends Observable implements Observer {
     public Draw() {
         deck = makeDeck();
         discardPile = new DiscardPile();
-        createMovableCard();
     }
     
     /**

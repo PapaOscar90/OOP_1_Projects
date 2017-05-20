@@ -32,7 +32,7 @@ public class DrawAction extends AbstractAction implements Observer {
      * Creates a new action to draw a card.
      */
     public DrawAction(Draw draw) {
-        super("Draw a card");
+        super("Start Timer!");
         this.draw = draw;
         draw.addObserver(this);
         fixEnabled();

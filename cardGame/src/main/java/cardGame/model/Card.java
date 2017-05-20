@@ -8,7 +8,7 @@ package cardGame.model;
  * the texture loading mechanism.
  */
 public enum Card {
-    
+
     //Hearts
     ACE_HEARTS      (Face.ACE,   Suit.HEARTS),
     TWO_HEARTS      (Face.TWO,   Suit.HEARTS),
@@ -130,6 +130,7 @@ public enum Card {
     private final Face face;
     private final Suit suit;
     private final Colour colour;
+    private boolean isFlipped;
     
     /**
      * Create a new card with the given face and suit
@@ -138,6 +139,7 @@ public enum Card {
         this.face = face;
         this.suit = suit;
         this.colour = suit.getColour();
+        this.isFlipped = false;
     }
     
     /**
