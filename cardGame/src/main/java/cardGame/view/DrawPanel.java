@@ -48,7 +48,7 @@ public class DrawPanel extends JPanel implements Observer {
     public DrawPanel(Draw draw) {
         this.draw = draw;
         draw.addObserver(this);
-        setBackground(new Color(0x7E, 0x35, 0x4D));
+        setBackground(new Color(63, 126, 47));
         setVisible(true);
         setOpaque(true);
     }
@@ -62,8 +62,8 @@ public class DrawPanel extends JPanel implements Observer {
      */
     private void paintAreas(Graphics g) {
         g.setColor(Color.YELLOW);
-        g.drawRect(0, 0, getWidth(), getHeight());
-        g.drawString("Memory Game", getWidth() / 2, 10);
+        g.drawRect(0, 0, getWidth()-2, getHeight()-2);
+        g.drawString("MEMORY", (getWidth()/2)-getSpacing(), 10);
         g.setColor(Color.BLACK);
     }
     
@@ -71,7 +71,7 @@ public class DrawPanel extends JPanel implements Observer {
      * Get the scaled spacing between edges and cards
      */
     private int getSpacing() {
-        return 25;
+        return 20;
     }
     
     /**
@@ -80,7 +80,8 @@ public class DrawPanel extends JPanel implements Observer {
      * their relative dimensions
      */
     public int cardWidth() {
-        return (60);
+        System.out.println(getWidth());
+        return (getWidth()-100)/4;
     }
     
     /**
@@ -89,7 +90,7 @@ public class DrawPanel extends JPanel implements Observer {
      * their relative dimensions
      */
     public int cardHeight() {
-        return (120);
+        return (getHeight()-80)/3;
     }
     
     /**
@@ -97,17 +98,17 @@ public class DrawPanel extends JPanel implements Observer {
      */
     private void paintDeck(Graphics g) {
         int row, col;
-        for(row = 1; row <= 3; row++) {
-            for(col = 1; col <= 3; col++){
-                int posX = getSpacing() + row*65;
-                int posY = getSpacing() + col*125;
+        for(row = 0; row < 3; row++) {
+            for(col=0; col <4; col++){
+                int posX = col * getWidth()/4 +10;
+                int posY = row * getHeight()/3 +10;
                 g.drawImage( CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE)
                         , posX, posY, cardWidth(), cardHeight(), this);
                 g.drawRect(posX, posY, cardWidth(), cardHeight());
             }
         }
-
     }
+
 
     
     /**
