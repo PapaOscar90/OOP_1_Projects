@@ -39,6 +39,7 @@ public class Draw extends Observable implements Observer {
     public AbstractDeck getDeck() {
         return deck;
     }
+
     
     
     /**

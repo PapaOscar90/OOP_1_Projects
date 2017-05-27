@@ -40,7 +40,6 @@ public enum Card {
      * The colours a card can have
      */
     public enum Colour {
-        RED,
         BLACK;
     }
     
@@ -48,10 +47,7 @@ public enum Card {
      * The suits a card can be in. Each of them has a colour.
      */
     public enum Suit {
-        HEARTS (Colour.RED),
-        DIAMONDS (Colour.RED),
-        CLUBS (Colour.BLACK),
-        SPADES (Colour.BLACK);
+        CLUBS (Colour.BLACK);
         
         private final Colour colour;
         
@@ -113,6 +109,10 @@ public enum Card {
      */
     public Colour getColour() {
         return colour;
+    }
+
+    public void flipCard(Card card){
+        this.isFlipped=true;
     }
 
 }
