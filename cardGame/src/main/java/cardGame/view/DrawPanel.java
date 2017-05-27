@@ -80,7 +80,6 @@ public class DrawPanel extends JPanel implements Observer {
      * their relative dimensions
      */
     public int cardWidth() {
-        System.out.println(getWidth());
         return (getWidth()-100)/4;
     }
     
@@ -97,14 +96,20 @@ public class DrawPanel extends JPanel implements Observer {
      * Draw the deck
      */
     private void paintDeck(Graphics g) {
+        int cardNumber=0;
         int row, col;
         for(row = 0; row < 3; row++) {
             for(col=0; col <4; col++){
                 int posX = col * getWidth()/4 +10;
                 int posY = row * getHeight()/3 +10;
-                g.drawImage( CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE)
-                        , posX, posY, cardWidth(), cardHeight(), this);
+                if(draw.getDeck().getCard(cardNumber).isFlipped()){
+                    g.drawImage(CardTextures.getTexture(draw.getDeck().getCard(cardNumber)), posX, posY, cardWidth(), cardHeight(), this);
+                }else {
+                    g.drawImage(CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE)
+                            , posX, posY, cardWidth(), cardHeight(), this);
+                }
                 g.drawRect(posX, posY, cardWidth(), cardHeight());
+                cardNumber++;
             }
         }
     }

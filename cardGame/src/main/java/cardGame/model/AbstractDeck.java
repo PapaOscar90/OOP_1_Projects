@@ -123,10 +123,8 @@ abstract public class AbstractDeck implements Emptiable, Sized {
      * Draw a card from the deck. This method will return null if the
      * deck is empty,
      */
-    public Card draw() {
-        if(!isEmpty())
-            return cards.remove(cards.size() - 1);
-        return null;
+    public Card getCard(int position){
+        return cards.get(position);
     }
     
     

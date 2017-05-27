@@ -40,7 +40,28 @@ public class Draw extends Observable implements Observer {
         return deck;
     }
 
-    
+    public void checkPairs(){
+        int cardsFlipped=0;
+
+
+        for(int i=0; i < 12; i++){
+            if(this.getDeck().getCard(i).isFlipped() == true){
+                cardsFlipped++;
+                if(cardsFlipped<2){
+                    return;
+                }else{
+                    for(int j=0; j<12;j++){
+                        if (this.getDeck().getCard(j).getFace() == this.getDeck().getCard(i).getFace()){
+                            cardsFlipped =0;
+                        }else{
+                            this.getDeck().getCard(i).flipCard();
+                            this.getDeck().getCard(j).flipCard();
+                        }
+                    }
+                }
+            }
+        }
+    }
     
     /**
      * Put all cards back into the deck and shuffle it
