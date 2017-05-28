@@ -4,7 +4,6 @@ import cardGame.game.Draw;
 import cardGame.view.DrawPanel;
 
 import javax.swing.event.MouseInputAdapter;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 
 
@@ -25,11 +24,11 @@ public class MouseClicker extends MouseInputAdapter {
     @Override
     public void mouseClicked(MouseEvent event){
         int cardX,cardY;
-        draw.getDeck().getCard(4).flipCard();
+        draw.getDeck().getFlippableCard(4).flipCard();
         //TODO: Use math to get card clicked via e.getX and Y and board size
         //TODO: Invoke a game logic to flip the card and check for pair.
         System.out.println("Hello World.");
-        draw.checkPairs();
+        //draw.checkPairs();
     }
 
 }

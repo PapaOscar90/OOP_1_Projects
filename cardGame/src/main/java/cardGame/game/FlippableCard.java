@@ -27,6 +27,8 @@ public class FlippableCard extends Observable {
         }else{
             this.isFlipped = true;
         }
+        setChanged();
+        notifyObservers();
     }
 
     public Boolean isFlipped(){

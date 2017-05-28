@@ -71,7 +71,6 @@ public enum Card {
     private final Face face;
     private final Suit suit;
     private final Colour colour;
-    private boolean isFlipped;
     
     /**
      * Create a new card with the given face and suit
@@ -80,7 +79,6 @@ public enum Card {
         this.face = face;
         this.suit = suit;
         this.colour = suit.getColour();
-        this.isFlipped = false;
     }
     
     /**
@@ -111,19 +109,6 @@ public enum Card {
      */
     public Colour getColour() {
         return colour;
-    }
-
-    public void flipCard(){
-        if (this.isFlipped){
-            this.isFlipped = false;
-        }else{
-            this.isFlipped = true;
-        }
-    }
-
-
-    public Boolean isFlipped(){
-        return isFlipped;
     }
 }
 

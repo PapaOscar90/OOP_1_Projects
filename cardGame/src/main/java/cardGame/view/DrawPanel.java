@@ -3,14 +3,12 @@ package cardGame.view;
 import cardGame.model.Card;
 
 import cardGame.game.Draw;
-import cardGame.game.MovableCard;
 
 import javax.swing.JPanel;
 
 import java.awt.Point;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.Dimension;
 
 import java.util.Observer;
 import java.util.Observable;
@@ -102,8 +100,8 @@ public class DrawPanel extends JPanel implements Observer {
             for(col=0; col <4; col++){
                 int posX = col * getWidth()/4 +10;
                 int posY = row * getHeight()/3 +10;
-                if(draw.getDeck().getCard(cardNumber).isFlipped()){
-                    g.drawImage(CardTextures.getTexture(draw.getDeck().getCard(cardNumber)), posX, posY, cardWidth(), cardHeight(), this);
+                if(draw.getDeck().getFlippableCard(cardNumber).isFlipped()){
+                    g.drawImage(CardTextures.getTexture(draw.getDeck().getFlippableCard(cardNumber).getCard()), posX, posY, cardWidth(), cardHeight(), this);
                 }else {
                     g.drawImage(CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE)
                             , posX, posY, cardWidth(), cardHeight(), this);
@@ -112,7 +110,7 @@ public class DrawPanel extends JPanel implements Observer {
                 cardNumber++;
             }
         }
-        repaint();
+        //repaint();
     }
 
 

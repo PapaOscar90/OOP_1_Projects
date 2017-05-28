@@ -1,7 +1,6 @@
 package cardGame.controller;
 
 import cardGame.game.Draw;
-import cardGame.game.MovableCard;
 
 import java.awt.event.ActionEvent;
 
