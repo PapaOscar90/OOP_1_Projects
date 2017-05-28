@@ -78,7 +78,7 @@ public enum Card {
         this.face = face;
         this.suit = suit;
         this.colour = suit.getColour();
-        this.isFlipped = true;
+        this.isFlipped = false;
     }
     
     /**

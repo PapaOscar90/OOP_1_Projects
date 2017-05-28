@@ -112,6 +112,7 @@ public class DrawPanel extends JPanel implements Observer {
                 cardNumber++;
             }
         }
+        repaint();
     }
 
 
