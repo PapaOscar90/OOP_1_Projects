@@ -12,7 +12,7 @@ import java.util.Observer;
  * Represents a silly 'game' (if you can even call it that) that draws cards
  * until the deck is empty, then shuffles them all back in.
  */
-public class Draw extends Observable{
+public class Draw extends Observable implements Observer{
 
     private AbstractDeck deck;
     
@@ -47,8 +47,7 @@ public class Draw extends Observable{
             if(this.getDeck().getCard(i).isFlipped()){
                 cardsFlipped++;
                 if(cardsFlipped<2){
-                    return;
-                }else{
+                    return;                }else{
                     for(int j=0; j<12;j++){
                         if (this.getDeck().getCard(j).getFace() == this.getDeck().getCard(i).getFace()){
                             cardsFlipped =0;
@@ -71,4 +70,9 @@ public class Draw extends Observable{
         notifyObservers();
     }
 
+    @Override
+    public void update(Observable o, Object arg) {
+        setChanged();
+        notifyObservers();
+    }
 }

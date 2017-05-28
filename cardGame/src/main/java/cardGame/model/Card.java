@@ -1,5 +1,7 @@
 package cardGame.model;
 
+import java.util.Observable;
+
 /**
  * Represents the kinds of playing cards found in ubiquitous 54-card decks
  *
