@@ -18,28 +18,11 @@ import java.util.Observable;
  */
 public class DrawPanel extends JPanel implements Observer {
 
-    private static final int CARD_SPACING = 2; //pixels
-    private static final int Y_OFFSET = Card.values().length * CARD_SPACING;
+    private int cardWidth;
+    private int cardHeight;
     
     private Draw draw;
-    
-    private int movableX;
-    private int movableY;
-    
-    /**
-     * Get the number of pixels in X this card has been moved
-     */
-    public int getMovableX() {
-        return movableX;
-    }
-    
-    /**
-     * Get the number of pixels in Y this card has been moved
-     */
-    public int getMovableY() {
-        return movableY;
-    }
-    
+
     /**
      * Create a new DrawPanel
      */
@@ -49,10 +32,8 @@ public class DrawPanel extends JPanel implements Observer {
         setBackground(new Color(63, 126, 47));
         setVisible(true);
         setOpaque(true);
-    }
-    
-    public boolean inDiscardArea(Point point) {
-        return point.getX() > getWidth() / 2;
+        cardWidth = (getWidth()-100)/4;
+        cardHeight = (getHeight()-80)/3;
     }
     
     /**
@@ -77,8 +58,8 @@ public class DrawPanel extends JPanel implements Observer {
      * width is 436, and cards are scaled depending on which dimension limits
      * their relative dimensions
      */
-    public int cardWidth() {
-        return (getWidth()-100)/4;
+    private void updateCardWidth() {
+        cardWidth = (getWidth()-100)/4;
     }
     
     /**
@@ -86,14 +67,24 @@ public class DrawPanel extends JPanel implements Observer {
      * width is 436, and cards are scaled depending on which dimension limits
      * their relative dimensions
      */
-    public int cardHeight() {
-        return (getHeight()-80)/3;
+    private void updateCardHeight() {
+        cardHeight = (getHeight()-80)/3;
     }
-    
+
+    public int getCardWidth() {
+        return cardWidth;
+    }
+
+    public int getCardHeight() {
+        return cardHeight;
+    }
+
     /**
      * Draw the deck
      */
     private void paintDeck(Graphics g) {
+        updateCardWidth();
+        updateCardHeight();
         int cardNumber=0;
         int row, col;
         for(row = 0; row < 3; row++) {
@@ -101,12 +92,12 @@ public class DrawPanel extends JPanel implements Observer {
                 int posX = col * getWidth()/4 +10;
                 int posY = row * getHeight()/3 +10;
                 if(draw.getDeck().getFlippableCard(cardNumber).isFlipped()){
-                    g.drawImage(CardTextures.getTexture(draw.getDeck().getFlippableCard(cardNumber).getCard()), posX, posY, cardWidth(), cardHeight(), this);
+                    g.drawImage(CardTextures.getTexture(draw.getDeck().getFlippableCard(cardNumber).getCard()), posX, posY, getCardWidth(), getCardHeight(), this);
                 }else {
                     g.drawImage(CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE)
-                            , posX, posY, cardWidth(), cardHeight(), this);
+                            , posX, posY, getCardWidth(), getCardHeight(), this);
                 }
-                g.drawRect(posX, posY, cardWidth(), cardHeight());
+                g.drawRect(posX, posY, getCardWidth(), getCardHeight());
                 cardNumber++;
             }
         }

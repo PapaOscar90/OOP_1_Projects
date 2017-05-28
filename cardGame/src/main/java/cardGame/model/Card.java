@@ -1,7 +1,5 @@
 package cardGame.model;
 
-import java.util.Observable;
-
 /**
  * Represents the kinds of playing cards found in ubiquitous 54-card decks
  *
@@ -9,7 +7,7 @@ import java.util.Observable;
  * used to load textures in view. If you override toString you may break
  * the texture loading mechanism.
  */
-public enum Card {
+public enum Card{
 
     //Clubs
     ACE_CLUBS(Face.ACE, Suit.CLUBS),
