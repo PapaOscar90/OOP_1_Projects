@@ -128,7 +128,6 @@ public class DrawPanel extends JPanel implements Observer {
     @Override
     public void update(Observable observed, Object message) {
         repaint();
-        System.out.println("Repainted.");
     }
 
 }

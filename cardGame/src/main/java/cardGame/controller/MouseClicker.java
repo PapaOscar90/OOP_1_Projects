@@ -29,6 +29,11 @@ public class MouseClicker extends MouseInputAdapter {
                     y > fp.getPosY() &&
                     y < fp.getPosY() + panel.getCardHeight()
                     ) {
+                if (draw.isInvalidChoice()){
+                    draw.getCurrentCardFlipped().flipCard();
+                    draw.getPreviousCardFlipped().flipCard();
+                    draw.setInvalidChoice(false);
+                }
                 if (!fp.isFlipped()){
                     fp.flipCard();
                     draw.incrementCardsFlipped();
@@ -40,7 +45,6 @@ public class MouseClicker extends MouseInputAdapter {
                 }
             }
         }
-
     }
 
     @Override
@@ -49,15 +53,8 @@ public class MouseClicker extends MouseInputAdapter {
         flipCard(event.getX(), event.getY());
         //TODO: Use math to get card clicked via e.getX and Y and board size
         //TODO: Invoke a game logic to flip the card and check for pair.
-        System.out.println("Hello World.");
-        //Need a new thread to check the pairs so that image updates properly, I DON'T KNOW WHY
-        new Thread(
-                new Runnable() {
-                    public void run() {
-                        draw.checkPairs ();
-                    }
-                }
-        ).start();
+        draw.checkPairs ();
+
     }
 
 }

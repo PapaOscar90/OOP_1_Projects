@@ -16,6 +16,7 @@ public class Draw extends Observable implements Observer {
     private int cardsFlippedCount;
     private FlippableCard previousCardFlipped;
     private FlippableCard currentCardFlipped;
+    private boolean isInvalidChoice;
 
     /**
      * Create a deck with all cards in Card
@@ -38,6 +39,7 @@ public class Draw extends Observable implements Observer {
     public Draw() {
         deck = makeDeck();
         cardsFlippedCount = 0;
+        isInvalidChoice = false;
         addObservers();
     }
 
@@ -51,14 +53,7 @@ public class Draw extends Observable implements Observer {
     public void checkPairs() {
         if (cardsFlippedCount % 2 == 0)
             if (previousCardFlipped.getCard().getFace() != currentCardFlipped.getCard().getFace()){
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e){
-                    e.printStackTrace();
-                }
-                currentCardFlipped.flipCard();
-                previousCardFlipped.flipCard();
-                resetCardsFlippedCount();
+                setInvalidChoice(true);
             }
     }
 
@@ -97,6 +92,14 @@ public class Draw extends Observable implements Observer {
 
     public void setCurrentCardFlipped(FlippableCard currentCardFlipped) {
         this.currentCardFlipped = currentCardFlipped;
+    }
+
+    public boolean isInvalidChoice() {
+        return isInvalidChoice;
+    }
+
+    public void setInvalidChoice(boolean invalidChoice) {
+        isInvalidChoice = invalidChoice;
     }
 
     @Override
