@@ -1,5 +1,6 @@
 package cardGame.view;
 
+import cardGame.game.FlippableCard;
 import cardGame.model.Card;
 
 import cardGame.game.Draw;
@@ -89,10 +90,13 @@ public class DrawPanel extends JPanel implements Observer {
         int row, col;
         for(row = 0; row < 3; row++) {
             for(col=0; col <4; col++){
+                FlippableCard fp = draw.getDeck().getFlippableCard(cardNumber);
                 int posX = col * getWidth()/4 +10;
                 int posY = row * getHeight()/3 +10;
-                if(draw.getDeck().getFlippableCard(cardNumber).isFlipped()){
-                    g.drawImage(CardTextures.getTexture(draw.getDeck().getFlippableCard(cardNumber).getCard()), posX, posY, getCardWidth(), getCardHeight(), this);
+                fp.setPosX(posX);
+                fp.setPosY(posY);
+                if(fp.isFlipped()){
+                    g.drawImage(CardTextures.getTexture(fp.getCard()), posX, posY, getCardWidth(), getCardHeight(), this);
                 }else {
                     g.drawImage(CardBackTextures.getTexture(CardBack.CARD_BACK_BLUE)
                             , posX, posY, getCardWidth(), getCardHeight(), this);
@@ -124,6 +128,7 @@ public class DrawPanel extends JPanel implements Observer {
     @Override
     public void update(Observable observed, Object message) {
         repaint();
+        System.out.println("Repainted.");
     }
 
 }

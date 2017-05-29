@@ -1,6 +1,7 @@
 package cardGame.controller;
 
 import cardGame.game.Draw;
+import cardGame.game.FlippableCard;
 import cardGame.view.DrawPanel;
 
 import javax.swing.event.MouseInputAdapter;
@@ -13,22 +14,50 @@ import java.awt.event.MouseEvent;
 public class MouseClicker extends MouseInputAdapter {
     private Draw draw;
     private DrawPanel panel;
-
-    public MouseClicker(Draw draw, DrawPanel panel){
+    public MouseClicker(Draw draw, DrawPanel panel) {
         this.draw = draw;
         this.panel = panel;
 
         panel.addMouseListener(this);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent event){
+    private void flipCard(int x, int y) {
+        for (int i = 0; i < draw.getDeck().size(); i++){
+            FlippableCard fp = draw.getDeck().getFlippableCard(i);
+            if (x > fp.getPosX() &&
+                    x < fp.getPosX() + panel.getCardWidth() &&
+                    y > fp.getPosY() &&
+                    y < fp.getPosY() + panel.getCardHeight()
+                    ) {
+                if (!fp.isFlipped()){
+                    fp.flipCard();
+                    draw.incrementCardsFlipped();
+                    if(draw.getCardsFlippedCount() % 2 == 1){
+                        draw.setPreviousCardFlipped(fp);
+                    } else {
+                        draw.setCurrentCardFlipped(fp);
+                    }
+                }
+            }
+        }
 
-        draw.getDeck().getFlippableCard(4).flipCard();
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent event) {
+
+        flipCard(event.getX(), event.getY());
         //TODO: Use math to get card clicked via e.getX and Y and board size
         //TODO: Invoke a game logic to flip the card and check for pair.
         System.out.println("Hello World.");
-        //draw.checkPairs();
+        //Need a new thread to check the pairs so that image updates properly, I DON'T KNOW WHY
+        new Thread(
+                new Runnable() {
+                    public void run() {
+                        draw.checkPairs ();
+                    }
+                }
+        ).start();
     }
 
 }

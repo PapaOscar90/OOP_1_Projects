@@ -13,6 +13,9 @@ import java.util.Observer;
 public class Draw extends Observable implements Observer {
 
     private AbstractDeck deck;
+    private int cardsFlippedCount;
+    private FlippableCard previousCardFlipped;
+    private FlippableCard currentCardFlipped;
 
     /**
      * Create a deck with all cards in Card
@@ -34,6 +37,7 @@ public class Draw extends Observable implements Observer {
      */
     public Draw() {
         deck = makeDeck();
+        cardsFlippedCount = 0;
         addObservers();
     }
 
@@ -45,25 +49,17 @@ public class Draw extends Observable implements Observer {
     }
 
     public void checkPairs() {
-        int cardsFlipped = 0;
-
-        for (int i = 0; i < 12; i++) {
-            if (this.getDeck().getFlippableCard(i).isFlipped()) {
-                cardsFlipped++;
-                if (cardsFlipped < 2) {
-                    return;
-                } else {
-                    for (int j = 0; j < 12; j++) {
-                        if (this.getDeck().getFlippableCard(j).getCard().getFace() == this.getDeck().getFlippableCard(i).getCard().getFace()) {
-                            cardsFlipped = 0;
-                        } else {
-                            this.getDeck().getFlippableCard(i).flipCard();
-                            this.getDeck().getFlippableCard(j).flipCard();
-                        }
-                    }
+        if (cardsFlippedCount % 2 == 0)
+            if (previousCardFlipped.getCard().getFace() != currentCardFlipped.getCard().getFace()){
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e){
+                    e.printStackTrace();
                 }
+                currentCardFlipped.flipCard();
+                previousCardFlipped.flipCard();
+                resetCardsFlippedCount();
             }
-        }
     }
 
     /**
@@ -73,6 +69,34 @@ public class Draw extends Observable implements Observer {
         deck = makeDeck();
         setChanged();
         notifyObservers();
+    }
+
+    public int getCardsFlippedCount() {
+        return cardsFlippedCount;
+    }
+
+    public void incrementCardsFlipped() {
+        this.cardsFlippedCount++;
+    }
+
+    private void resetCardsFlippedCount(){
+        this.cardsFlippedCount -= 2;
+    }
+
+    public FlippableCard getPreviousCardFlipped() {
+        return previousCardFlipped;
+    }
+
+    public void setPreviousCardFlipped(FlippableCard previousCardFlipped) {
+        this.previousCardFlipped = previousCardFlipped;
+    }
+
+    public FlippableCard getCurrentCardFlipped() {
+        return currentCardFlipped;
+    }
+
+    public void setCurrentCardFlipped(FlippableCard currentCardFlipped) {
+        this.currentCardFlipped = currentCardFlipped;
     }
 
     @Override

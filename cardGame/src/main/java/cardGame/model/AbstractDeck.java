@@ -14,16 +14,7 @@ import java.util.Collection;
  * An arbitrary deck of cards. Cards in a deck are usually closed.
  */
 abstract public class AbstractDeck implements Emptiable, Sized {
-    
-    private static int seed = 42;
-    /**
-     * To allow slight variation in the way games play out, the seed used
-     * is changed every time, but it is seeded to allow reproducible results
-     */
-    private static int nextSeed() {
-        return seed++;
-    }
-    
+
     /**
      * For the purpose of digital shuffling the list-interface, or rather
      * the Collections function for swapping that requires the list-interface
@@ -38,7 +29,7 @@ abstract public class AbstractDeck implements Emptiable, Sized {
      */
     public AbstractDeck() {
         cards = new ArrayList<>();
-        random = new Random(nextSeed());
+        random = new Random(System.nanoTime());
         addCards();
     }
     
