@@ -1,6 +1,6 @@
 package cardGame.controller;
 
-import cardGame.game.Draw;
+import cardGame.game.Memory;
 
 import java.awt.event.ActionEvent;
 
@@ -12,14 +12,14 @@ import javax.swing.AbstractAction;
  */
 public class ResetAction extends AbstractAction {
 
-    private Draw draw;
+    private Memory memory;
 
     /**
      * Creates a new action to shuffle all cards back into the deck
      */
-    public ResetAction(Draw draw) {
+    public ResetAction(Memory memory) {
         super("Reset Timer!");
-        this.draw = draw;
+        this.memory = memory;
     }
 
     /**
@@ -27,7 +27,7 @@ public class ResetAction extends AbstractAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        draw.reset();
+        memory.reset();
     }
     
 }

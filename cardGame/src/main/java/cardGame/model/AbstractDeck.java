@@ -112,7 +112,7 @@ abstract public class AbstractDeck implements Emptiable, Sized {
     }
     
     /**
-     * Draw a card from the deck. This method will return null if the
+     * Memory a card from the deck. This method will return null if the
      * deck is empty,
      */
     public FlippableCard getFlippableCard(int position){

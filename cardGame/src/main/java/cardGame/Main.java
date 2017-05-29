@@ -1,9 +1,9 @@
 package cardGame;
 
 import cardGame.controller.MouseClicker;
-import cardGame.game.Draw;
+import cardGame.game.Memory;
 
-import cardGame.view.DrawPanel;
+import cardGame.view.MemoryPanel;
 
 import cardGame.controller.ButtonBar;
 
@@ -17,12 +17,12 @@ import java.awt.Dimension;
  */
 public class Main {
     public static void main(String[] args) {
-        Draw draw = new Draw();
+        Memory memory = new Memory();
         JFrame frame = new JFrame("Card game");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.setJMenuBar(new ButtonBar(draw));
-        DrawPanel panel = new DrawPanel(draw);
-        new MouseClicker(draw, panel);
+        frame.setJMenuBar(new ButtonBar(memory));
+        MemoryPanel panel = new MemoryPanel(memory);
+        new MouseClicker(memory, panel);
         frame.getContentPane().add(panel);
         frame.setPreferredSize(new Dimension(800, 800));
         frame.pack();

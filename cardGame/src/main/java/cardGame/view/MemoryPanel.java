@@ -1,13 +1,11 @@
 package cardGame.view;
 
 import cardGame.game.FlippableCard;
-import cardGame.model.Card;
 
-import cardGame.game.Draw;
+import cardGame.game.Memory;
 
 import javax.swing.JPanel;
 
-import java.awt.Point;
 import java.awt.Color;
 import java.awt.Graphics;
 
@@ -15,21 +13,21 @@ import java.util.Observer;
 import java.util.Observable;
 
 /**
- * View of Draw
+ * View of Memory
  */
-public class DrawPanel extends JPanel implements Observer {
+public class MemoryPanel extends JPanel implements Observer {
 
     private int cardWidth;
     private int cardHeight;
     
-    private Draw draw;
+    private Memory memory;
 
     /**
-     * Create a new DrawPanel
+     * Create a new MemoryPanel
      */
-    public DrawPanel(Draw draw) {
-        this.draw = draw;
-        draw.addObserver(this);
+    public MemoryPanel(Memory memory) {
+        this.memory = memory;
+        memory.addObserver(this);
         setBackground(new Color(63, 126, 47));
         setVisible(true);
         setOpaque(true);
@@ -81,7 +79,7 @@ public class DrawPanel extends JPanel implements Observer {
     }
 
     /**
-     * Draw the deck
+     * Memory the deck
      */
     private void paintDeck(Graphics g) {
         updateCardWidth();
@@ -90,7 +88,7 @@ public class DrawPanel extends JPanel implements Observer {
         int row, col;
         for(row = 0; row < 3; row++) {
             for(col=0; col <4; col++){
-                FlippableCard fp = draw.getDeck().getFlippableCard(cardNumber);
+                FlippableCard fp = memory.getDeck().getFlippableCard(cardNumber);
                 int posX = col * getWidth()/4 +10;
                 int posY = row * getHeight()/3 +10;
                 fp.setPosX(posX);
@@ -123,7 +121,7 @@ public class DrawPanel extends JPanel implements Observer {
     }
     
     /**
-     * Tell this DrawPanel that the object it displays has changed
+     * Tell this MemoryPanel that the object it displays has changed
      */
     @Override
     public void update(Observable observed, Object message) {

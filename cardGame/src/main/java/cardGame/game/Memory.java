@@ -10,7 +10,7 @@ import java.util.Observer;
  * Represents a silly 'game' (if you can even call it that) that draws cards
  * until the deck is empty, then shuffles them all back in.
  */
-public class Draw extends Observable implements Observer {
+public class Memory extends Observable implements Observer {
 
     private AbstractDeck deck;
     private int cardsFlippedCount;
@@ -34,9 +34,9 @@ public class Draw extends Observable implements Observer {
     }
 
     /**
-     * Create a new Draw with 12 cards, 6 pairs
+     * Create a new Memory with 12 cards, 6 pairs
      */
-    public Draw() {
+    public Memory() {
         deck = makeDeck();
         cardsFlippedCount = 0;
         isInvalidChoice = false;
