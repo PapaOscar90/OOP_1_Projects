@@ -62,6 +62,9 @@ public class Memory extends Observable implements Observer {
      */
     public void reset() {
         deck = makeDeck();
+        cardsFlippedCount=0;
+        isInvalidChoice=false;
+        addObservers();
         setChanged();
         notifyObservers();
     }

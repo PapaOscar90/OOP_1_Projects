@@ -18,7 +18,7 @@ public class ResetAction extends AbstractAction {
      * Creates a new action to shuffle all cards back into the deck
      */
     public ResetAction(Memory memory) {
-        super("Reset Timer!");
+        super("Reset!");
         this.memory = memory;
     }
 
