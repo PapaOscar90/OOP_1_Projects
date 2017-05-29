@@ -5,7 +5,7 @@ import cardGame.game.FlippableCard;
 /**
  * A deck that has all possible cards
  */
-public class CompleteDeck extends AbstractDeck {
+public class Deck extends AbstractDeck {
 
     /**
      * Add all possible cards

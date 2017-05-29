@@ -1,7 +1,7 @@
 package cardGame.game;
 
 import cardGame.model.AbstractDeck;
-import cardGame.model.CompleteDeck;
+import cardGame.model.Deck;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -22,7 +22,7 @@ public class Memory extends Observable implements Observer {
      * Create a deck with all cards in Card
      */
     private static AbstractDeck makeDeck() {
-        AbstractDeck deck = new CompleteDeck();
+        AbstractDeck deck = new Deck();
         deck.shuffle();
         return deck;
     }
