@@ -36,7 +36,7 @@ public class MemoryPanel extends JPanel implements Observer {
     }
     
     /**
-     * Paint the areas in which deck and discard pile can be found
+     * Paint the area
      */
     private void paintAreas(Graphics g) {
         g.setColor(Color.YELLOW);
@@ -53,18 +53,14 @@ public class MemoryPanel extends JPanel implements Observer {
     }
     
     /**
-     * Get the scaled width of cards. Default height is 600, default
-     * width is 436, and cards are scaled depending on which dimension limits
-     * their relative dimensions
+     * Get the scaled width of cards.
      */
     private void updateCardWidth() {
         cardWidth = (getWidth()-100)/4;
     }
     
     /**
-     * Get the scaled height of cards. Default height is 600, default
-     * width is 436, and cards are scaled depending on which dimension limits
-     * their relative dimensions
+     * Get the scaled height of cards.
      */
     private void updateCardHeight() {
         cardHeight = (getHeight()-80)/3;
@@ -79,7 +75,7 @@ public class MemoryPanel extends JPanel implements Observer {
     }
 
     /**
-     * Memory the deck
+     * Paints the cards ("Deck") on the screen
      */
     private void paintDeck(Graphics g) {
         updateCardWidth();
@@ -103,7 +99,6 @@ public class MemoryPanel extends JPanel implements Observer {
                 cardNumber++;
             }
         }
-        //repaint();
     }
 
 
