@@ -1,22 +1,32 @@
-/*
-* Card Game
-* v0.1
-*
-* Phil Oetinger
-* Said Faroghi
-* */
-
-
 package cardGame;
 
-import cardGame.view.WindowFrame;
+import cardGame.controller.MouseClicker;
+import cardGame.game.Memory;
 
-//TODO: Nothing has been implemented yet. Resources from the demo has been imported.
-public class Main{
-    public static void main(String[] args){
-        System.out.println("Hello World.");
-        WindowFrame window = new WindowFrame();
-        window.setVisible(true);
-        window.setDefaultCloseOperation(window.EXIT_ON_CLOSE);
+import cardGame.view.MemoryPanel;
+
+import cardGame.controller.ButtonBar;
+
+import javax.swing.*;
+
+import java.awt.Dimension;
+
+/**
+ * Runs the game. Although technically a controller this class can be found
+ * more easily if it's not in that package
+ */
+public class Main {
+    public static void main(String[] args) {
+        Memory memory = new Memory();
+        JFrame frame = new JFrame("Memory Card Game");
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setJMenuBar(new ButtonBar(memory));
+        MemoryPanel panel = new MemoryPanel(memory);
+        new MouseClicker(memory, panel);
+        frame.getContentPane().add(panel);
+        frame.setPreferredSize(new Dimension(800, 800));
+        frame.pack();
+        frame.setLocationRelativeTo (null); // Center on screen.
+        frame.setVisible(true);
     }
 }
