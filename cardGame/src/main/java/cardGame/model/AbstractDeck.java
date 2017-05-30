@@ -12,6 +12,7 @@ import java.util.Collection;
 
 /**
  * An arbitrary deck of cards. Cards in a deck are usually closed.
+ * The only thing changed from the demo code is that the type of card used is FlippableCard
  */
 abstract public class AbstractDeck implements Emptiable, Sized {
 

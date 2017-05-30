@@ -18,7 +18,7 @@ import java.awt.Dimension;
 public class Main {
     public static void main(String[] args) {
         Memory memory = new Memory();
-        JFrame frame = new JFrame("Card game");
+        JFrame frame = new JFrame("Memory Card Game");
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setJMenuBar(new ButtonBar(memory));
         MemoryPanel panel = new MemoryPanel(memory);

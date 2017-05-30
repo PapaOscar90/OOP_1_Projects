@@ -7,14 +7,13 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Represents a silly 'game' (if you can even call it that) that draws cards
- * until the deck is empty, then shuffles them all back in.
+ * Represents a silly memory matching 'game'
  */
 public class Memory extends Observable implements Observer {
 
     private AbstractDeck deck;
     private int cardsFlippedCount;
-    private FlippableCard previousCardFlipped;
+    private FlippableCard previousCardFlipped; //Last two cards flipped
     private FlippableCard currentCardFlipped;
     private boolean isInvalidChoice;
 
@@ -50,6 +49,7 @@ public class Memory extends Observable implements Observer {
         return deck;
     }
 
+    //Sets invalid choice to true if the last two cards flipped have a different face
     public void checkPairs() {
         if (cardsFlippedCount % 2 == 0)
             if (previousCardFlipped.getCard().getFace() != currentCardFlipped.getCard().getFace()){
@@ -75,10 +75,6 @@ public class Memory extends Observable implements Observer {
 
     public void incrementCardsFlipped() {
         this.cardsFlippedCount++;
-    }
-
-    private void resetCardsFlippedCount(){
-        this.cardsFlippedCount -= 2;
     }
 
     public FlippableCard getPreviousCardFlipped() {

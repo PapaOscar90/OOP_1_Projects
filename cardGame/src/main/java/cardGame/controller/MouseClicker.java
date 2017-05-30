@@ -9,11 +9,13 @@ import java.awt.event.MouseEvent;
 
 
 /**
+ * A mouseClicker class - handles the logic that happens if a mouse is clicked on the screen
  * Created by PhilO on 27-May-17.
  */
 public class MouseClicker extends MouseInputAdapter {
     private Memory memory;
     private MemoryPanel panel;
+
     public MouseClicker(Memory memory, MemoryPanel panel) {
         this.memory = memory;
         this.panel = panel;
@@ -21,23 +23,28 @@ public class MouseClicker extends MouseInputAdapter {
         panel.addMouseListener(this);
     }
 
+    //This function detects whether the user has clicked on a card or not, and if so,
+    //handle the logic associated with clicking that card
     private void flipCard(int x, int y) {
-        for (int i = 0; i < memory.getDeck().size(); i++){
+        for (int i = 0; i < memory.getDeck().size(); i++) {
+            //Loop through each card to check whether it has been clicked
             FlippableCard fp = memory.getDeck().getFlippableCard(i);
             if (x > fp.getPosX() &&
                     x < fp.getPosX() + panel.getCardWidth() &&
                     y > fp.getPosY() &&
                     y < fp.getPosY() + panel.getCardHeight()
                     ) {
-                if (memory.isInvalidChoice()){
+                if (memory.isInvalidChoice()) {
+                    //If the last two cards flipped was invalid (aka do not match),
+                    //they are flipped back
                     memory.getCurrentCardFlipped().flipCard();
                     memory.getPreviousCardFlipped().flipCard();
                     memory.setInvalidChoice(false);
                 }
-                if (!fp.isFlipped()){
+                if (!fp.isFlipped()) {
                     fp.flipCard();
                     memory.incrementCardsFlipped();
-                    if(memory.getCardsFlippedCount() % 2 == 1){
+                    if (memory.getCardsFlippedCount() % 2 == 1) {
                         memory.setPreviousCardFlipped(fp);
                     } else {
                         memory.setCurrentCardFlipped(fp);
@@ -49,12 +56,7 @@ public class MouseClicker extends MouseInputAdapter {
 
     @Override
     public void mouseClicked(MouseEvent event) {
-
         flipCard(event.getX(), event.getY());
-        //TODO: Use math to get card clicked via e.getX and Y and board size
-        //TODO: Invoke a game logic to flip the card and check for pair.
-        memory.checkPairs ();
-
+        memory.checkPairs();
     }
-
 }

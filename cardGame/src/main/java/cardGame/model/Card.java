@@ -1,7 +1,7 @@
 package cardGame.model;
 
 /**
- * Represents the kinds of playing cards found in ubiquitous 54-card decks
+ * Represents the kinds of playing cards found our special 12 card deck for this memory game
  *
  * WARNING: enum types implement toString by default. This information is
  * used to load textures in view. If you override toString you may break
@@ -77,15 +77,6 @@ public enum Card{
         this.face = face;
         this.suit = suit;
         this.colour = suit.getColour();
-    }
-    
-    /**
-     * Joker constructor since Jokers don't belong to a suit
-     */
-    private Card(Face face, Colour colour) {
-        this.face = face;
-        this.suit = null;
-        this.colour = colour;
     }
     
     /**

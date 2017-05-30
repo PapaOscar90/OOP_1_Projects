@@ -7,15 +7,14 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 
 /**
- * Represents an action made to shuffle all cards back into the deck. Although
- * useless on an empty discard pile, this action is always available.
+ * Represents an action to reset the game
  */
 public class ResetAction extends AbstractAction {
 
     private Memory memory;
 
     /**
-     * Creates a new action to shuffle all cards back into the deck
+     * Creates a new game action
      */
     public ResetAction(Memory memory) {
         super("Reset!");
@@ -23,7 +22,7 @@ public class ResetAction extends AbstractAction {
     }
 
     /**
-     * Draws a card
+     * Resets the game
      */
     @Override
     public void actionPerformed(ActionEvent e) {

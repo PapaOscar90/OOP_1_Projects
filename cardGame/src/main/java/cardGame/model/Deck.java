@@ -15,6 +15,7 @@ public class Deck extends AbstractDeck {
     protected void addCards() {
         for(Card card : Card.values()) {
             fp = new FlippableCard(card);
+            //Make sure we add only FlippableCards to the deck
             addOnTop(fp);
         }
     }
