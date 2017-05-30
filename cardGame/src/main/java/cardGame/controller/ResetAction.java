@@ -1,20 +1,20 @@
 package cardGame.controller;
 
-import cardGame.game.Memory;
+import cardGame.model.Logic.Memory;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
 /**
- * Represents an action to reset the game
+ * Represents an action to reset the Logic
  */
 public class ResetAction extends AbstractAction {
 
     private Memory memory;
 
     /**
-     * Creates a new game action
+     * Creates a new Logic action
      */
     public ResetAction(Memory memory) {
         super("Reset!");
@@ -22,7 +22,7 @@ public class ResetAction extends AbstractAction {
     }
 
     /**
-     * Resets the game
+     * Resets the Logic
      */
     @Override
     public void actionPerformed(ActionEvent e) {

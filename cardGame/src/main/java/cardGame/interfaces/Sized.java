@@ -1,4 +1,4 @@
-package cardGame.util;
+package cardGame.interfaces;
 
 /**
  * Represents types of which the size can be determined

@@ -1,6 +1,6 @@
 package cardGame.view;
 
-import cardGame.model.Card;
+import cardGame.model.Card.Card;
 
 import java.util.EnumMap;
 

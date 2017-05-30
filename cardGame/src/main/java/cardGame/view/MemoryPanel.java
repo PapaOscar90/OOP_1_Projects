@@ -1,8 +1,8 @@
 package cardGame.view;
 
-import cardGame.game.FlippableCard;
+import cardGame.model.Card.FlippableCard;
 
-import cardGame.game.Memory;
+import cardGame.model.Logic.Memory;
 
 import javax.swing.JPanel;
 

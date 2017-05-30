@@ -1,8 +1,8 @@
-package cardGame.model;
+package cardGame.model.Deck;
 
-import cardGame.game.FlippableCard;
-import cardGame.util.Emptiable;
-import cardGame.util.Sized;
+import cardGame.model.Card.FlippableCard;
+import cardGame.interfaces.Emptiable;
+import cardGame.interfaces.Sized;
 
 import java.util.List;
 import java.util.ArrayList;

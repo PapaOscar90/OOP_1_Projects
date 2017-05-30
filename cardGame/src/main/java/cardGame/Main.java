@@ -1,7 +1,7 @@
 package cardGame;
 
 import cardGame.controller.MouseClicker;
-import cardGame.game.Memory;
+import cardGame.model.Logic.Memory;
 
 import cardGame.view.MemoryPanel;
 
@@ -12,7 +12,7 @@ import javax.swing.*;
 import java.awt.Dimension;
 
 /**
- * Runs the game. Although technically a controller this class can be found
+ * Runs the Logic. Although technically a controller this class can be found
  * more easily if it's not in that package
  */
 public class Main {

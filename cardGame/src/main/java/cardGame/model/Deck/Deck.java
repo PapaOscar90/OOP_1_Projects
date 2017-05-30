@@ -1,6 +1,7 @@
-package cardGame.model;
+package cardGame.model.Deck;
 
-import cardGame.game.FlippableCard;
+import cardGame.model.Card.Card;
+import cardGame.model.Card.FlippableCard;
 
 /**
  * A deck that has all possible cards

@@ -1,6 +1,6 @@
 package cardGame.controller;
 
-import cardGame.game.Memory;
+import cardGame.model.Logic.Memory;
 
 import java.awt.event.KeyEvent;
 

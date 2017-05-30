@@ -1,6 +1,4 @@
-package cardGame.game;
-
-import cardGame.model.Card;
+package cardGame.model.Card;
 
 import java.util.Observable;
 
