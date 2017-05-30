@@ -1,4 +1,4 @@
-package cardGame.model.Logic;
+package cardGame.controller;
 
 import cardGame.model.Deck.AbstractDeck;
 import cardGame.model.Deck.Deck;

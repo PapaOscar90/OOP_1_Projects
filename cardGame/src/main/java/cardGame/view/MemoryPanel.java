@@ -2,7 +2,7 @@ package cardGame.view;
 
 import cardGame.model.Card.FlippableCard;
 
-import cardGame.model.Logic.Memory;
+import cardGame.controller.Memory;
 
 import javax.swing.JPanel;
 

@@ -1,7 +1,7 @@
 package cardGame;
 
 import cardGame.controller.MouseClicker;
-import cardGame.model.Logic.Memory;
+import cardGame.controller.Memory;
 
 import cardGame.view.MemoryPanel;
 

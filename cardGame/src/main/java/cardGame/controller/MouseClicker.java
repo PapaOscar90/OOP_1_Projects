@@ -1,6 +1,5 @@
 package cardGame.controller;
 
-import cardGame.model.Logic.Memory;
 import cardGame.model.Card.FlippableCard;
 import cardGame.view.MemoryPanel;
 

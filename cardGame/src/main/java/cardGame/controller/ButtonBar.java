@@ -1,7 +1,5 @@
 package cardGame.controller;
 
-import cardGame.model.Logic.Memory;
-
 import javax.swing.JMenuBar;
 
 /**

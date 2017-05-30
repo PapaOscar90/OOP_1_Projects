@@ -1,7 +1,5 @@
 package cardGame.controller;
 
-import cardGame.model.Logic.Memory;
-
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractButton;
