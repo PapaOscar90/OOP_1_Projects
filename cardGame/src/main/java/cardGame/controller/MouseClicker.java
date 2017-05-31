@@ -1,7 +1,6 @@
 package cardGame.controller;
 
-import cardGame.game.Memory;
-import cardGame.game.FlippableCard;
+import cardGame.model.Card.FlippableCard;
 import cardGame.view.MemoryPanel;
 
 import javax.swing.event.MouseInputAdapter;

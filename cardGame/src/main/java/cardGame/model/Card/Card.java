@@ -1,7 +1,7 @@
-package cardGame.model;
+package cardGame.model.Card;
 
 /**
- * Represents the kinds of playing cards found our special 12 card deck for this memory game
+ * Represents the kinds of playing cards found our special 12 card deck for this memory Logic
  *
  * WARNING: enum types implement toString by default. This information is
  * used to load textures in view. If you override toString you may break

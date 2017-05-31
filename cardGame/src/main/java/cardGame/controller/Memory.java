@@ -1,13 +1,14 @@
-package cardGame.game;
+package cardGame.controller;
 
-import cardGame.model.AbstractDeck;
-import cardGame.model.Deck;
+import cardGame.model.Deck.AbstractDeck;
+import cardGame.model.Deck.Deck;
+import cardGame.model.Card.FlippableCard;
 
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Represents a silly memory matching 'game'
+ * Represents a silly memory matching 'Logic'
  */
 public class Memory extends Observable implements Observer {
 
