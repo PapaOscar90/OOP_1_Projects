@@ -1,38 +1,35 @@
 package graphEditor.model;
 
-import com.sun.javafx.geom.Vec2d;
+import java.awt.*;
 
 /**
  * Created by PhilO on 03-Jun-17.
  */
 public class GraphVertex {
     private String name;
-    private int size;
-    private Vec2d position;
+    private Rectangle rectangle;
 
     public  GraphVertex(){
         this.name = "Generic Vertex";
-        this.size = 50;
-        this.position.set(0,0);
+        this.rectangle = new Rectangle(50,20);
     }
 
     public GraphVertex(String name, int s, int x, int y){
         this.name = name;
-        this.size = s;
-        this.position.set(x,y);
+        this.rectangle = new Rectangle(x,y,s,20);
     }
 
     public GraphVertex(String s){this.name = s;}
 
-    public String getName(){return name;}
-
     public void setName(String s){this.name = s;}
 
-    public void setPosition(int x, int y){this.position.set(x,y);}
+    public void setPosition(int x, int y){this.rectangle.setLocation(x,y);}
 
-    public Vec2d getPosition(){return position;};
+    public void setSize(int s){this.rectangle.setSize(s,20);}
 
-    public void setSize(int s){this.size=s;}
+    public String getName(){return this.name;}
 
-    public int getSize(){return size;}
+    public Point getLocation(){return this.rectangle.getLocation();};
+
+    public Dimension getSize(){return this.rectangle.getSize();}
 }
