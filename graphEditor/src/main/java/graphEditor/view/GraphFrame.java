@@ -12,11 +12,12 @@ import java.awt.*;
 public class GraphFrame extends JFrame {
 
     public GraphFrame(GraphModel model) {
-        JFrame frame = new JFrame("Graph Editor");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(800,600));
-        frame.setVisible(true);
-        frame.setJMenuBar(new MenuBar());
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(new Dimension(1200,800));
+        setLocationRelativeTo(null);
+        setJMenuBar(new MenuBar());
+        setBackground(Color.gray);
+        setTitle("Graph Editor");
+        setVisible(true);
     }
 }
