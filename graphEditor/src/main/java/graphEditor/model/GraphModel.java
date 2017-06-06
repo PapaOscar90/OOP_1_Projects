@@ -26,11 +26,24 @@ public class GraphModel {
         this.edges.add(edge);
     }
 
-    public GraphVertex getVertex(int i){
+    public GraphVertex getVertices(int i){
         return vertices.get(i);
     }
 
-    public GraphEdge getEdge(int i){
-        return edges.get(i);
+    public GraphEdge getEdges(int i){return edges.get(i);
+    }
+
+    public void removeEdge(GraphEdge edge){
+        edges.remove(edge);
+    }
+
+    private void removeVertex(GraphVertex vertex) {
+        // Find all edges that have an end at the vertex to be removed and remove it (linear time 2n)
+        for(int i=0; i<edges.size(); i++){
+            if(edges.get(i).getVertexAt(0) == vertex || edges.get(i).getVertexAt(1) == vertex){
+                removeEdge(edges.get(i));
+            }
+        }
+        vertices.remove(vertex);
     }
 }
