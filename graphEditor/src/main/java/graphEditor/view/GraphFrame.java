@@ -13,6 +13,7 @@ public class GraphFrame extends JFrame {
 
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        add(new DrawPanel(model));
         setSize(new Dimension(1200,800));
         setLocationRelativeTo(null);
         setJMenuBar(new MenuBar());

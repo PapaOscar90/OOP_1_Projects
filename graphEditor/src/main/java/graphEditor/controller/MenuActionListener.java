@@ -17,6 +17,7 @@ public class MenuActionListener implements ActionListener {
             case "Open":    System.out.println("Switch open");
                             break;
             case "Exit":    System.out.println("Switch exit");
+                            System.exit(0);
                             break;
             default:        System.out.println("Default.");
                             break;
