@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-/**
+/** graphEditor
  * Created by PhilO on 03-Jun-17.
  */
 public class GraphModel {

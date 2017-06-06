@@ -3,7 +3,7 @@ package graphEditor.model;
 import java.awt.*;
 
 /**
- * Created by PhilO on 03-Jun-17.
+ *   Created by PhilO on 03-Jun-17.
  */
 public class GraphVertex {
     private String name;

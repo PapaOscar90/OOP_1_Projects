@@ -17,5 +17,6 @@ public class GraphFrame extends JFrame {
         frame.setPreferredSize(new Dimension(800,600));
         frame.setVisible(true);
         frame.setJMenuBar(new MenuBar());
+
     }
 }
