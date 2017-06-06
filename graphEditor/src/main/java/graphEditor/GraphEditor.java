@@ -7,9 +7,16 @@
 
 package graphEditor;
 
+import graphEditor.model.GraphModel;
+import graphEditor.view.GraphFrame;
+
+import javax.swing.*;
+
 public class GraphEditor{
     public static void main(String[] args){
         System.out.println("Hello world.");
+        GraphModel model = new GraphModel();
+        GraphFrame frame = new GraphFrame(model);
     }
 }
 
