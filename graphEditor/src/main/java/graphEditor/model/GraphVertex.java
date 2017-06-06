@@ -14,7 +14,7 @@ public class GraphVertex {
         this.rectangle = new Rectangle(50,20);
     }
 
-    public GraphVertex(String name, int w,int h, int x, int y){
+    public GraphVertex(int x,int y, int w, int h, String name){
         this.name = name;
         this.rectangle = new Rectangle(x,y,w,h);
     }

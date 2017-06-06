@@ -2,11 +2,10 @@ package graphEditor.model;
 
 import sun.security.provider.certpath.Vertex;
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by PhilO on 03-Jun-17.
@@ -73,6 +72,21 @@ public class GraphModel {
             }
 
             bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void loadFromFile(String filename){
+        try{
+            FileReader fileReader = new FileReader(filename);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+            String line = bufferedReader.readLine();
+
+            while(line != null){
+                //TODO: Implement this!
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
