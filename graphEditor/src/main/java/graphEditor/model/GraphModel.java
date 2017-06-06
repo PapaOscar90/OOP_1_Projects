@@ -2,6 +2,9 @@ package graphEditor.model;
 
 import sun.security.provider.certpath.Vertex;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -45,5 +48,33 @@ public class GraphModel {
             }
         }
         vertices.remove(vertex);
+    }
+
+
+    public void saveToFile(String filename){
+        try{
+            FileWriter fileWriter = new FileWriter(filename);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
+
+            for(int i=0; i<edges.size(); i++){
+                bufferedWriter.write(edges.get(i).getVertexAt(0).getName());
+                bufferedWriter.write(" ");
+                bufferedWriter.write(edges.get(i).getVertexAt(1).getName());
+                bufferedWriter.newLine();
+            }
+
+            for(int i=0; i<vertices.size(); i++){
+                bufferedWriter.write(vertices.get(i).getLocation().toString());
+                bufferedWriter.write(" ");
+                bufferedWriter.write(vertices.get(i).getSize().toString());
+                bufferedWriter.write(" ");
+                bufferedWriter.write(vertices.get(i).getName());
+                bufferedWriter.newLine();
+            }
+
+            bufferedWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
