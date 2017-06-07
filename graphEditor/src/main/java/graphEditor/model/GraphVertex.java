@@ -1,5 +1,7 @@
 package graphEditor.model;
 
+import org.w3c.dom.css.Rect;
+
 import java.awt.*;
 
 /**
@@ -32,4 +34,6 @@ public class GraphVertex {
     public Point getLocation(){return this.rectangle.getLocation();};
 
     public Dimension getSize(){return this.rectangle.getSize();}
+
+    public Rectangle getRectangle(){return rectangle;};
 }

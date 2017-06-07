@@ -18,6 +18,7 @@ public class GraphModel {
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
+        addVertex(new GraphVertex(400,400,200,200,"Vertex 1"));
     }
 
     public void addVertex(GraphVertex vertex){
@@ -32,8 +33,9 @@ public class GraphModel {
         return vertices.get(i);
     }
 
-    public GraphEdge getEdges(int i){return edges.get(i);
-    }
+    public GraphEdge getEdges(int i){return edges.get(i);}
+
+    public int getNumberRectangles(){return vertices.size();}
 
     public void removeEdge(GraphEdge edge){
         edges.remove(edge);

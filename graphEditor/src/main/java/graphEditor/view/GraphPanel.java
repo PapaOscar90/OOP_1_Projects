@@ -18,7 +18,11 @@ public class GraphPanel extends JPanel {
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        Rectangle rectangle;
         Graphics2D g2 = (Graphics2D)g;
-        g2.draw(new Rectangle(100,100,400,400));
+        for(int i=0; i<model.getNumberRectangles(); i++){
+            rectangle = model.getVertices(i).getRectangle();
+            g2.draw(rectangle);
+        }
     }
 }
