@@ -19,6 +19,9 @@ public class GraphModel {
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
         addVertex(new GraphVertex(400,400,200,200,"Vertex 1"));
+        addVertex(new GraphVertex(100,200,200,200,"Vertex 2"));
+        addVertex(new GraphVertex(800,100,200,200,"Vertex 3"));
+        saveToFile("testFile");
     }
 
     public void addVertex(GraphVertex vertex){
@@ -54,7 +57,7 @@ public class GraphModel {
 
     public void saveToFile(String filename){
         try{
-            FileWriter fileWriter = new FileWriter(filename);
+            FileWriter fileWriter = new FileWriter(filename+".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
             for(int i=0; i<edges.size(); i++){
@@ -65,9 +68,13 @@ public class GraphModel {
             }
 
             for(int i=0; i<vertices.size(); i++){
-                bufferedWriter.write(vertices.get(i).getLocation().toString());
+                bufferedWriter.write(Integer.toString(vertices.get(i).getX()));
                 bufferedWriter.write(" ");
-                bufferedWriter.write(vertices.get(i).getSize().toString());
+                bufferedWriter.write(Integer.toString(vertices.get(i).getY()));
+                bufferedWriter.write(" ");
+                bufferedWriter.write(Integer.toString(vertices.get(i).getWidth()));
+                bufferedWriter.write(" ");
+                bufferedWriter.write(Integer.toString(vertices.get(i).getHeight()));
                 bufferedWriter.write(" ");
                 bufferedWriter.write(vertices.get(i).getName());
                 bufferedWriter.newLine();

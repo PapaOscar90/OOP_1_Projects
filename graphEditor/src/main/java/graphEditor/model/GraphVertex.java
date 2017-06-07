@@ -8,8 +8,9 @@ import java.awt.*;
  *   Created by PhilO on 03-Jun-17.
  */
 public class GraphVertex {
-    private String name;
-    private Rectangle rectangle;
+    private String      name;
+    private Rectangle   rectangle;
+    private int         id;
 
     public  GraphVertex(){
         this.name = "Generic Vertex";
@@ -27,13 +28,14 @@ public class GraphVertex {
 
     public void setPosition(int x, int y){this.rectangle.setLocation(x,y);}
 
-    public void setSize(int s){this.rectangle.setSize(s,20);}
+    public void setSize(int w, int h){this.rectangle.setSize(w,h);}
 
     public String getName(){return this.name;}
 
-    public Point getLocation(){return this.rectangle.getLocation();};
-
-    public Dimension getSize(){return this.rectangle.getSize();}
+    public int getX(){return this.rectangle.x;}
+    public int getY(){return this.rectangle.y;}
+    public int getWidth(){return this.rectangle.width;}
+    public int getHeight(){return this.rectangle.height;}
 
     public Rectangle getRectangle(){return rectangle;};
 }
