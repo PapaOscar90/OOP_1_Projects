@@ -1,6 +1,5 @@
 package graphEditor.model;
 
-import sun.security.provider.certpath.Vertex;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -18,9 +17,16 @@ public class GraphModel {
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
-        addVertex(new GraphVertex(400,400,200,200,"Vertex 1"));
-        addVertex(new GraphVertex(100,200,200,200,"Vertex 2"));
-        addVertex(new GraphVertex(800,100,200,200,"Vertex 3"));
+        GraphVertex v1 = new GraphVertex(400,400,200,200,"Vertex 1");
+        GraphVertex v2 = new GraphVertex(100,200,200,200,"Vertex 2");
+        GraphVertex v3 = new GraphVertex(800,100,200,200,"Vertex 3");
+        addVertex(v1);
+        addVertex(v2);
+        addVertex(v3);
+        GraphEdge e1 = new GraphEdge(v1,v2);
+        GraphEdge e2 = new GraphEdge(v1,v3);
+        addEdge(e1);
+        addEdge(e2);
         saveToFile("testFile");
     }
 
@@ -60,13 +66,6 @@ public class GraphModel {
             FileWriter fileWriter = new FileWriter(filename+".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(int i=0; i<edges.size(); i++){
-                bufferedWriter.write(edges.get(i).getVertexAt(0).getName());
-                bufferedWriter.write(" ");
-                bufferedWriter.write(edges.get(i).getVertexAt(1).getName());
-                bufferedWriter.newLine();
-            }
-
             for(int i=0; i<vertices.size(); i++){
                 bufferedWriter.write(Integer.toString(vertices.get(i).getX()));
                 bufferedWriter.write(" ");
@@ -79,6 +78,14 @@ public class GraphModel {
                 bufferedWriter.write(vertices.get(i).getName());
                 bufferedWriter.newLine();
             }
+
+            for(int i=0; i<edges.size(); i++){
+                bufferedWriter.write(edges.get(i).getVertexAt(0).getName());
+                bufferedWriter.write(" ");
+                bufferedWriter.write(edges.get(i).getVertexAt(1).getName());
+                bufferedWriter.newLine();
+            }
+
 
             bufferedWriter.close();
         } catch (IOException e) {
@@ -100,4 +107,6 @@ public class GraphModel {
             e.printStackTrace();
         }
     }
+
+    public int getNumberEdges() {return this.edges.size();}
 }

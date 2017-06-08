@@ -1,5 +1,9 @@
 package graphEditor.model;
 
+import javafx.scene.shape.Shape;
+
+import javax.sound.sampled.Line;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +15,9 @@ public class GraphEdge {
 
     // Index 0 is from, index 1 is to
     public GraphEdge(GraphVertex from, GraphVertex to){
-        connects = new ArrayList<>(2);
-        this.connects.set(0, from);
-        this.connects.set(1, to);
+        this.connects = new ArrayList<GraphVertex>();
+        this.connects.add(from);
+        this.connects.add(to);
     }
 
     public void set(int i, GraphVertex vertex){
@@ -23,4 +27,5 @@ public class GraphEdge {
     public GraphVertex getVertexAt(int i){
         return connects.get(i);
     }
+
 }
