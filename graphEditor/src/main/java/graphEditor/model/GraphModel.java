@@ -103,7 +103,6 @@ public class GraphModel {
             GraphVertex addTo = null;
             String[] sVerts;
             String[] sParts;
-
             String line = bufferedReader.readLine();
 
             while(line != null){
@@ -111,8 +110,13 @@ public class GraphModel {
                     edgesToMake.add(line);
                 }else{
                     sParts = line.split(" ");
-                    GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]),Integer.parseInt(sParts[1]),Integer.parseInt(sParts[2]),Integer.parseInt(sParts[3]),sParts[4]);
-                    addVertex(loadVertex);
+                    try { //Catch an issue with data not being set right in file
+                        GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]), Integer.parseInt(sParts[1]), Integer.parseInt(sParts[2]), Integer.parseInt(sParts[3]), sParts[4]);
+                        addVertex(loadVertex);
+                    }catch(Exception e){
+                        System.out.println("sParts threw an error. Check valid input!");
+                        System.out.println(e);
+                    }
                 }
                 line = bufferedReader.readLine();
             }
