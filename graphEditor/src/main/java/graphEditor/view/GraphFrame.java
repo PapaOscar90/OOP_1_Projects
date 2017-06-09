@@ -1,5 +1,6 @@
 package graphEditor.view;
 
+import graphEditor.controller.ButtonBar;
 import graphEditor.model.GraphModel;
 
 import javax.swing.*;
@@ -14,6 +15,7 @@ public class GraphFrame extends JFrame {
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GraphPanel(model);
+        add(new ButtonBar(model));
         add(panel);
         setSize(new Dimension(1200,800));
         setLocationRelativeTo(null);
