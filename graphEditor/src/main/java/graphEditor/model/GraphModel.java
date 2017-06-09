@@ -53,9 +53,9 @@ public class GraphModel {
 
     private void removeVertex(GraphVertex vertex) {
         // Find all edges that have an end at the vertex to be removed and remove it (linear time 2n)
-        for(int i=0; i<edges.size(); i++){
-            if(edges.get(i).getVertexAt(0) == vertex || edges.get(i).getVertexAt(1) == vertex){
-                removeEdge(edges.get(i));
+        for (GraphEdge edge : edges) {
+            if (edge.getVertexAt(0) == vertex || edge.getVertexAt(1) == vertex) {
+                removeEdge(edge);
             }
         }
         vertices.remove(vertex);
@@ -67,23 +67,23 @@ public class GraphModel {
             FileWriter fileWriter = new FileWriter(filename+".txt");
             BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
-            for(int i=0; i<vertices.size(); i++){
-                bufferedWriter.write(Integer.toString(vertices.get(i).getX()));
+            for (GraphVertex vertice : vertices) {
+                bufferedWriter.write(Integer.toString(vertice.getX()));
                 bufferedWriter.write(" ");
-                bufferedWriter.write(Integer.toString(vertices.get(i).getY()));
+                bufferedWriter.write(Integer.toString(vertice.getY()));
                 bufferedWriter.write(" ");
-                bufferedWriter.write(Integer.toString(vertices.get(i).getWidth()));
+                bufferedWriter.write(Integer.toString(vertice.getWidth()));
                 bufferedWriter.write(" ");
-                bufferedWriter.write(Integer.toString(vertices.get(i).getHeight()));
+                bufferedWriter.write(Integer.toString(vertice.getHeight()));
                 bufferedWriter.write(" ");
-                bufferedWriter.write(vertices.get(i).getName());
+                bufferedWriter.write(vertice.getName());
                 bufferedWriter.newLine();
             }
 
-            for(int i=0; i<edges.size(); i++){
-                bufferedWriter.write(edges.get(i).getVertexAt(0).getName());
+            for (GraphEdge edge : edges) {
+                bufferedWriter.write(edge.getVertexAt(0).getName());
                 bufferedWriter.write(" ");
-                bufferedWriter.write(edges.get(i).getVertexAt(1).getName());
+                bufferedWriter.write(edge.getVertexAt(1).getName());
                 bufferedWriter.newLine();
             }
 
@@ -121,18 +121,18 @@ public class GraphModel {
                 line = bufferedReader.readLine();
             }
 
-            for(int i=0; i<edgesToMake.size(); i++){
-                sVerts = edgesToMake.get(i).split(" ");
+            for (String anEdgesToMake : edgesToMake) {
+                sVerts = anEdgesToMake.split(" ");
 
-                for(int j=0; j<vertices.size(); j++){
-                    if(vertices.get(j).getName().equals(sVerts[0])){
-                        addFrom = vertices.get(j);
+                for (GraphVertex vertice : vertices) {
+                    if (vertice.getName().equals(sVerts[0])) {
+                        addFrom = vertice;
                     }
-                    if(vertices.get(j).getName().equals(sVerts[1])){
-                        addTo = vertices.get(j);
+                    if (vertice.getName().equals(sVerts[1])) {
+                        addTo = vertice;
                     }
                 }
-                if (addFrom != null && addTo != null){
+                if (addFrom != null && addTo != null) {
                     GraphEdge newEdge = new GraphEdge(addFrom, addTo);
                     addEdge(newEdge);
                 }
