@@ -17,7 +17,7 @@ public class GraphFrame extends JFrame {
         add(panel);
         setSize(new Dimension(1200,800));
         setLocationRelativeTo(null);
-        setJMenuBar(new graphEditor.controller.MenuBar());
+        setJMenuBar(new graphEditor.controller.MenuBar(model));
         setBackground(Color.gray);
         setTitle("Graph Editor");
         setVisible(true);

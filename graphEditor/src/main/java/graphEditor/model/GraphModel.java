@@ -119,15 +119,16 @@ public class GraphModel {
                 String[] sVerts = edgesToMake.get(i).split(" ");
 
                 for(int j=0; j<vertices.size(); j++){
-                    if(vertices.get(j).getName() == sVerts[0]){
+                    if(vertices.get(j).getName().equals(sVerts[0])){
                         addFrom = vertices.get(j);
                     }
-                    if(vertices.get(j).getName() == sVerts[1]){
+                    if(vertices.get(j).getName().equals(sVerts[1])){
                         addTo = vertices.get(j);
                     }
                 }
                 if (addFrom != null && addTo != null){
                     GraphEdge newEdge = new GraphEdge(addFrom, addTo);
+                    addEdge(newEdge);
                 }
             }
         } catch (IOException e) {

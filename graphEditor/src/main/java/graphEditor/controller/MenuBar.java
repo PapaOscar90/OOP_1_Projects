@@ -1,6 +1,7 @@
 package graphEditor.controller;
 
 import graphEditor.controller.MenuActionListener;
+import graphEditor.model.GraphModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -39,7 +40,7 @@ public class MenuBar extends JMenuBar {
         }
     }
 
-    public MenuBar(){
+    public MenuBar(GraphModel model){
         add(new fileMenu());
         setBorderPainted(true);
     }
