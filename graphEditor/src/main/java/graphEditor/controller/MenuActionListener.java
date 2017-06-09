@@ -1,5 +1,7 @@
 package graphEditor.controller;
 
+import graphEditor.model.GraphModel;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

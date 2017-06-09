@@ -1,4 +1,4 @@
-package graphEditor.view;
+package graphEditor.controller;
 
 import graphEditor.controller.MenuActionListener;
 

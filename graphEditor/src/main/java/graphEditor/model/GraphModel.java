@@ -16,10 +16,10 @@ public class GraphModel {
 
     public GraphModel(){
         this.vertices = new ArrayList<>();
-        this.edges = new ArrayList<>();
-        GraphVertex v1 = new GraphVertex(400,400,200,200,"Vertex 1");
-        GraphVertex v2 = new GraphVertex(100,200,200,200,"Vertex 2");
-        GraphVertex v3 = new GraphVertex(800,100,200,200,"Vertex 3");
+        this.edges = new ArrayList<>();/*
+        GraphVertex v1 = new GraphVertex(400,400,200,200,"1");
+        GraphVertex v2 = new GraphVertex(100,200,200,200,"2");
+        GraphVertex v3 = new GraphVertex(800,100,200,200,"3");
         addVertex(v1);
         addVertex(v2);
         addVertex(v3);
@@ -27,7 +27,8 @@ public class GraphModel {
         GraphEdge e2 = new GraphEdge(v1,v3);
         addEdge(e1);
         addEdge(e2);
-        saveToFile("testFile");
+        saveToFile("testFile");*/
+        loadFromFile("testFile.txt");
     }
 
     public void addVertex(GraphVertex vertex){
@@ -95,13 +96,39 @@ public class GraphModel {
 
     public void loadFromFile(String filename){
         try{
+            List<String> edgesToMake = new ArrayList<>();
             FileReader fileReader = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             String line = bufferedReader.readLine();
 
             while(line != null){
-                //TODO: Implement this!
+                if(line.lastIndexOf(" ") == 1){
+                    edgesToMake.add(line);
+                }else{
+                    String[] sParts = line.split(" ");
+                    GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]),Integer.parseInt(sParts[1]),Integer.parseInt(sParts[2]),Integer.parseInt(sParts[3]),sParts[4]);
+                    addVertex(loadVertex);
+                }
+                line = bufferedReader.readLine();
+            }
+
+            for(int i=0; i<edgesToMake.size(); i++){
+                GraphVertex addFrom = null;
+                GraphVertex addTo = null;
+                String[] sVerts = edgesToMake.get(i).split(" ");
+
+                for(int j=0; j<vertices.size(); j++){
+                    if(vertices.get(j).getName() == sVerts[0]){
+                        addFrom = vertices.get(j);
+                    }
+                    if(vertices.get(j).getName() == sVerts[1]){
+                        addTo = vertices.get(j);
+                    }
+                }
+                if (addFrom != null && addTo != null){
+                    GraphEdge newEdge = new GraphEdge(addFrom, addTo);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
