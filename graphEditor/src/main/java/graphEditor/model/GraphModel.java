@@ -99,6 +99,10 @@ public class GraphModel {
             List<String> edgesToMake = new ArrayList<>();
             FileReader fileReader = new FileReader(filename);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
+            GraphVertex addFrom = null;
+            GraphVertex addTo = null;
+            String[] sVerts;
+            String[] sParts;
 
             String line = bufferedReader.readLine();
 
@@ -106,7 +110,7 @@ public class GraphModel {
                 if(line.lastIndexOf(" ") == 1){
                     edgesToMake.add(line);
                 }else{
-                    String[] sParts = line.split(" ");
+                    sParts = line.split(" ");
                     GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]),Integer.parseInt(sParts[1]),Integer.parseInt(sParts[2]),Integer.parseInt(sParts[3]),sParts[4]);
                     addVertex(loadVertex);
                 }
@@ -114,9 +118,7 @@ public class GraphModel {
             }
 
             for(int i=0; i<edgesToMake.size(); i++){
-                GraphVertex addFrom = null;
-                GraphVertex addTo = null;
-                String[] sVerts = edgesToMake.get(i).split(" ");
+                sVerts = edgesToMake.get(i).split(" ");
 
                 for(int j=0; j<vertices.size(); j++){
                     if(vertices.get(j).getName().equals(sVerts[0])){
