@@ -17,12 +17,10 @@ public class GraphVertex {
         this.rectangle = new Rectangle(50,20);
     }
 
-    public GraphVertex(int x,int y, int w, int h, String name){
+    GraphVertex(int x, int y, int w, int h, String name){
         this.name = name;
         this.rectangle = new Rectangle(x,y,w,h);
     }
-
-    public GraphVertex(String s){this.name = s;}
 
     public void setName(String s){this.name = s;}
 

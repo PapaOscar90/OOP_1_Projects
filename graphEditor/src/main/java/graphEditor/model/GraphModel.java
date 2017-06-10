@@ -1,10 +1,13 @@
 package graphEditor.model;
 
 
+import com.sun.deploy.util.StringUtils;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 /** graphEditor
  * Created by PhilO on 03-Jun-17.
@@ -17,9 +20,9 @@ public class GraphModel {
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();/*
-        GraphVertex v1 = new GraphVertex(400,400,200,200,"1");
-        GraphVertex v2 = new GraphVertex(100,200,200,200,"2");
-        GraphVertex v3 = new GraphVertex(800,100,200,200,"3");
+        GraphVertex v1 = new GraphVertex(400,400,200,200,"humpty");
+        GraphVertex v2 = new GraphVertex(100,200,200,200,"tum");
+        GraphVertex v3 = new GraphVertex(800,100,200,200,"lee");
         addVertex(v1);
         addVertex(v2);
         addVertex(v3);
@@ -105,17 +108,21 @@ public class GraphModel {
             String[] sParts;
             String line = bufferedReader.readLine();
 
+
             while(line != null){
-                if(line.lastIndexOf(" ") == 1){
+                int numSpaces;
+                sParts = line.split(" ");
+
+
+
+                if(sParts.length == 2){
                     edgesToMake.add(line);
                 }else{
-                    sParts = line.split(" ");
                     try { //Catch an issue with data not being set right in file
                         GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]), Integer.parseInt(sParts[1]), Integer.parseInt(sParts[2]), Integer.parseInt(sParts[3]), sParts[4]);
                         addVertex(loadVertex);
                     }catch(Exception e){
                         System.out.println("sParts threw an error. Check valid input!");
-                        System.out.println(e);
                     }
                 }
                 line = bufferedReader.readLine();
