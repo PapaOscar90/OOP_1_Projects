@@ -6,11 +6,12 @@ import javax.sound.sampled.Line;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /**
  * Created by PhilO on 03-Jun-17.
  */
-public class GraphEdge {
+public class GraphEdge extends Observable{
     private List<GraphVertex> connects;
 
     // Index 0 is from, index 1 is to
@@ -22,6 +23,8 @@ public class GraphEdge {
 
     public void set(int i, GraphVertex vertex){
         this.connects.set(i, vertex);
+        setChanged();
+        notifyObservers();
     }
 
     public GraphVertex getVertexAt(int i){

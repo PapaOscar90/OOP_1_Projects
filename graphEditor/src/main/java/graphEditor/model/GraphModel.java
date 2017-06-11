@@ -1,14 +1,17 @@
 package graphEditor.model;
 
 
+import graphEditor.view.GraphPanel;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Observable;
 
 /** graphEditor
  * Created by PhilO on 03-Jun-17.
  */
-public class GraphModel {
+public class GraphModel extends Observable {
     private List<GraphVertex> vertices;
     private List<GraphEdge> edges;
 
@@ -32,10 +35,14 @@ public class GraphModel {
 
     public void addVertex(GraphVertex vertex){
         this.vertices.add(vertex);
+        setChanged();
+        notifyObservers();
     }
 
     public void addEdge(GraphEdge edge){
         this.edges.add(edge);
+        setChanged();
+        notifyObservers();
     }
 
     public GraphVertex getVertices(int i){
@@ -48,6 +55,8 @@ public class GraphModel {
 
     public void removeEdge(GraphEdge edge){
         edges.remove(edge);
+        setChanged();
+        notifyObservers();
     }
 
     private void removeVertex(GraphVertex vertex) {
@@ -58,6 +67,8 @@ public class GraphModel {
             }
         }
         vertices.remove(vertex);
+        setChanged();
+        notifyObservers();
     }
 
     // TODO: Change to serialization method
@@ -129,6 +140,7 @@ public class GraphModel {
                 line = bufferedReader.readLine();
             }
 
+            // TODO: Change this to not match name but to match index number. Examples show that it just does the ID number
             for (String anEdgesToMake : edgesToMake) {
                 sVerts = anEdgesToMake.split(" ");
 
@@ -145,6 +157,8 @@ public class GraphModel {
                     addEdge(newEdge);
                 }
             }
+            setChanged();
+            notifyObservers();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,5 +169,8 @@ public class GraphModel {
     public void deleteAll() {
         this.edges.clear();
         this.vertices.clear();
+        setChanged();
+        notifyObservers();
+        System.out.println("Cleared Memory.");
     }
 }

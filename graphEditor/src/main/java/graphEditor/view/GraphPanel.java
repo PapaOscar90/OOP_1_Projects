@@ -6,11 +6,13 @@ import javafx.scene.shape.Line;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by PhilO on 06-Jun-17.
  */
-public class GraphPanel extends JPanel {
+public class GraphPanel extends JPanel implements Observer{
     private GraphModel model;
 
     private int getLineX(GraphVertex vertex){
@@ -20,9 +22,12 @@ public class GraphPanel extends JPanel {
         return vertex.getY()+((vertex.getHeight())/2);
     }
 
+
+
     public GraphPanel(GraphModel model){
         super();
         this.model = model;
+        model.addObserver(this);
     }
 
     public void paintComponent(Graphics g){
@@ -45,5 +50,10 @@ public class GraphPanel extends JPanel {
             g2.setColor(Color.black);
             g2.drawString(label, (rectangle.x+(rectangle.width/3)),(rectangle.y+(rectangle.height/2)));
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        repaint();
     }
 }
