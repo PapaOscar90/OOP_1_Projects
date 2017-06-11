@@ -1,6 +1,7 @@
 package graphEditor.controller;
 
 import graphEditor.model.GraphModel;
+import javafx.geometry.Orientation;
 
 import javax.swing.*;
 
@@ -22,9 +23,20 @@ public class ButtonBar extends JToolBar{
     }
 
     public ButtonBar(GraphModel model){
-        super();
-        this.add(new addVertexButton());
-        this.add(new addEdgeButton());
+        super("Toolbar");
+        this.setOrientation(HORIZONTAL);
+
+        ButtonActionListener buttonActionListener = new ButtonActionListener(model);
+
+        addVertexButton vertexButton = new addVertexButton();
+        vertexButton.addActionListener(buttonActionListener);
+
+        addEdgeButton edgeButton = new addEdgeButton();
+        edgeButton.addActionListener(buttonActionListener);
+
+        add(vertexButton);
+        add(edgeButton);
+
     }
 
 }

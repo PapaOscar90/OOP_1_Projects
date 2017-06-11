@@ -15,11 +15,11 @@ public class GraphFrame extends JFrame {
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GraphPanel(model);
-        add(new ButtonBar(model));
         add(panel);
         setSize(new Dimension(1200,800));
         setLocationRelativeTo(null);
         setJMenuBar(new graphEditor.controller.MenuBar(model));
+        panel.add(new ButtonBar(model));
         setBackground(Color.gray);;
         setTitle("Graph Editor");
         setVisible(true);
