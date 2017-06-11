@@ -1,13 +1,9 @@
 package graphEditor.model;
 
 
-import com.sun.deploy.util.StringUtils;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Pattern;
 
 /** graphEditor
  * Created by PhilO on 03-Jun-17.
@@ -31,7 +27,7 @@ public class GraphModel {
         addEdge(e1);
         addEdge(e2);
         saveToFile("testFile");*/
-        loadFromFile("testFile.txt");
+        importFromFile("testFile.txt");
     }
 
     public void addVertex(GraphVertex vertex){
@@ -64,7 +60,7 @@ public class GraphModel {
         vertices.remove(vertex);
     }
 
-
+    // TODO: Change to serialization method
     public void saveToFile(String filename){
         try{
             FileWriter fileWriter = new FileWriter(filename+".txt");
@@ -97,7 +93,12 @@ public class GraphModel {
         }
     }
 
-    public void loadFromFile(String filename){
+    // TODO: Load from serialization
+    public void loadFromFile(){
+
+    }
+
+    public void importFromFile(String filename){
         try{
             List<String> edgesToMake = new ArrayList<>();
             FileReader fileReader = new FileReader(filename);
