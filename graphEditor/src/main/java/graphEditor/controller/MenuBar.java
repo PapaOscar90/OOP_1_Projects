@@ -1,5 +1,6 @@
 package graphEditor.controller;
 
+import com.sun.corba.se.impl.orbutil.graph.Graph;
 import graphEditor.controller.MenuActionListener;
 import graphEditor.model.GraphModel;
 
@@ -18,9 +19,12 @@ public class MenuBar extends JMenuBar {
 
 
     private class fileMenu extends JMenu{
-        public fileMenu(){
+        public fileMenu(GraphModel model){
             super("File");
-            MenuActionListener menuListener= new MenuActionListener();
+            MenuActionListener menuListener= new MenuActionListener(model);
+
+            JMenuItem nw = new JMenuItem("New", KeyEvent.VK_N);
+            nw.addActionListener(menuListener);
 
 
             JMenuItem save = new JMenuItem("Save", KeyEvent.VK_S);
@@ -36,6 +40,7 @@ public class MenuBar extends JMenuBar {
             JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_S);
             exit.addActionListener(menuListener);
 
+            add(nw);
             add(save);
             add(open);
             add(imp);
@@ -44,7 +49,7 @@ public class MenuBar extends JMenuBar {
     }
 
     public MenuBar(GraphModel model){
-        add(new fileMenu());
+        add(new fileMenu(model));
         setBorderPainted(true);
     }
 }

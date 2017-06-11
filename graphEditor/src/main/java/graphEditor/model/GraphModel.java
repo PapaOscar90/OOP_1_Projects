@@ -151,4 +151,9 @@ public class GraphModel {
     }
 
     public int getNumberEdges() {return this.edges.size();}
+
+    public void deleteAll() {
+        this.edges.clear();
+        this.vertices.clear();
+    }
 }
