@@ -34,8 +34,6 @@ public class MenuBar extends JMenuBar {
             JMenuItem open = new JMenuItem("Open", KeyEvent.VK_S);
             open.addActionListener(menuListener);
 
-            JMenuItem imp = new JMenuItem("Import", KeyEvent.VK_I);
-            imp.addActionListener(menuListener);
 
             JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_S);
             exit.addActionListener(menuListener);
@@ -43,7 +41,6 @@ public class MenuBar extends JMenuBar {
             add(nw);
             add(save);
             add(open);
-            add(imp);
             add(exit);
         }
     }

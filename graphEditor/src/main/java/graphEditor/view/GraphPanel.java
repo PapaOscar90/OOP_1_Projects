@@ -33,19 +33,18 @@ public class GraphPanel extends JPanel implements Observer{
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Rectangle rectangle;
-        Line line;
         String label;
         Graphics2D g2 = (Graphics2D)g;
 
         for(int i=0; i<model.getNumberEdges(); i++){
-            g2.setStroke(new BasicStroke(5));
+            g2.setStroke(new BasicStroke(3));
             g2.drawLine(getLineX(model.getEdges(i).getVertexAt(0)),getLineY(model.getEdges(i).getVertexAt(0)),getLineX(model.getEdges(i).getVertexAt(1)),getLineY(model.getEdges(i).getVertexAt(1)));
         }
 
         for(int i=0; i<model.getNumberRectangles(); i++){
             rectangle = model.getVertices(i).getRectangle();
             label = model.getVertices(i).getName();
-            g2.setColor(Color.green);
+            g2.setColor(Color.LIGHT_GRAY);
             g2.fill(rectangle);
             g2.setColor(Color.black);
             g2.drawString(label, (rectangle.x+(rectangle.width/3)),(rectangle.y+(rectangle.height/2)));

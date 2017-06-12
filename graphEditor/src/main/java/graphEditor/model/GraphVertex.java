@@ -11,9 +11,10 @@ import java.util.Observable;
 public class GraphVertex extends Observable{
     private String      name;
     private Rectangle   rectangle;
-    private int         id;
 
-    public  GraphVertex(){
+
+
+    public  GraphVertex(int id){
         this.name = "Vertex";
         this.rectangle = new Rectangle(50,20);
     }
@@ -45,4 +46,5 @@ public class GraphVertex extends Observable{
     public int getHeight(){return this.rectangle.height;}
 
     public Rectangle getRectangle(){return rectangle;};
+
 }

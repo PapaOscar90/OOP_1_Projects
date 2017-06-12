@@ -1,6 +1,5 @@
 package graphEditor.controller;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
 import graphEditor.model.GraphModel;
 
 import java.awt.event.ActionEvent;
@@ -27,8 +26,8 @@ public class MenuActionListener implements ActionListener {
             case "Save":    System.out.println("Switch save");
                             model.saveToFile("testFile");
                             break;
-            case "Import":    System.out.println("Switch Import");
-                            model.importFromFile("testFile.txt");
+            case "Load":    System.out.println("Switch Load");
+                            model.loadFromFile("testFile.txt");
                             break;
             case "Exit":    System.out.println("Switch exit");
                             System.exit(0);

@@ -4,6 +4,7 @@ import graphEditor.model.GraphModel;
 import javafx.geometry.Orientation;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created by PhilO on 09-Jun-17.
@@ -25,6 +26,8 @@ public class ButtonBar extends JToolBar{
     public ButtonBar(GraphModel model){
         super("Toolbar");
         this.setOrientation(HORIZONTAL);
+        this.setBorderPainted(true);
+        this.setBackground(Color.darkGray);
 
         ButtonActionListener buttonActionListener = new ButtonActionListener(model);
 

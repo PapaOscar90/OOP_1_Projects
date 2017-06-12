@@ -1,8 +1,6 @@
 package graphEditor.model;
 
 
-import graphEditor.view.GraphPanel;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,19 +16,8 @@ public class GraphModel extends Observable {
 
     public GraphModel(){
         this.vertices = new ArrayList<>();
-        this.edges = new ArrayList<>();/*
-        GraphVertex v1 = new GraphVertex(400,400,200,200,"humpty");
-        GraphVertex v2 = new GraphVertex(100,200,200,200,"tum");
-        GraphVertex v3 = new GraphVertex(800,100,200,200,"lee");
-        addVertex(v1);
-        addVertex(v2);
-        addVertex(v3);
-        GraphEdge e1 = new GraphEdge(v1,v2);
-        GraphEdge e2 = new GraphEdge(v1,v3);
-        addEdge(e1);
-        addEdge(e2);
-        saveToFile("testFile");*/
-        importFromFile("testFile.txt");
+        this.edges = new ArrayList<>();
+        loadFromFile("testFile.txt");
     }
 
     public void addVertex(GraphVertex vertex){
@@ -91,9 +78,13 @@ public class GraphModel extends Observable {
             }
 
             for (GraphEdge edge : edges) {
-                bufferedWriter.write(edge.getVertexAt(0).getName());
+                GraphVertex from, to;
+                from = edge.getVertexAt(0);
+                to = edge.getVertexAt(1);
+
+                bufferedWriter.write(Integer.toString(vertices.indexOf(from)));
                 bufferedWriter.write(" ");
-                bufferedWriter.write(edge.getVertexAt(1).getName());
+                bufferedWriter.write(Integer.toString(vertices.indexOf(to)));
                 bufferedWriter.newLine();
             }
 
@@ -104,12 +95,8 @@ public class GraphModel extends Observable {
         }
     }
 
-    // TODO: Load from serialization
-    public void loadFromFile(){
 
-    }
-
-    public void importFromFile(String filename){
+    public void loadFromFile(String filename){
         try{
             List<String> edgesToMake = new ArrayList<>();
             FileReader fileReader = new FileReader(filename);
@@ -143,18 +130,11 @@ public class GraphModel extends Observable {
             // TODO: Change this to not match name but to match index number. Examples show that it just does the ID number
             for (String anEdgesToMake : edgesToMake) {
                 sVerts = anEdgesToMake.split(" ");
-
-                for (GraphVertex vertice : vertices) {
-                    if (vertice.getName().equals(sVerts[0])) {
-                        addFrom = vertice;
-                    }
-                    if (vertice.getName().equals(sVerts[1])) {
-                        addTo = vertice;
-                    }
-                }
-                if (addFrom != null && addTo != null) {
-                    GraphEdge newEdge = new GraphEdge(addFrom, addTo);
+                try {
+                    GraphEdge newEdge = new GraphEdge(vertices.get(Integer.parseInt(sVerts[0])), vertices.get(Integer.parseInt(sVerts[1])));
                     addEdge(newEdge);
+                }catch (Exception e){
+                    System.out.println("Out of bounds loading.");
                 }
             }
             setChanged();
