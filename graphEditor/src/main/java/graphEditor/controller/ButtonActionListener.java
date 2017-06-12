@@ -2,7 +2,10 @@ package graphEditor.controller;
 
 
 import graphEditor.model.GraphModel;
+import graphEditor.model.GraphVertex;
+import graphEditor.view.GraphFrame;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,7 +23,14 @@ public class ButtonActionListener implements ActionListener {
         System.out.println("ButtonActionListener:");
 
         switch (e.getActionCommand()){
-            case "Add Vertex":      System.out.println("Add Vertex");
+            case "Add Vertex":      int newX = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input x:", "Add Vertex 1/5", JOptionPane.PLAIN_MESSAGE,null,null,"x postion"));
+                                    int newY = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input y:", "Add Vertex 2/5", JOptionPane.PLAIN_MESSAGE,null,null,"y position"));
+                                    int newWidth = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input width:", "Add Vertex 3/5", JOptionPane.PLAIN_MESSAGE,null,null,"width"));
+                                    int newHeight = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input height:", "Add Vertex 4/5", JOptionPane.PLAIN_MESSAGE,null,null,"height"));
+                                    String newName = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
+
+                                    model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
+
                                     break;
             case "Add Edge":        System.out.println("Add Edge");
                                     break;

@@ -17,7 +17,6 @@ public class GraphEditor{
         System.out.println("Hello world.");
         GraphModel model = new GraphModel();
         GraphFrame frame = new GraphFrame(model);
-        //test
     }
 }
 

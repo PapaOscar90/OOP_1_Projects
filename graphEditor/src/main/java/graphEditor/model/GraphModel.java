@@ -17,7 +17,7 @@ public class GraphModel extends Observable {
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
-        loadFromFile("testFile.txt");
+        loadFromFile("lastSaved.txt");
     }
 
     public void addVertex(GraphVertex vertex){
@@ -127,7 +127,6 @@ public class GraphModel extends Observable {
                 line = bufferedReader.readLine();
             }
 
-            // TODO: Change this to not match name but to match index number. Examples show that it just does the ID number
             for (String anEdgesToMake : edgesToMake) {
                 sVerts = anEdgesToMake.split(" ");
                 try {

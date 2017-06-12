@@ -19,7 +19,7 @@ public class GraphVertex extends Observable{
         this.rectangle = new Rectangle(50,20);
     }
 
-    GraphVertex(int x, int y, int w, int h, String name){
+    public GraphVertex(int x, int y, int w, int h, String name){
         this.name = name;
         this.rectangle = new Rectangle(x,y,w,h);
     }
