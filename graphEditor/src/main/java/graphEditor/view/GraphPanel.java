@@ -34,11 +34,10 @@ public class GraphPanel extends JPanel implements Observer{
         String label;
         Graphics2D g2 = (Graphics2D)g;
 
+        g2.setStroke(new BasicStroke(2));
         for(int i=0; i<model.getNumberEdges(); i++){
-            g2.setStroke(new BasicStroke(3));
             g2.drawLine(getLineX(model.getEdges(i).getVertexAt(0)),getLineY(model.getEdges(i).getVertexAt(0)),getLineX(model.getEdges(i).getVertexAt(1)),getLineY(model.getEdges(i).getVertexAt(1)));
         }
-
         for(int i = 0; i<model.getVertexCount(); i++){
             vertex = model.getVertex(i);
             rectangle = vertex.getRectangle();
@@ -55,6 +54,5 @@ public class GraphPanel extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         repaint();
-        System.out.println("Repainted.");
     }
 }

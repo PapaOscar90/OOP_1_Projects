@@ -79,7 +79,6 @@ public class GraphVertex extends Observable{
         } else {
             setColor(new Color(200, 255, 255));
         }
-        System.out.println("Set Selected");
         setChanged();
         notifyObservers();
     }

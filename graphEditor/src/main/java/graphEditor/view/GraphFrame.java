@@ -1,6 +1,7 @@
 package graphEditor.view;
 
 import graphEditor.controller.ButtonBar;
+import graphEditor.controller.DraggingController;
 import graphEditor.controller.SelectionController;
 import graphEditor.model.GraphModel;
 
@@ -16,7 +17,8 @@ public class GraphFrame extends JFrame {
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         panel = new GraphPanel(model);
-        new SelectionController(model, panel);
+        SelectionController sc = new SelectionController(model, panel);
+        DraggingController dc = new DraggingController(sc, panel);
         add(panel);
         setSize(new Dimension(1280,720));
         setLocationRelativeTo(null);
