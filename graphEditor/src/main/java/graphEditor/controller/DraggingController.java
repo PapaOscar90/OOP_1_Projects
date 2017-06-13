@@ -24,15 +24,16 @@ public class DraggingController extends MouseInputAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        startX = e.getX() - sc.getSelectedVertex().getX();
-        startY = e.getY() - sc.getSelectedVertex().getY();
+        if (sc.getSelectedVertex() != null) {
+            startX = e.getX() - sc.getSelectedVertex().getX();
+            startY = e.getY() - sc.getSelectedVertex().getY();
+        }
     }
 
     @Override
     public void mouseDragged(MouseEvent e) {
-        System.out.println("mouse dragged");
         GraphVertex vertex = sc.getSelectedVertex();
-        if (vertex.isSelected()){
+        if (vertex != null && vertex.isSelected()){
             vertex.setPosition(e.getX() - startX, e.getY() - startY);
         }
     }

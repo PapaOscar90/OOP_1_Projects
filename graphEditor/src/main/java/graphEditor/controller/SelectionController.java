@@ -56,8 +56,6 @@ public class SelectionController extends MouseInputAdapter {
     public void setSelectedVertex(GraphVertex selectedVertex) {
         this.selectedVertex = selectedVertex;
     }
-
-
     @Override
     public void mousePressed(MouseEvent e) {
         selectVertex(e.getX(), e.getY());

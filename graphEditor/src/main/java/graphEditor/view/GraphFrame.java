@@ -1,6 +1,7 @@
 package graphEditor.view;
 
 import graphEditor.controller.*;
+import graphEditor.controller.PopupMenu;
 import graphEditor.model.GraphModel;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class GraphFrame extends JFrame {
         setSize(new Dimension(1280,720));
         setLocationRelativeTo(null);
         setTitle("Graph Editor");
-        setBackground(Color.gray);;
+        setBackground(Color.gray);
 
         panel = new GraphPanel(model);
 
@@ -26,6 +27,7 @@ public class GraphFrame extends JFrame {
         DraggingController dc = new DraggingController(sc, panel);
         setJMenuBar(new graphEditor.controller.MenuBar(model));
         panel.add(buttonBar);
+        PopupMenu pm = new PopupMenu(panel, model);
         add(panel);
         setVisible(true);
     }
