@@ -19,9 +19,9 @@ public class GraphFrame extends JFrame {
         setTitle("Graph Editor");
         setBackground(Color.gray);;
 
-        ButtonBar buttonBar = new ButtonBar(model);
         panel = new GraphPanel(model);
 
+        ButtonBar buttonBar = new ButtonBar(model);
         SelectionController sc = new SelectionController(model, panel, buttonBar);
         DraggingController dc = new DraggingController(sc, panel);
         setJMenuBar(new graphEditor.controller.MenuBar(model));

@@ -6,31 +6,30 @@ import graphEditor.view.GraphPanel;
 
 import javax.swing.event.MouseInputAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
  * Created by saidf on 6/13/2017.
  */
 public class SelectionController extends MouseInputAdapter {
-    private GraphModel gm;
-    private GraphPanel p;
+    private GraphModel model;
+    private GraphPanel panel;
     private GraphVertex selectedVertex;
     private ButtonBar buttonBar;
 
-    public SelectionController(GraphModel gm, GraphPanel p, ButtonBar buttonBar) {
-        this.gm = gm;
-        this.p = p;
+    public SelectionController(GraphModel model, GraphPanel panel, ButtonBar buttonBar) {
+        this.model = model;
+        this.panel = panel;
         this.selectedVertex = null;
         this.buttonBar = buttonBar;
-        p.addMouseListener(this);
+        panel.addMouseListener(this);
     }
 
     private void selectVertex(int x, int y){
         GraphVertex vertex;
         GraphVertex topVertex = null;
 
-        for(int i = 0; i < gm.getVertexCount(); i++){
-            vertex = gm.getVertex(i);
+        for(int i = 0; i < model.getVertexCount(); i++){
+            vertex = model.getVertex(i);
             if (x > vertex.getX() &&
                     x < vertex.getX() + vertex.getWidth() &&
                     y > vertex.getY() &&
@@ -38,10 +37,12 @@ public class SelectionController extends MouseInputAdapter {
                 topVertex = vertex;
             } else if (vertex.isSelected()){
                 vertex.setSelected(false);
+                buttonBar.setSelected();
             }
         }
         if (topVertex != null && !topVertex.isSelected()){
             setSelectedVertex(topVertex);
+            model.setSelected(this.selectedVertex);
             selectedVertex.setSelected(true);
             buttonBar.setSelected();
         }
@@ -54,6 +55,7 @@ public class SelectionController extends MouseInputAdapter {
     public void setSelectedVertex(GraphVertex selectedVertex) {
         this.selectedVertex = selectedVertex;
     }
+
 
     @Override
     public void mousePressed(MouseEvent e) {

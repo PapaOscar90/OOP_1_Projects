@@ -13,6 +13,7 @@ import java.util.Observer;
 public class GraphModel extends Observable implements Observer {
     private List<GraphVertex> vertices;
     private List<GraphEdge> edges;
+    private GraphVertex selectedVertex;
 
 
     public GraphModel(){
@@ -47,14 +48,14 @@ public class GraphModel extends Observable implements Observer {
         notifyObservers();
     }
 
-    private void removeVertex(GraphVertex vertex) {
+    public void removeSelectedVertex() {
         // Find all edges that have an end at the vertex to be removed and remove it (linear time 2n)
         for (GraphEdge edge : edges) {
-            if (edge.getVertexAt(0) == vertex || edge.getVertexAt(1) == vertex) {
+            if (edge.getVertexAt(0) == selectedVertex || edge.getVertexAt(1) == selectedVertex) {
                 removeEdge(edge);
             }
         }
-        vertices.remove(vertex);
+        this.vertices.remove(selectedVertex);
         setChanged();
         notifyObservers();
     }
@@ -158,5 +159,9 @@ public class GraphModel extends Observable implements Observer {
     public void update(Observable o, Object arg) {
         setChanged();
         notifyObservers();
+    }
+
+    public void setSelected(GraphVertex selected) {
+        this.selectedVertex = selected;
     }
 }

@@ -16,7 +16,10 @@ import java.awt.event.ActionListener;
 public class ButtonActionListener implements ActionListener {
     private GraphModel model;
 
-    public ButtonActionListener(GraphModel model){this.model = model;}
+
+    public ButtonActionListener(GraphModel model){
+        this.model = model;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -34,7 +37,11 @@ public class ButtonActionListener implements ActionListener {
                                     break;
             case "Add Edge":        System.out.println("Add Edge");
                                     break;
-            case "Remove Vertex":
+            case "Remove Edge":     System.out.println("Remove Edge");
+                                    break;
+            case "Remove Vertex":   model.removeSelectedVertex();
+                                    System.out.println("Poof, gone");
+                                    break;
             default:                System.out.println("Default");
                                     break;
         }
