@@ -22,8 +22,9 @@ public class SelectionController extends MouseInputAdapter {
     }
 
     private void selectVertex(int x, int y){
+        GraphVertex vertex;
         for(int i = 0; i < gm.getVertexCount(); i++){
-            GraphVertex vertex = gm.getVertex(i);
+            vertex = gm.getVertex(i);
             if (x > vertex.getX() &&
                     x < vertex.getX() + vertex.getWidth() &&
                     y > vertex.getY() &&
