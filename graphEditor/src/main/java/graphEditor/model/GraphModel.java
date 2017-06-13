@@ -53,6 +53,7 @@ public class GraphModel extends Observable implements Observer {
         for (int i = 0; i<edges.size(); i++) {
             if (edges.get(i).getVertexAt(0) == selectedVertex || edges.get(i).getVertexAt(1) == selectedVertex) {
                 removeEdge(edges.get(i));
+                i--;
             }
         }
         this.vertices.remove(selectedVertex);

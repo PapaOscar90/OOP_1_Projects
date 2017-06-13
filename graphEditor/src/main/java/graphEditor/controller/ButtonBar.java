@@ -43,7 +43,7 @@ public class ButtonBar extends JToolBar{
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);
 
-        ButtonActionListener buttonActionListener = new ButtonActionListener(model);
+        ButtonActionListener buttonActionListener = new ButtonActionListener(model, this);
 
         AddVertex vertexButton = new AddVertex();
         vertexButton.addActionListener(buttonActionListener);

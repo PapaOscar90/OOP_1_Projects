@@ -15,10 +15,12 @@ import java.awt.event.ActionListener;
  */
 public class ButtonActionListener implements ActionListener {
     private GraphModel model;
+    private ButtonBar buttonBar;
 
 
-    public ButtonActionListener(GraphModel model){
+    public ButtonActionListener(GraphModel model, ButtonBar buttonBar){
         this.model = model;
+        this.buttonBar = buttonBar;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class ButtonActionListener implements ActionListener {
             case "Remove Edge":     JOptionPane.showMessageDialog(null,"Select two vertices to delete the edge between", "How To Delete",JOptionPane.INFORMATION_MESSAGE);
                                     break;
             case "Remove Vertex":   model.removeSelectedVertex();
+                                    buttonBar.setSelected();
                                     System.out.println("Poof, gone");
                                     break;
             default:                System.out.println("Default");
