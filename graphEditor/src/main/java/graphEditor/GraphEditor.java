@@ -7,6 +7,7 @@
 
 package graphEditor;
 
+import graphEditor.controller.SelectionController;
 import graphEditor.model.GraphModel;
 import graphEditor.view.GraphFrame;
 

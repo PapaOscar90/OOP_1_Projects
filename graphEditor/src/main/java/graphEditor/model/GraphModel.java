@@ -5,11 +5,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
+import java.util.Observer;
 
 /** graphEditor
  * Created by PhilO on 03-Jun-17.
  */
-public class GraphModel extends Observable {
+public class GraphModel extends Observable implements Observer {
     private List<GraphVertex> vertices;
     private List<GraphEdge> edges;
 
@@ -22,6 +23,7 @@ public class GraphModel extends Observable {
 
     public void addVertex(GraphVertex vertex){
         this.vertices.add(vertex);
+        vertex.addObserver(this);
         setChanged();
         notifyObservers();
     }
@@ -32,13 +34,13 @@ public class GraphModel extends Observable {
         notifyObservers();
     }
 
-    public GraphVertex getVertices(int i){
+    public GraphVertex getVertex(int i){
         return vertices.get(i);
     }
 
     public GraphEdge getEdges(int i){return edges.get(i);}
 
-    public int getNumberRectangles(){return vertices.size();}
+    public int getVertexCount(){return vertices.size();}
 
     public void removeEdge(GraphEdge edge){
         edges.remove(edge);
@@ -151,5 +153,11 @@ public class GraphModel extends Observable {
         setChanged();
         notifyObservers();
         System.out.println("Cleared Memory.");
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        setChanged();
+        notifyObservers();
     }
 }

@@ -2,7 +2,6 @@ package graphEditor.view;
 
 import graphEditor.model.GraphModel;
 import graphEditor.model.GraphVertex;
-import javafx.scene.shape.Line;
 
 import javax.swing.*;
 import java.awt.*;
@@ -40,8 +39,8 @@ public class GraphPanel extends JPanel implements Observer{
             g2.drawLine(getLineX(model.getEdges(i).getVertexAt(0)),getLineY(model.getEdges(i).getVertexAt(0)),getLineX(model.getEdges(i).getVertexAt(1)),getLineY(model.getEdges(i).getVertexAt(1)));
         }
 
-        for(int i=0; i<model.getNumberRectangles(); i++){
-            vertex = model.getVertices(i);
+        for(int i = 0; i<model.getVertexCount(); i++){
+            vertex = model.getVertex(i);
             rectangle = vertex.getRectangle();
             label = vertex.getName();
             g2.setColor(vertex.getColor());
@@ -55,5 +54,6 @@ public class GraphPanel extends JPanel implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         repaint();
+        System.out.println("Repainted.");
     }
 }

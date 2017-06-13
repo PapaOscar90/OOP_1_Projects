@@ -10,10 +10,12 @@ public class GraphVertex extends Observable{
     private String      name;
     private Rectangle   rectangle;
     private static Color color = new Color(200,255,255);
+    private boolean isSelected;
 
     public  GraphVertex(int id){
         this.name = "Vertex";
         this.rectangle = new Rectangle(50,20);
+        this.isSelected = false;
     }
 
     public GraphVertex(int x, int y, int w, int h, String name){
@@ -64,5 +66,21 @@ public class GraphVertex extends Observable{
 
     public void setColor(Color color) {
         this.color = color;
+    }
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        if (selected == true){
+            setColor(new Color(100, 255, 255));
+        } else {
+            setColor(new Color(200, 255, 255));
+        }
+        System.out.println("Set Selected");
+        isSelected = selected;
+        setChanged();
+        notifyObservers();
     }
 }
