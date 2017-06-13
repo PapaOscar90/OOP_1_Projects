@@ -26,7 +26,7 @@ public class ButtonActionListener implements ActionListener {
             case "Add Vertex":      int newX = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input x:", "Add Vertex 1/5", JOptionPane.PLAIN_MESSAGE,null,null,"x postion"));
                                     int newY = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input y:", "Add Vertex 2/5", JOptionPane.PLAIN_MESSAGE,null,null,"y position"));
                                     int newWidth = 100;
-                                    int newHeight = 100;
+                                    int newHeight = 50;
                                     String newName = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
 
                                     model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
