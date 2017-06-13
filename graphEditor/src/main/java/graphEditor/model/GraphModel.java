@@ -50,9 +50,9 @@ public class GraphModel extends Observable implements Observer {
 
     public void removeSelectedVertex() {
         // Find all edges that have an end at the vertex to be removed and remove it (linear time 2n)
-        for (GraphEdge edge : edges) {
-            if (edge.getVertexAt(0) == selectedVertex || edge.getVertexAt(1) == selectedVertex) {
-                removeEdge(edge);
+        for (int i = 0; i<edges.size(); i++) {
+            if (edges.get(i).getVertexAt(0) == selectedVertex || edges.get(i).getVertexAt(1) == selectedVertex) {
+                removeEdge(edges.get(i));
             }
         }
         this.vertices.remove(selectedVertex);
