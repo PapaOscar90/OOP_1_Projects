@@ -37,6 +37,7 @@ public class SelectionController extends MouseInputAdapter {
                 topVertex = vertex;
             } else if (vertex.isSelected()){
                 vertex.setSelected(false);
+                model.setSelected(null);
                 buttonBar.setSelected();
             }
         }
