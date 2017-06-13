@@ -22,8 +22,6 @@ public class GraphPanel extends JPanel implements Observer{
         return vertex.getY()+((vertex.getHeight())/2);
     }
 
-
-
     public GraphPanel(GraphModel model){
         super();
         this.model = model;
@@ -32,6 +30,7 @@ public class GraphPanel extends JPanel implements Observer{
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        GraphVertex vertex;
         Rectangle rectangle;
         String label;
         Graphics2D g2 = (Graphics2D)g;
@@ -42,11 +41,13 @@ public class GraphPanel extends JPanel implements Observer{
         }
 
         for(int i=0; i<model.getNumberRectangles(); i++){
-            rectangle = model.getVertices(i).getRectangle();
-            label = model.getVertices(i).getName();
-            g2.setColor(Color.LIGHT_GRAY);
+            vertex = model.getVertices(i);
+            rectangle = vertex.getRectangle();
+            label = vertex.getName();
+            g2.setColor(vertex.getColor());
             g2.fill(rectangle);
             g2.setColor(Color.black);
+            g2.drawRect((int)rectangle.getX(), (int)rectangle.getY(), (int)rectangle.getWidth(), (int)rectangle.getHeight());
             g2.drawString(label, (rectangle.x+(rectangle.width/3)),(rectangle.y+(rectangle.height/2)));
         }
     }

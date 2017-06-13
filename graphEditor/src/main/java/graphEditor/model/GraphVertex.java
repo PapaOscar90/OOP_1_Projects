@@ -1,7 +1,5 @@
 package graphEditor.model;
 
-import org.w3c.dom.css.Rect;
-
 import java.awt.*;
 import java.util.Observable;
 
@@ -11,8 +9,7 @@ import java.util.Observable;
 public class GraphVertex extends Observable{
     private String      name;
     private Rectangle   rectangle;
-
-
+    private static Color color = new Color(200,255,255);
 
     public  GraphVertex(int id){
         this.name = "Vertex";
@@ -36,15 +33,36 @@ public class GraphVertex extends Observable{
         notifyObservers();
     }
 
-    public void setSize(int w, int h){this.rectangle.setSize(w,h);}
+    public void setSize(int w, int h){
+        this.rectangle.setSize(w,h);
+        setChanged();
+        notifyObservers();
+    }
 
     public String getName(){return this.name;}
 
-    public int getX(){return this.rectangle.x;}
-    public int getY(){return this.rectangle.y;}
-    public int getWidth(){return this.rectangle.width;}
-    public int getHeight(){return this.rectangle.height;}
+    public int getX(){
+        return this.rectangle.x;
+    }
+    public int getY(){
+        return this.rectangle.y;
+    }
+    public int getWidth(){
+        return this.rectangle.width;
+    }
+    public int getHeight(){
+        return this.rectangle.height;
+    }
 
-    public Rectangle getRectangle(){return rectangle;};
+    public Rectangle getRectangle(){
+        return rectangle;
+    }
 
+    public Color getColor() {
+        return color;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
 }
