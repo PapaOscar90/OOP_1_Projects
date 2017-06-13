@@ -47,9 +47,8 @@ public class GraphPanel extends JPanel implements Observer{
             g2.fill(rectangle);
             g2.setColor(Color.black);
             g2.drawRect((int)rectangle.getX(), (int)rectangle.getY(), (int)rectangle.getWidth(), (int)rectangle.getHeight());
-            int stringLen = (int)g2.getFontMetrics().stringWidth(label);
-            int stringStart = (rectangle.width /2) - (stringLen/2);
-            g2.drawString(label, (stringStart+((rectangle.x)/2)),(rectangle.y+((rectangle.height)/2)));
+            int textWidth = g.getFontMetrics().stringWidth(label);
+            g2.drawString(label, (rectangle.x + ((rectangle.width/2)) - textWidth/2),(rectangle.y+(rectangle.height/2)));
         }
     }
 
