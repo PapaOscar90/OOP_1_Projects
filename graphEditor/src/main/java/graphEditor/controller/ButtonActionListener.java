@@ -34,6 +34,7 @@ public class ButtonActionListener implements ActionListener {
                                     break;
             case "Add Edge":        System.out.println("Add Edge");
                                     break;
+            case "Remove Vertex":
             default:                System.out.println("Default");
                                     break;
         }

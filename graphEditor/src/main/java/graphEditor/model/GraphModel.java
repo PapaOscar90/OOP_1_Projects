@@ -18,7 +18,6 @@ public class GraphModel extends Observable implements Observer {
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
-        loadFromFile("lastSaved.txt");
     }
 
     public void addVertex(GraphVertex vertex){

@@ -15,7 +15,6 @@ import javax.swing.*;
 
 public class GraphEditor{
     public static void main(String[] args){
-        System.out.println("Hello world.");
         GraphModel model = new GraphModel();
         model.loadFromFile("testFile.txt");
         GraphFrame frame = new GraphFrame(model);

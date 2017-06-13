@@ -15,11 +15,13 @@ public class SelectionController extends MouseInputAdapter {
     private GraphModel gm;
     private GraphPanel p;
     private GraphVertex selectedVertex;
+    private ButtonBar buttonBar;
 
-    public SelectionController(GraphModel gm, GraphPanel p) {
+    public SelectionController(GraphModel gm, GraphPanel p, ButtonBar buttonBar) {
         this.gm = gm;
         this.p = p;
         this.selectedVertex = null;
+        this.buttonBar = buttonBar;
         p.addMouseListener(this);
     }
 
@@ -41,6 +43,7 @@ public class SelectionController extends MouseInputAdapter {
         if (topVertex != null && !topVertex.isSelected()){
             setSelectedVertex(topVertex);
             selectedVertex.setSelected(true);
+            buttonBar.setSelected();
         }
     }
 
