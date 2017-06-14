@@ -37,13 +37,13 @@ public class SelectionController extends MouseInputAdapter {
                 topVertex = vertex;
             } else if (vertex.isSelected()){
                 vertex.setSelected(false);
-                model.setSelected(null);
-                buttonBar.setSelected();
+                model.setSelectedVertex(null);
+               buttonBar.setSelected();
             }
         }
         if (topVertex != null && !topVertex.isSelected()){
             setSelectedVertex(topVertex);
-            model.setSelected(this.selectedVertex);
+            model.setSelectedVertex(this.selectedVertex);
             selectedVertex.setSelected(true);
             buttonBar.setSelected();
         }
@@ -56,6 +56,11 @@ public class SelectionController extends MouseInputAdapter {
     public void setSelectedVertex(GraphVertex selectedVertex) {
         this.selectedVertex = selectedVertex;
     }
+
+    public ButtonBar getButtonBar() {
+        return buttonBar;
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
         selectVertex(e.getX(), e.getY());

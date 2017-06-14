@@ -9,7 +9,7 @@ import java.awt.*;
  * Created by PhilO on 09-Jun-17.
  */
 public class ButtonBar extends JToolBar{
-    private boolean selected = false;
+    private boolean isVisible = false;
 
     private class AddVertex extends JButton{
         protected AddVertex(){
@@ -29,12 +29,19 @@ public class ButtonBar extends JToolBar{
         }
     }
 
+
     private class RemoveVertex extends JButton{
         protected  RemoveVertex(){
             super("Remove Vertex");
-            this.setVisible(false);
+            this.setEnabled(false);
         }
+    }
 
+    private class RenameVertex extends JButton{
+        protected  RenameVertex(){
+            super("Rename Vertex");
+            this.setEnabled(false);
+        }
     }
 
     public ButtonBar(GraphModel model){
@@ -57,17 +64,26 @@ public class ButtonBar extends JToolBar{
         RemoveEdge removeEdge = new RemoveEdge();
         removeEdge.addActionListener(buttonActionListener);
 
+        RenameVertex renameVertex = new RenameVertex();
+        renameVertex.addActionListener(buttonActionListener);
+
         add(vertexButton);
         add(edgeButton);
         add(removeEdge);
         add(removeVertex);
+        add(renameVertex);
     }
 
+    //TODO: For loops here?
     public void setSelected(){
-        if(this.getComponentAtIndex(3).isVisible()){
-            this.getComponentAtIndex(3).setVisible(false);
+        if(isVisible){
+            this.getComponentAtIndex(3).setEnabled(false);
+            this.getComponentAtIndex(4).setEnabled(false);
+            isVisible = false;
         }else{
-            this.getComponentAtIndex(3).setVisible(true);
+            this.getComponentAtIndex(3).setEnabled(true);
+            this.getComponentAtIndex(4).setEnabled(true);
+            isVisible = true;
         }
 
         this.updateUI();

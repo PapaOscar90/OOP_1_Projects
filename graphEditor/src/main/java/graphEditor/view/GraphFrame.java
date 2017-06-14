@@ -27,7 +27,7 @@ public class GraphFrame extends JFrame {
         DraggingController dc = new DraggingController(sc, panel);
         setJMenuBar(new graphEditor.controller.MenuBar(model));
         panel.add(buttonBar);
-        PopupMenu pm = new PopupMenu(panel, model);
+        PopupMenu pm = new PopupMenu(panel, model, sc);
         add(panel);
         setVisible(true);
     }

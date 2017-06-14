@@ -41,10 +41,16 @@ public class ButtonActionListener implements ActionListener {
                                     break;
             case "Remove Edge":     JOptionPane.showMessageDialog(null,"Select two vertices to delete the edge between", "How To Delete",JOptionPane.INFORMATION_MESSAGE);
                                     break;
+
             case "Remove Vertex":   model.removeSelectedVertex();
                                     buttonBar.setSelected();
                                     System.out.println("Poof, gone");
                                     break;
+
+            case "Rename Vertex":   String newName2 = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
+                                    model.getSelectedVertex().setName(newName2);
+                                    break;
+
             default:                System.out.println("Default");
                                     break;
         }

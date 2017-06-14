@@ -57,6 +57,7 @@ public class GraphModel extends Observable implements Observer {
             }
         }
         this.vertices.remove(selectedVertex);
+        selectedVertex = null;
         setChanged();
         notifyObservers();
     }
@@ -162,7 +163,11 @@ public class GraphModel extends Observable implements Observer {
         notifyObservers();
     }
 
-    public void setSelected(GraphVertex selected) {
+    public GraphVertex getSelectedVertex() {
+        return selectedVertex;
+    }
+
+    public void setSelectedVertex(GraphVertex selected) {
         this.selectedVertex = selected;
     }
 }
