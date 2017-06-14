@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import java.security.Key;
 
 /**
  * Created by PhilO on 06-Jun-17.
@@ -45,8 +46,25 @@ public class MenuBar extends JMenuBar {
         }
     }
 
+    private class ModelMenu extends JMenu{
+        public ModelMenu(GraphModel model){
+            super("Model");
+            ModelActionListener modelActionListener = new ModelActionListener(model);
+
+            JMenuItem nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
+            nextModel.addActionListener(modelActionListener);
+
+            JMenuItem prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
+            prevModel.addActionListener(modelActionListener);
+
+            add(nextModel);
+            add(prevModel);
+        }
+    }
+
     public MenuBar(GraphModel model){
         add(new fileMenu(model));
+        add(new ModelMenu(model));
         setBorderPainted(true);
     }
 }

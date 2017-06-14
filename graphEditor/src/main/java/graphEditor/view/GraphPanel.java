@@ -5,8 +5,7 @@ import graphEditor.model.GraphVertex;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.*;
 
 /**
  * Created by PhilO on 06-Jun-17.
@@ -24,8 +23,9 @@ public class GraphPanel extends JPanel implements Observer{
     public GraphPanel(GraphModel model){
         super();
         this.model = model;
-        model.addObserver(this);
+        this.model.addObserver(this);
     }
+
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -35,10 +35,10 @@ public class GraphPanel extends JPanel implements Observer{
         Graphics2D g2 = (Graphics2D)g;
 
         g2.setStroke(new BasicStroke(2));
-        for(int i=0; i<model.getNumberEdges(); i++){
+        for(int i = 0; i< model.getNumberEdges(); i++){
             g2.drawLine(getLineX(model.getEdges(i).getVertexAt(0)),getLineY(model.getEdges(i).getVertexAt(0)),getLineX(model.getEdges(i).getVertexAt(1)),getLineY(model.getEdges(i).getVertexAt(1)));
         }
-        for(int i = 0; i<model.getVertexCount(); i++){
+        for(int i = 0; i< model.getVertexCount(); i++){
             vertex = model.getVertex(i);
             rectangle = vertex.getRectangle();
             label = vertex.getName();

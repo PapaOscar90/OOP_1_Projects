@@ -13,12 +13,45 @@ import java.util.Observer;
 public class GraphModel extends Observable implements Observer {
     private List<GraphVertex> vertices;
     private List<GraphEdge> edges;
+    private List<List<GraphVertex>> activeVertices;
+    private List<List<GraphEdge>> activeEdges;
+    private int currentList=0;
     private GraphVertex selectedVertex;
 
 
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
+        activeVertices = new ArrayList<>();
+        activeEdges = new ArrayList<>();
+        this.activeVertices.add(vertices);
+        this.activeEdges.add(edges);
+    }
+
+    public void nextModel(){
+        if(currentList+1<activeVertices.size()){
+            currentList++;
+            this.vertices = activeVertices.get(currentList);
+            this.edges = activeEdges.get(currentList);
+        }else{
+            currentList++;
+            activeEdges.add(new ArrayList<>());
+            activeVertices.add(new ArrayList<>());
+            this.vertices = activeVertices.get(currentList);
+            this.edges = activeEdges.get(currentList);
+        }
+        setChanged();
+        notifyObservers();
+    }
+
+    public void prevModel(){
+        if(currentList>0){
+            currentList--;
+            this.vertices = activeVertices.get(currentList);
+            this.edges = activeEdges.get(currentList);
+        }
+        setChanged();
+        notifyObservers();
     }
 
     public void addVertex(GraphVertex vertex){
