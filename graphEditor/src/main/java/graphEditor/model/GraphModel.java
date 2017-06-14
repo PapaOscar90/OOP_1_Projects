@@ -15,6 +15,7 @@ public class GraphModel extends Observable implements Observer {
     private List<GraphEdge> edges;
     private List<List<GraphVertex>> activeVertices;
     private List<List<GraphEdge>> activeEdges;
+    private List<GraphVertex> activeSelected;
     private int currentList=0;
     private GraphVertex selectedVertex;
 
@@ -22,6 +23,7 @@ public class GraphModel extends Observable implements Observer {
     public GraphModel(){
         this.vertices = new ArrayList<>();
         this.edges = new ArrayList<>();
+        this.activeSelected = new ArrayList<>();
         activeVertices = new ArrayList<>();
         activeEdges = new ArrayList<>();
         this.activeVertices.add(vertices);
@@ -33,12 +35,15 @@ public class GraphModel extends Observable implements Observer {
             currentList++;
             this.vertices = activeVertices.get(currentList);
             this.edges = activeEdges.get(currentList);
+            this.selectedVertex = null;
         }else{
             currentList++;
             activeEdges.add(new ArrayList<>());
             activeVertices.add(new ArrayList<>());
+            activeSelected.add(null);
             this.vertices = activeVertices.get(currentList);
             this.edges = activeEdges.get(currentList);
+            this.selectedVertex = null;
         }
         setChanged();
         notifyObservers();
@@ -49,6 +54,7 @@ public class GraphModel extends Observable implements Observer {
             currentList--;
             this.vertices = activeVertices.get(currentList);
             this.edges = activeEdges.get(currentList);
+            this.selectedVertex = null;
         }
         setChanged();
         notifyObservers();
@@ -97,10 +103,10 @@ public class GraphModel extends Observable implements Observer {
 
     // TODO: Change to serialization method
     public void saveToFile(String filename){
-        try{
-            FileWriter fileWriter = new FileWriter(filename+".txt");
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
 
+        try{
+            FileWriter fileWriter = new FileWriter(filename);
+            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
             for (GraphVertex vertice : vertices) {
                 bufferedWriter.write(Integer.toString(vertice.getX()));
                 bufferedWriter.write(" ");
@@ -113,7 +119,6 @@ public class GraphModel extends Observable implements Observer {
                 bufferedWriter.write(vertice.getName());
                 bufferedWriter.newLine();
             }
-
             for (GraphEdge edge : edges) {
                 GraphVertex from, to;
                 from = edge.getVertexAt(0);

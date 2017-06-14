@@ -28,7 +28,7 @@ public class MenuBar extends JMenuBar {
             nw.addActionListener(menuListener);
 
 
-            JMenuItem save = new JMenuItem("Save", KeyEvent.VK_S);
+            JMenuItem save = new JMenuItem("Save Current", KeyEvent.VK_S);
             save.addActionListener(menuListener);
 
 
