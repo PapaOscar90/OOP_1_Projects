@@ -35,8 +35,6 @@ public class MenuActionListener implements ActionListener {
                                     if(returnVal == JFileChooser.APPROVE_OPTION) {
                                         model.saveToFile(fileChooser.getSelectedFile().getAbsolutePath());
                                     }
-
-                                    model.saveToFile("testFile");
                                     break;
 
             case "Open":            System.out.println("Switch Load");

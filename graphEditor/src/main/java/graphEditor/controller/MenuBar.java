@@ -17,7 +17,7 @@ import java.security.Key;
 
 
 public class MenuBar extends JMenuBar {
-
+    private ButtonBar buttonBar;
 
     private class fileMenu extends JMenu{
         public fileMenu(GraphModel model){
@@ -47,9 +47,9 @@ public class MenuBar extends JMenuBar {
     }
 
     private class ModelMenu extends JMenu{
-        public ModelMenu(GraphModel model){
+        public ModelMenu(GraphModel model, ButtonBar buttonBar){
             super("Model");
-            ModelActionListener modelActionListener = new ModelActionListener(model);
+            ModelActionListener modelActionListener = new ModelActionListener(model, buttonBar);
 
             JMenuItem nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
             nextModel.addActionListener(modelActionListener);
@@ -62,9 +62,10 @@ public class MenuBar extends JMenuBar {
         }
     }
 
-    public MenuBar(GraphModel model){
+    public MenuBar(GraphModel model, ButtonBar buttonBar){
+        this.buttonBar = buttonBar;
         add(new fileMenu(model));
-        add(new ModelMenu(model));
+        add(new ModelMenu(model, buttonBar));
         setBorderPainted(true);
     }
 }

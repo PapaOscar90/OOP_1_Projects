@@ -66,7 +66,7 @@ public class PopupMenu extends MouseInputAdapter {
         mouseEventX = e.getX();
         mouseEventY = e.getY();
         if (SwingUtilities.isRightMouseButton(e)){
-            if (model.getSelectedVertex() != null && model.getSelectedVertex().isSelected()) {
+            if (model.getSelectedVertex() != null) {
                 JPopupMenu MainPopup = new JPopupMenu();
                 MainPopup.add(rm);
                 MainPopup.add(rn);

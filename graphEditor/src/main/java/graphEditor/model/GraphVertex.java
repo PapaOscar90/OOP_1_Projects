@@ -9,13 +9,10 @@ import java.util.Observable;
 public class GraphVertex extends Observable{
     private String      name;
     private Rectangle   rectangle;
-    private Color color = new Color(200,255,255);
-    private boolean isSelected;
 
     public  GraphVertex(int id){
         this.name = "Vertex";
         this.rectangle = new Rectangle(50,20);
-        this.isSelected = false;
     }
 
     public GraphVertex(int x, int y, int w, int h, String name){
@@ -60,26 +57,4 @@ public class GraphVertex extends Observable{
         return rectangle;
     }
 
-    public Color getColor() {
-        return color;
-    }
-
-    public void setColor(Color color) {
-        this.color = color;
-    }
-
-    public boolean isSelected() {
-        return isSelected;
-    }
-
-    public void setSelected(boolean selected) {
-        this.isSelected=selected;
-        if (this.isSelected == true){
-            this.setColor(new Color(91, 255, 45));
-        } else {
-            setColor(new Color(200, 255, 255));
-        }
-        setChanged();
-        notifyObservers();
-    }
 }

@@ -33,6 +33,7 @@ public class GraphPanel extends JPanel implements Observer{
         Rectangle rectangle;
         String label;
         Graphics2D g2 = (Graphics2D)g;
+        Color vColor = new Color(200,255,255);
 
         g2.setStroke(new BasicStroke(2));
         for(int i = 0; i< model.getNumberEdges(); i++){
@@ -42,8 +43,14 @@ public class GraphPanel extends JPanel implements Observer{
             vertex = model.getVertex(i);
             rectangle = vertex.getRectangle();
             label = vertex.getName();
-            g2.setColor(vertex.getColor());
-            g2.fill(rectangle);
+            if(model.getSelectedVertex() == vertex){
+                g2.setColor(Color.green);
+                g2.fill(rectangle);
+                g2.setColor(Color.black);
+            }else{
+                g2.setColor(vColor);
+                g2.fill(rectangle);
+            }
             g2.setColor(Color.black);
             g2.drawRect((int)rectangle.getX(), (int)rectangle.getY(), (int)rectangle.getWidth(), (int)rectangle.getHeight());
             int textWidth = g.getFontMetrics().stringWidth(label);

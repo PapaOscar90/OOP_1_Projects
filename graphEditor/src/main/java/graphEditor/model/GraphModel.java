@@ -154,8 +154,6 @@ public class GraphModel extends Observable implements Observer {
                 int numSpaces;
                 sParts = line.split(" ");
 
-
-
                 if(sParts.length == 2){
                     edgesToMake.add(line);
                 }else{
@@ -207,5 +205,7 @@ public class GraphModel extends Observable implements Observer {
 
     public void setSelectedVertex(GraphVertex selected) {
         this.selectedVertex = selected;
+        setChanged();
+        notifyObservers();
     }
 }

@@ -11,14 +11,29 @@ import java.awt.event.ActionListener;
  */
 public class ModelActionListener implements ActionListener{
     private GraphModel model;
-    public ModelActionListener(GraphModel model) {this.model = model;}
+    private ButtonBar buttonBar;
+    public ModelActionListener(GraphModel model, ButtonBar buttonBar) {
+        this.model = model;
+        this.buttonBar = buttonBar;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         switch (e.getActionCommand()){
-            case "Next Model":      model.nextModel();
+            case "Next Model":      if(model.getSelectedVertex()==null){
+                                        model.nextModel();
+                                    }else{
+                                        buttonBar.setSelected();
+                                        model.setSelectedVertex(null);
+                                        model.nextModel();
+                                    }
                                     break;
-            case "Prev Model":      model.prevModel();
+            case "Prev Model":      if(model.getSelectedVertex()==null){
+                                        model.prevModel();
+                                    }else{
+                                        buttonBar.setSelected();
+                                        model.prevModel();
+                                    }
                                     break;
             default:                break;
         }

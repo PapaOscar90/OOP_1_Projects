@@ -10,6 +10,7 @@ import java.awt.*;
  */
 public class ButtonBar extends JToolBar{
     private boolean isVisible = false;
+    private ButtonBar buttonBar;
 
     private class AddVertex extends JButton{
         protected AddVertex(){
