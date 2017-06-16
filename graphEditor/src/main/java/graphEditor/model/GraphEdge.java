@@ -27,6 +27,16 @@ public class GraphEdge extends Observable{
         notifyObservers();
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        GraphEdge e = (GraphEdge)obj;
+        if ((e.getVertexAt(0).equals(this.getVertexAt(0)) && e.getVertexAt(1).equals(this.getVertexAt(1))) ||
+                (e.getVertexAt(1).equals(this.getVertexAt(0)) && e.getVertexAt(1).equals(this.getVertexAt(0)))){
+            return true;
+        }
+        return false;
+    }
+
     public GraphVertex getVertexAt(int i){
         return connects.get(i);
     }

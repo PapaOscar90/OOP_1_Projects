@@ -22,7 +22,7 @@ public class MenuBar extends JMenuBar {
         private JMenuItem save;
         private JMenuItem open;
         private JMenuItem exit;
-        public fileMenu(GraphModel model){
+        public fileMenu(GraphModel model, ButtonBar buttonbar){
             super("File");
 
             nw = new JMenuItem("New", KeyEvent.VK_N);
@@ -30,6 +30,7 @@ public class MenuBar extends JMenuBar {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     System.out.println("Creating new Model");
+                    buttonbar.setSelected();
                     model.deleteAll();
                 }
             });
@@ -63,6 +64,7 @@ public class MenuBar extends JMenuBar {
                     if(returnV == JFileChooser.APPROVE_OPTION) {
                         model.loadFromFile(loadChooser.getSelectedFile().getAbsolutePath());
                     }
+                    buttonbar.setSelected();
                 }
             });
 
@@ -123,7 +125,7 @@ public class MenuBar extends JMenuBar {
 
     public MenuBar(GraphModel model, ButtonBar buttonBar){
         this.buttonBar = buttonBar;
-        add(new fileMenu(model));
+        add(new fileMenu(model, buttonBar));
         add(new ModelMenu(model, buttonBar));
         setBorderPainted(true);
     }

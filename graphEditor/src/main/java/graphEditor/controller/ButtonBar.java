@@ -2,6 +2,7 @@ package graphEditor.controller;
 
 import graphEditor.model.GraphModel;
 import graphEditor.model.GraphVertex;
+import graphEditor.view.GraphPanel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,7 +13,8 @@ import java.awt.event.ActionListener;
  * Created by PhilO on 09-Jun-17.
  */
 public class ButtonBar extends JToolBar{
-    private boolean isVisible = false;
+    private GraphModel model;
+    private EdgeController ec;
     private ButtonBar buttonBar;
     private UndoManager undoManager;
     private JButton vertexButton;
@@ -20,14 +22,18 @@ public class ButtonBar extends JToolBar{
     private JButton removeVertex;
     private JButton removeEdge;
     private JButton renameVertex;
+    private boolean helpBoxShown;
 
 
-    public ButtonBar(GraphModel model, UndoManager undoManager){
+    public ButtonBar(GraphModel model, EdgeController ec, UndoManager undoManager){
         super("Toolbar");
+        this.model = model;
+        this.ec = ec;
         this.undoManager = undoManager;
         this.setOrientation(HORIZONTAL);
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);
+        helpBoxShown = false;
 
         vertexButton = new JButton("Add Vertex");
         vertexButton.addActionListener(new ActionListener() {
@@ -44,10 +50,11 @@ public class ButtonBar extends JToolBar{
         });
 
         edgeButton = new JButton("Add Edge");
+        edgeButton.setEnabled(false);
         edgeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Add Edge");
+                ec.enableEdgeAdder();
             }
         });
 
@@ -56,17 +63,17 @@ public class ButtonBar extends JToolBar{
         removeVertex.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"Select two vertices to delete the edge between", "How To Delete",JOptionPane.INFORMATION_MESSAGE);
+                model.removeSelectedVertex();
+                buttonBar.setSelected();
             }
         });
 
         removeEdge = new JButton("Remove Edge");
+        removeEdge.setEnabled(false);
         removeEdge.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.removeSelectedVertex();
-                buttonBar.setSelected();
-                System.out.println("Poof, gone");
+                ec.enableEdgeRemover();
             }
         });
 
@@ -87,16 +94,15 @@ public class ButtonBar extends JToolBar{
         add(renameVertex);
     }
 
-    //TODO: For loops here?
     public void setSelected(){
-        if(isVisible){
-            this.getComponentAtIndex(3).setEnabled(false);
-            this.getComponentAtIndex(4).setEnabled(false);
-            isVisible = false;
+        if(model.getSelectedVertex() != null){
+            for (int i = 1; i < 5; i++){
+                this.getComponentAtIndex(i).setEnabled(true);
+            }
         }else{
-            this.getComponentAtIndex(3).setEnabled(true);
-            this.getComponentAtIndex(4).setEnabled(true);
-            isVisible = true;
+            for (int i = 1; i < 5; i++){
+                this.getComponentAtIndex(i).setEnabled(false);
+            }
         }
 
         this.updateUI();

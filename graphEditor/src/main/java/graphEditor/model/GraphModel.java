@@ -67,14 +67,27 @@ public class GraphModel extends Observable implements Observer {
     }
 
     public void addVertex(GraphVertex vertex){
-        this.vertices.add(vertex);
-        vertex.addObserver(this);
-        setChanged();
-        notifyObservers();
+        if (vertex.getName() != null) {
+            this.vertices.add(vertex);
+            vertex.addObserver(this);
+            setChanged();
+            notifyObservers();
+        }
+    }
+
+    private boolean isEdgeExist(GraphEdge testEdge){
+        for (GraphEdge edge : edges){
+            if (edge.equals(testEdge)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void addEdge(GraphEdge edge){
-        this.edges.add(edge);
+        if (!isEdgeExist(edge)) {
+            edges.add(edge);
+        }
         setChanged();
         notifyObservers();
     }
@@ -88,9 +101,14 @@ public class GraphModel extends Observable implements Observer {
     public int getVertexCount(){return vertices.size();}
 
     public void removeEdge(GraphEdge edge){
-        edges.remove(edge);
-        setChanged();
-        notifyObservers();
+        for (GraphEdge e : edges){
+            if (e.equals(edge)){
+                edges.remove(edge);
+                setChanged();
+                notifyObservers();
+                break;
+            }
+        }
     }
 
     public void removeSelectedVertex() {

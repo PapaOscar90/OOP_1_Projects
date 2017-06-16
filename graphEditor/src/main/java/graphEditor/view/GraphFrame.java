@@ -23,7 +23,8 @@ public class GraphFrame extends JFrame {
 
         panel = new GraphPanel(model);
 
-        ButtonBar buttonBar = new ButtonBar(model, undoManager);
+        EdgeController ec = new EdgeController(model, panel);
+        ButtonBar buttonBar = new ButtonBar(model, ec, undoManager);
         SelectionController sc = new SelectionController(model, panel, buttonBar);
         DraggingController dc = new DraggingController(panel, model);
         setJMenuBar(new graphEditor.controller.MenuBar(model, buttonBar));
