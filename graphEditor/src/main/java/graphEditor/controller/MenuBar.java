@@ -16,12 +16,12 @@ import java.io.File;
 
 public class MenuBar extends JMenuBar {
     private ButtonBar buttonBar;
-    private JMenuItem nw;
-    private JMenuItem save;
-    private JMenuItem open;
-    private JMenuItem exit;
 
     private class fileMenu extends JMenu{
+        private JMenuItem nw;
+        private JMenuItem save;
+        private JMenuItem open;
+        private JMenuItem exit;
         public fileMenu(GraphModel model){
             super("File");
 
@@ -84,15 +84,37 @@ public class MenuBar extends JMenuBar {
     }
 
     private class ModelMenu extends JMenu{
+        private JMenuItem nextModel;
+        private JMenuItem prevModel;
         public ModelMenu(GraphModel model, ButtonBar buttonBar){
             super("Model");
-            ModelActionListener modelActionListener = new ModelActionListener(model, buttonBar);
 
-            JMenuItem nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
-            nextModel.addActionListener(modelActionListener);
+            nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
+            nextModel.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(model.getSelectedVertex()==null){
+                        model.nextModel();
+                    }else{
+                        buttonBar.setSelected();
+                        model.setSelectedVertex(null);
+                        model.nextModel();
+                    }
+                }
+            });
 
-            JMenuItem prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
-            prevModel.addActionListener(modelActionListener);
+            prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
+            prevModel.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(model.getSelectedVertex()==null){
+                        model.prevModel();
+                    }else{
+                        buttonBar.setSelected();
+                        model.prevModel();
+                    }
+                }
+            });
 
             add(nextModel);
             add(prevModel);
