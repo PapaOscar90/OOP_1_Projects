@@ -1,9 +1,12 @@
 package graphEditor.controller;
 
 import graphEditor.model.GraphModel;
+import graphEditor.model.GraphVertex;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Created by PhilO on 09-Jun-17.
@@ -11,62 +14,71 @@ import java.awt.*;
 public class ButtonBar extends JToolBar{
     private boolean isVisible = false;
     private ButtonBar buttonBar;
-
-    private class AddVertex extends JButton{
-        protected AddVertex(){
-            super("Add Vertex");
-        }
-    }
-
-    private class AddEdge extends JButton{
-        protected AddEdge(){
-            super("Add Edge");
-        }
-    }
-
-    private class RemoveEdge extends JButton{
-        protected RemoveEdge(){
-            super("Remove Edge");
-        }
-    }
+    private UndoManager undoManager;
+    private JButton vertexButton;
+    private JButton edgeButton;
+    private JButton removeVertex;
+    private JButton removeEdge;
+    private JButton renameVertex;
 
 
-    private class RemoveVertex extends JButton{
-        protected  RemoveVertex(){
-            super("Remove Vertex");
-            this.setEnabled(false);
-        }
-    }
-
-    private class RenameVertex extends JButton{
-        protected  RenameVertex(){
-            super("Rename Vertex");
-            this.setEnabled(false);
-        }
-    }
-
-    public ButtonBar(GraphModel model){
+    public ButtonBar(GraphModel model, UndoManager undoManager){
         super("Toolbar");
+        this.undoManager = undoManager;
         this.setOrientation(HORIZONTAL);
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);
 
-        ButtonActionListener buttonActionListener = new ButtonActionListener(model, this);
+        vertexButton = new JButton("Add Vertex");
+        vertexButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int newX = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input x:", "Add Vertex 1/5", JOptionPane.PLAIN_MESSAGE,null,null,"x postion"));
+                int newY = Integer.parseInt((String) JOptionPane.showInputDialog(null,"Input y:", "Add Vertex 2/5", JOptionPane.PLAIN_MESSAGE,null,null,"y position"));
+                int newWidth = 100;
+                int newHeight = 50;
+                String newName = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
 
-        AddVertex vertexButton = new AddVertex();
-        vertexButton.addActionListener(buttonActionListener);
+                model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
+            }
+        });
 
-        AddEdge edgeButton = new AddEdge();
-        edgeButton.addActionListener(buttonActionListener);
+        edgeButton = new JButton("Add Edge");
+        edgeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Add Edge");
+            }
+        });
 
-        RemoveVertex removeVertex = new RemoveVertex();
-        removeVertex.addActionListener(buttonActionListener);
+        removeVertex = new JButton("Remove Vertex");
+        removeVertex.setEnabled(false);
+        removeVertex.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"Select two vertices to delete the edge between", "How To Delete",JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
-        RemoveEdge removeEdge = new RemoveEdge();
-        removeEdge.addActionListener(buttonActionListener);
+        removeEdge = new JButton("Remove Edge");
+        removeEdge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.removeSelectedVertex();
+                buttonBar.setSelected();
+                System.out.println("Poof, gone");
+            }
+        });
 
-        RenameVertex renameVertex = new RenameVertex();
-        renameVertex.addActionListener(buttonActionListener);
+        renameVertex = new JButton("Rename Vertex");
+        renameVertex.setEnabled(false);
+        renameVertex.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String newName2 = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
+                model.getSelectedVertex().setName(newName2);
+            }
+        });
 
         add(vertexButton);
         add(edgeButton);
