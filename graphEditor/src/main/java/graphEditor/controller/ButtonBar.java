@@ -4,6 +4,7 @@ import graphEditor.model.GraphModel;
 import graphEditor.model.GraphVertex;
 
 import javax.swing.*;
+import javax.swing.undo.UndoManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
  * Created by PhilO on 09-Jun-17.
  */
 public class ButtonBar extends JToolBar{
+    private UndoManager undoManager;
     private boolean isVisible = false;
     private ButtonBar buttonBar;
     private JButton vertexButton;
@@ -21,8 +23,9 @@ public class ButtonBar extends JToolBar{
     private JButton renameVertex;
 
 
-    public ButtonBar(GraphModel model){
+    public ButtonBar(GraphModel model, UndoManager undoManager){
         super("Toolbar");
+        this.undoManager = undoManager;
         this.setOrientation(HORIZONTAL);
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);
