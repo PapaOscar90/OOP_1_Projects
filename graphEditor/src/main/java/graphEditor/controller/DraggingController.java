@@ -11,14 +11,12 @@ import java.awt.event.MouseEvent;
  * Created by saidf on 6/13/2017.
  */
 public class DraggingController extends MouseInputAdapter {
-    private SelectionController sc;
     private GraphPanel panel;
     private GraphModel model;
     private int startX;
     private int startY;
 
-    public DraggingController(SelectionController sc, GraphPanel panel, GraphModel model){
-        this.sc = sc;
+    public DraggingController(GraphPanel panel, GraphModel model){
         this.panel = panel;
         this.model = model;
         panel.addMouseListener(this);
