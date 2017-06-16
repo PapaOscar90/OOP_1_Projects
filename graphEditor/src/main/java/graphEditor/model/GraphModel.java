@@ -87,8 +87,10 @@ public class GraphModel extends Observable implements Observer {
         return false;
     }
 
+    //TODO: maybe fix horrible edge "equals" implementation, by possibly changing how edge functions entirely.
     public void addEdge(GraphEdge edge){
-        if (!isEdgeExist(edge)) {
+        GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
+        if (!isEdgeExist(edge) || !isEdgeExist(edge2)) {
             edges.add(edge);
         }
         setChanged();
@@ -103,10 +105,13 @@ public class GraphModel extends Observable implements Observer {
 
     public int getVertexCount(){return vertices.size();}
 
+    //TODO: maybe fix horrible edge "equals" implementation, by possibly changing how edge functions entirely.
     public void removeEdge(GraphEdge edge){
+        GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
         for (GraphEdge e : edges){
-            if (e.equals(edge)){
+            if (e.equals(edge) || e.equals(edge2)){
                 edges.remove(edge);
+                edges.remove(edge2);
                 setChanged();
                 notifyObservers();
                 break;

@@ -12,7 +12,6 @@ import java.awt.*;
  */
 public class GraphFrame extends JFrame {
     private GraphPanel panel;
-    private UndoManager undoManager = new UndoManager();
 
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -24,7 +23,7 @@ public class GraphFrame extends JFrame {
         panel = new GraphPanel(model);
 
         EdgeController ec = new EdgeController(model, panel);
-        ButtonBar buttonBar = new ButtonBar(model, ec, undoManager);
+        ButtonBar buttonBar = new ButtonBar(model, ec);
         SelectionController sc = new SelectionController(model, panel, buttonBar);
         DraggingController dc = new DraggingController(panel, model);
         setJMenuBar(new graphEditor.controller.MenuBar(model, buttonBar));

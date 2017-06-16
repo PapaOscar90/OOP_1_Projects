@@ -53,6 +53,17 @@ public class GraphVertex extends Observable{
         return this.rectangle.height;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GraphVertex)) return false;
+
+        GraphVertex that = (GraphVertex) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return rectangle != null ? rectangle.equals(that.rectangle) : that.rectangle == null;
+    }
+
     public Rectangle getRectangle(){
         return rectangle;
     }

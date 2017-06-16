@@ -15,25 +15,20 @@ import java.awt.event.ActionListener;
 public class ButtonBar extends JToolBar{
     private GraphModel model;
     private EdgeController ec;
-    private ButtonBar buttonBar;
-    private UndoManager undoManager;
     private JButton vertexButton;
     private JButton edgeButton;
     private JButton removeVertex;
     private JButton removeEdge;
     private JButton renameVertex;
-    private boolean helpBoxShown;
 
 
-    public ButtonBar(GraphModel model, EdgeController ec, UndoManager undoManager){
+    public ButtonBar(GraphModel model, EdgeController ec){
         super("Toolbar");
         this.model = model;
         this.ec = ec;
-        this.undoManager = undoManager;
         this.setOrientation(HORIZONTAL);
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);
-        helpBoxShown = false;
 
         vertexButton = new JButton("Add Vertex");
         vertexButton.addActionListener(new ActionListener() {
@@ -64,7 +59,7 @@ public class ButtonBar extends JToolBar{
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.removeSelectedVertex();
-                buttonBar.setSelected();
+                setSelected();
             }
         });
 

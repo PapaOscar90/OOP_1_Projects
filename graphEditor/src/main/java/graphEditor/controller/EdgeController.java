@@ -46,7 +46,6 @@ public class EdgeController extends MouseInputAdapter {
                 GraphEdge edge = new GraphEdge(vertex1, vertex2);
                 model.removeEdge(edge);
             }
-            panel.removeMouseListener(this);
         }
         panel.removeMouseListener(this);
     }

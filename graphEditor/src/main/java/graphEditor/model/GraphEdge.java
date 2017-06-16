@@ -28,13 +28,13 @@ public class GraphEdge extends Observable{
     }
 
     @Override
-    public boolean equals(Object obj) {
-        GraphEdge e = (GraphEdge)obj;
-        if ((e.getVertexAt(0).equals(this.getVertexAt(0)) && e.getVertexAt(1).equals(this.getVertexAt(1))) ||
-                (e.getVertexAt(1).equals(this.getVertexAt(0)) && e.getVertexAt(1).equals(this.getVertexAt(0)))){
-            return true;
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GraphEdge)) return false;
+
+        GraphEdge graphEdge = (GraphEdge) o;
+
+        return connects != null ? connects.equals(graphEdge.connects) : graphEdge.connects == null;
     }
 
     public GraphVertex getVertexAt(int i){
