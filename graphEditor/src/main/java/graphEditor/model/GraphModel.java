@@ -18,6 +18,9 @@ public class GraphModel extends Observable implements Observer {
     private List<GraphVertex> activeSelected;
     private int currentList=0;
     private GraphVertex selectedVertex;
+    private int mousePosX;
+    private int mousePosY;
+    private boolean isEdgeSelection;
 
 
     public GraphModel(){
@@ -28,6 +31,9 @@ public class GraphModel extends Observable implements Observer {
         activeEdges = new ArrayList<>();
         this.activeVertices.add(vertices);
         this.activeEdges.add(edges);
+        mousePosX = 0;
+        mousePosY = 0;
+        isEdgeSelection = false;
     }
 
     public void nextModel(){
@@ -193,18 +199,48 @@ public class GraphModel extends Observable implements Observer {
         System.out.println("Cleared Memory.");
     }
 
-    @Override
-    public void update(Observable o, Object arg) {
-        setChanged();
-        notifyObservers();
-    }
-
     public GraphVertex getSelectedVertex() {
         return selectedVertex;
     }
 
     public void setSelectedVertex(GraphVertex selected) {
         this.selectedVertex = selected;
+        setChanged();
+        notifyObservers();
+    }
+
+    public int getMousePosX() {
+        return mousePosX;
+    }
+
+    public void setMousePosX(int mousePosX) {
+        this.mousePosX = mousePosX;
+        setChanged();
+        notifyObservers();
+    }
+
+    public int getMousePosY() {
+        return mousePosY;
+    }
+
+    public void setMousePosY(int mousePosY) {
+        this.mousePosY = mousePosY;
+        setChanged();
+        notifyObservers();
+    }
+
+    public boolean isEdgeSelection() {
+        return isEdgeSelection;
+    }
+
+    public void setEdgeSelection(boolean edgeSelection) {
+        isEdgeSelection = edgeSelection;
+        setChanged();
+        notifyObservers();
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
         setChanged();
         notifyObservers();
     }

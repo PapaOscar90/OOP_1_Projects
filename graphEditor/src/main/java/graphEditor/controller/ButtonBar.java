@@ -21,12 +21,14 @@ public class ButtonBar extends JToolBar{
     private class AddEdge extends JButton{
         protected AddEdge(){
             super("Add Edge");
+            this.setEnabled(false);
         }
     }
 
     private class RemoveEdge extends JButton{
         protected RemoveEdge(){
             super("Remove Edge");
+            this.setEnabled(false);
         }
     }
 
@@ -78,12 +80,14 @@ public class ButtonBar extends JToolBar{
     //TODO: For loops here?
     public void setSelected(){
         if(isVisible){
-            this.getComponentAtIndex(3).setEnabled(false);
-            this.getComponentAtIndex(4).setEnabled(false);
+            for (int i = 1; i < 5; i++){
+                this.getComponentAtIndex(i).setEnabled(false);
+            }
             isVisible = false;
         }else{
-            this.getComponentAtIndex(3).setEnabled(true);
-            this.getComponentAtIndex(4).setEnabled(true);
+            for (int i = 1; i < 5; i++){
+                this.getComponentAtIndex(i).setEnabled(true);
+            }
             isVisible = true;
         }
 
