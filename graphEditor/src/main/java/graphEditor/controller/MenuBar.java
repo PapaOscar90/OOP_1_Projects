@@ -1,14 +1,12 @@
 package graphEditor.controller;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-import graphEditor.controller.MenuActionListener;
 import graphEditor.model.GraphModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.security.Key;
+import java.io.File;
 
 /**
  * Created by PhilO on 06-Jun-17.
@@ -20,24 +18,63 @@ public class MenuBar extends JMenuBar {
     private ButtonBar buttonBar;
 
     private class fileMenu extends JMenu{
+        private JMenuItem nw;
+        private JMenuItem save;
+        private JMenuItem open;
+        private JMenuItem exit;
         public fileMenu(GraphModel model){
             super("File");
-            MenuActionListener menuListener= new MenuActionListener(model);
 
-            JMenuItem nw = new JMenuItem("New", KeyEvent.VK_N);
-            nw.addActionListener(menuListener);
-
-
-            JMenuItem save = new JMenuItem("Save Current", KeyEvent.VK_S);
-            save.addActionListener(menuListener);
-
-
-            JMenuItem open = new JMenuItem("Open", KeyEvent.VK_S);
-            open.addActionListener(menuListener);
+            nw = new JMenuItem("New", KeyEvent.VK_N);
+            nw.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Creating new Model");
+                    model.deleteAll();
+                }
+            });
 
 
-            JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_S);
-            exit.addActionListener(menuListener);
+            save = new JMenuItem("Save Current", KeyEvent.VK_S);
+            save.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Switch save");
+                    JFileChooser fileChooser = new JFileChooser();
+                    File workingDirectory = new File(System.getProperty("user.dir"));
+                    fileChooser.setCurrentDirectory(workingDirectory);
+                    int returnVal = fileChooser.showOpenDialog(null);
+                    if(returnVal == JFileChooser.APPROVE_OPTION) {
+                        model.saveToFile(fileChooser.getSelectedFile().getAbsolutePath());
+                    }
+                }
+            });
+
+
+            open = new JMenuItem("Open", KeyEvent.VK_S);
+            open.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    System.out.println("Switch Load");
+                    JFileChooser loadChooser = new JFileChooser();
+                    File loadDirectory = new File(System.getProperty("user.dir"));
+                    loadChooser.setCurrentDirectory(loadDirectory);
+                    int returnV = loadChooser.showOpenDialog(null);
+                    if(returnV == JFileChooser.APPROVE_OPTION) {
+                        model.loadFromFile(loadChooser.getSelectedFile().getAbsolutePath());
+                    }
+                }
+            });
+
+
+            exit = new JMenuItem("Exit", KeyEvent.VK_S);
+            exit.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    model.saveToFile("persistent.txt");
+                    System.exit(0);
+                }
+            });
 
             add(nw);
             add(save);
@@ -47,15 +84,37 @@ public class MenuBar extends JMenuBar {
     }
 
     private class ModelMenu extends JMenu{
+        private JMenuItem nextModel;
+        private JMenuItem prevModel;
         public ModelMenu(GraphModel model, ButtonBar buttonBar){
             super("Model");
-            ModelActionListener modelActionListener = new ModelActionListener(model, buttonBar);
 
-            JMenuItem nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
-            nextModel.addActionListener(modelActionListener);
+            nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
+            nextModel.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(model.getSelectedVertex()==null){
+                        model.nextModel();
+                    }else{
+                        buttonBar.setSelected();
+                        model.setSelectedVertex(null);
+                        model.nextModel();
+                    }
+                }
+            });
 
-            JMenuItem prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
-            prevModel.addActionListener(modelActionListener);
+            prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
+            prevModel.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    if(model.getSelectedVertex()==null){
+                        model.prevModel();
+                    }else{
+                        buttonBar.setSelected();
+                        model.prevModel();
+                    }
+                }
+            });
 
             add(nextModel);
             add(prevModel);
