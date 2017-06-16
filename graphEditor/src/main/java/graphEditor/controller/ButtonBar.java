@@ -13,7 +13,6 @@ import java.awt.event.ActionListener;
  * Created by PhilO on 09-Jun-17.
  */
 public class ButtonBar extends JToolBar{
-    private UndoManager undoManager;
     private boolean isVisible = false;
     private ButtonBar buttonBar;
     private JButton vertexButton;
@@ -23,9 +22,8 @@ public class ButtonBar extends JToolBar{
     private JButton renameVertex;
 
 
-    public ButtonBar(GraphModel model, UndoManager undoManager){
+    public ButtonBar(GraphModel model){
         super("Toolbar");
-        this.undoManager = undoManager;
         this.setOrientation(HORIZONTAL);
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);

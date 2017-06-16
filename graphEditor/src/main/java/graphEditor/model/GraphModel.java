@@ -17,6 +17,7 @@ public class GraphModel extends Observable implements Observer {
     private List<List<GraphVertex>> activeVertices;
     private List<List<GraphEdge>> activeEdges;
     private List<GraphVertex> activeSelected;
+    private UndoManager undoManager;
     private int currentList=0;
     private GraphVertex selectedVertex;
     private int mousePosX;
@@ -32,6 +33,7 @@ public class GraphModel extends Observable implements Observer {
         activeEdges = new ArrayList<>();
         this.activeVertices.add(vertices);
         this.activeEdges.add(edges);
+        this.undoManager = new UndoManager();
         mousePosX = 0;
         mousePosY = 0;
         isEdgeSelection = false;

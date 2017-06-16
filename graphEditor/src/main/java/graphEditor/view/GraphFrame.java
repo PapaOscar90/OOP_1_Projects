@@ -13,7 +13,6 @@ import java.awt.*;
  */
 public class GraphFrame extends JFrame {
     private GraphPanel panel;
-    private UndoManager undoManager;
 
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -21,11 +20,11 @@ public class GraphFrame extends JFrame {
         setLocationRelativeTo(null);
         setTitle("Graph Editor");
         setBackground(Color.gray);
-        undoManager = new UndoManager();
+
 
         panel = new GraphPanel(model);
 
-        ButtonBar buttonBar = new ButtonBar(model,undoManager);
+        ButtonBar buttonBar = new ButtonBar(model);
         SelectionController sc = new SelectionController(model, panel, buttonBar);
         DraggingController dc = new DraggingController(panel, model);
         setJMenuBar(new graphEditor.controller.MenuBar(model, buttonBar));

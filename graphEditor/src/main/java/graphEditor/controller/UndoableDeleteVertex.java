@@ -16,8 +16,9 @@ public class UndoableDeleteVertex extends AbstractUndoableEdit {
     private GraphVertex vertex;
 
     public UndoableDeleteVertex(GraphModel model, GraphVertex vertex){
-        this.model=model;
-        this.vertex=vertex;
+        this.model = model;
+        this.vertex = vertex;
+        model.removeSelectedVertex();
     }
 
     public void redo() throws CannotRedoException{
