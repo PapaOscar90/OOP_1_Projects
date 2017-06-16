@@ -18,22 +18,28 @@ public class PopupMenu extends MouseInputAdapter {
     private JMenuItem rm;
     private JMenuItem add;
     private JMenuItem rn;
+    private JMenuItem addEdge;
+    private JMenuItem removeEdge;
     private GraphPanel panel;
     private GraphModel model;
     private SelectionController sc;
+    private EdgeController ec;
     private int mouseEventX;
     private int mouseEventY;
 
 
-    public PopupMenu(GraphPanel panel, GraphModel model, SelectionController sc){
+    public PopupMenu(GraphPanel panel, GraphModel model, SelectionController sc, EdgeController ec){
         this.panel = panel;
         this.model = model;
         this.sc = sc;
+        this.ec = ec;
         this.mouseEventX = 0;
         this.mouseEventY = 0;
         this.rm = new JMenuItem("Remove vertex");
         this.add = new JMenuItem("Add vertex here");
         this.rn = new JMenuItem("Rename vertex");
+        this.addEdge = new JMenuItem("Add edge");
+        this.removeEdge = new JMenuItem("Remove edge");
         rm.addActionListener(new ActionListener(){
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -59,6 +65,18 @@ public class PopupMenu extends MouseInputAdapter {
                 model.getSelectedVertex().setName(newName2);
             }
         });
+        addEdge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ec.enableEdgeAdder();
+            }
+        });
+        removeEdge.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ec.enableEdgeRemover();
+            }
+        });
         panel.addMouseListener(this);
     }
     @Override
@@ -70,6 +88,8 @@ public class PopupMenu extends MouseInputAdapter {
                 JPopupMenu MainPopup = new JPopupMenu();
                 MainPopup.add(rm);
                 MainPopup.add(rn);
+                MainPopup.add(addEdge);
+                MainPopup.add(removeEdge);
                 MainPopup.show(e.getComponent(), e.getX(), e.getY());
             } else {
                 JPopupMenu MainPopup = new JPopupMenu();
