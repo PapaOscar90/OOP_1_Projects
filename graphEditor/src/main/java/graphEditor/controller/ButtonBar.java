@@ -27,6 +27,7 @@ public class ButtonBar extends JToolBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 model.undoableEditHappened(new UndoableEditEvent(model,new UndoableAddVertex(model)));
+                setSelected();
                 updateUI();
             }
         });
