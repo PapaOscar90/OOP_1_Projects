@@ -2,6 +2,7 @@ package graphEditor.model;
 
 
 import javax.swing.event.UndoableEditEvent;
+import javax.swing.undo.CannotRedoException;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 import java.io.*;
@@ -270,9 +271,9 @@ public class GraphModel extends Observable implements Observer {
         undoManager.undoableEditHappened(event);
     }
 
-    public Boolean canUndo(){
-        return undoManager.canUndo();
-    }
+    public boolean canRedo() {return this.undoManager.canRedo();}
+
+    public Boolean canUndo(){return undoManager.canUndo();}
 
     public void undoLast(){
         try {
@@ -296,6 +297,16 @@ public class GraphModel extends Observable implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        setChanged();
+        notifyObservers();
+    }
+
+    public void redoLast() {
+        try{
+            this.undoManager.redo();
+        }catch (CannotRedoException cre){
+            cre.printStackTrace();
+        }
         setChanged();
         notifyObservers();
     }

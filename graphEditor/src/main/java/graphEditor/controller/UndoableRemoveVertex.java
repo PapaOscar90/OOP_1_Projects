@@ -24,9 +24,16 @@ public class UndoableRemoveVertex extends AbstractUndoableEdit{
     }
 
     public void undo(){
+        super.undo();
         model.addVertex(vertex);
         for(int i=0; i<edgeList.size();i++){
             model.addEdge(edgeList.get(i));
         }
+    }
+
+    public void redo(){
+        super.redo();
+        model.setSelectedVertex(vertex);
+        model.removeSelectedVertex();
     }
 }

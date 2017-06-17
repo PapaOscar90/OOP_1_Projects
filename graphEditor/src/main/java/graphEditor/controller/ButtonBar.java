@@ -83,12 +83,24 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        JButton redoButton = new JButton("Redo");
+        redoButton.setEnabled(false);
+        redoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.redoLast();
+                setSelected();
+                updateUI();
+            }
+        });
+
         add(vertexButton);
         add(edgeButton);
         add(removeEdge);
         add(removeVertex);
         add(renameVertex);
         add(undoButton);
+        add(redoButton);
     }
 
     void setSelected() {
@@ -106,6 +118,12 @@ public class ButtonBar extends JToolBar {
             this.getComponentAtIndex(5).setEnabled(true);
         }else{
             this.getComponentAtIndex(5).setEnabled(false);
+        }
+
+        if(model.canRedo()){
+            this.getComponentAtIndex(6).setEnabled(true);
+        }else{
+            this.getComponentAtIndex(6).setEnabled(false);
         }
 
         this.updateUI();

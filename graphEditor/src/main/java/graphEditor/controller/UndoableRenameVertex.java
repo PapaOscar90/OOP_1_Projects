@@ -20,13 +20,21 @@ class UndoableRenameVertex extends AbstractUndoableEdit {
         this.model = model;
         this.vertex = model.getSelectedVertex();
         oldName = model.getSelectedVertex().getName();
-        String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Choose Name", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
+        newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Choose Name", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
         model.getSelectedVertex().setName(newName);
     }
 
     public void undo(){
+        super.undo();
         model.setSelectedVertex(vertex);
         model.getSelectedVertex().setName(oldName);
+        model.setSelectedVertex(null);
+    }
+
+    public void redo(){
+        super.redo();
+        model.setSelectedVertex(vertex);
+        model.getSelectedVertex().setName(newName);
         model.setSelectedVertex(null);
     }
 }

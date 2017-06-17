@@ -37,4 +37,9 @@ public class UndoableAddVertex extends AbstractUndoableEdit {
         model.setSelectedVertex(newVertex);
         model.removeSelectedVertex();
     }
+
+    public void redo(){
+        super.redo();
+        model.addVertex(newVertex);
+    }
 }
