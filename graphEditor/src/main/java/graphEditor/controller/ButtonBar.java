@@ -66,8 +66,9 @@ public class ButtonBar extends JToolBar {
         renameVertex.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String newName2 = (String) JOptionPane.showInputDialog(null, "Input name:", "Choose Name", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
-                model.getSelectedVertex().setName(newName2);
+                model.undoableEditHappened(new UndoableEditEvent(model, new UndoableRenameVertex(model)));
+                setSelected();
+                updateUI();
             }
         });
 
