@@ -1,43 +1,70 @@
 package graphEditor.controller;
 
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-import graphEditor.controller.MenuActionListener;
 import graphEditor.model.GraphModel;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import java.security.Key;
+import java.io.File;
 
 /**
  * Created by PhilO on 06-Jun-17.
  */
 
-
-
+// The File/Model menu bar contains application options and controls which model to view
 public class MenuBar extends JMenuBar {
-    private ButtonBar buttonBar;
 
-    private class fileMenu extends JMenu{
-        public fileMenu(GraphModel model){
+    private class fileMenu extends JMenu {
+        private JMenuItem nw;
+        private JMenuItem save;
+        private JMenuItem open;
+        private JMenuItem exit;
+
+        fileMenu(GraphModel model, ButtonBar buttonbar) {
             super("File");
-            MenuActionListener menuListener= new MenuActionListener(model);
 
-            JMenuItem nw = new JMenuItem("New", KeyEvent.VK_N);
-            nw.addActionListener(menuListener);
+            // New wipes the model clean and starts fresh
+            nw = new JMenuItem("New", KeyEvent.VK_N);
+            nw.addActionListener(e -> {
+                System.out.println("Creating new Model");
+                buttonbar.setSelected();
+                model.deleteAll();
+            });
 
+            // Saves the currently viewed model to a user inputted location
+            save = new JMenuItem("Save Current", KeyEvent.VK_S);
+            save.addActionListener(e -> {
+                System.out.println("Switch save");
+                JFileChooser fileChooser = new JFileChooser();
+                File workingDirectory = new File(System.getProperty("user.dir"));
+                fileChooser.setCurrentDirectory(workingDirectory);
+                int returnVal = fileChooser.showOpenDialog(null);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    model.saveToFile(fileChooser.getSelectedFile().getAbsolutePath());
+                }
+            });
 
-            JMenuItem save = new JMenuItem("Save Current", KeyEvent.VK_S);
-            save.addActionListener(menuListener);
+            // Openss a user selected file to import
+            open = new JMenuItem("Open", KeyEvent.VK_S);
+            open.addActionListener(e -> {
+                System.out.println("Switch Load");
+                JFileChooser loadChooser = new JFileChooser();
+                File loadDirectory = new File(System.getProperty("user.dir"));
+                loadChooser.setCurrentDirectory(loadDirectory);
+                int returnV = loadChooser.showOpenDialog(null);
+                if (returnV == JFileChooser.APPROVE_OPTION) {
+                    model.loadFromFile(loadChooser.getSelectedFile().getAbsolutePath());
+                }
+                buttonbar.setSelected();
+            });
 
-
-            JMenuItem open = new JMenuItem("Open", KeyEvent.VK_S);
-            open.addActionListener(menuListener);
-
-
-            JMenuItem exit = new JMenuItem("Exit", KeyEvent.VK_S);
-            exit.addActionListener(menuListener);
+            // Exit saves to the persistent file, and then closes the application. The persistent file is opened automatically at start
+            exit = new JMenuItem("Exit", KeyEvent.VK_S);
+            exit.addActionListener(e -> {
+                model.saveToFile("persistent.txt");
+                System.exit(0);
+            });
 
             add(nw);
             add(save);
@@ -46,25 +73,50 @@ public class MenuBar extends JMenuBar {
         }
     }
 
-    private class ModelMenu extends JMenu{
-        public ModelMenu(GraphModel model, ButtonBar buttonBar){
+    // This private class controls the multiple models that can run in the application
+    private class ModelMenu extends JMenu {
+        private JMenuItem nextModel;
+        private JMenuItem prevModel;
+
+        ModelMenu(GraphModel model, ButtonBar buttonBar) {
             super("Model");
-            ModelActionListener modelActionListener = new ModelActionListener(model, buttonBar);
 
-            JMenuItem nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
-            nextModel.addActionListener(modelActionListener);
+            // Cycles to the next model to edit
+            nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
+            nextModel.addActionListener(e -> {
+                if (model.getSelectedVertex() == null) {
+                    model.nextModel();
+                } else {
+                    model.setSelectedVertex(null);
+                    model.nextModel();
+                    buttonBar.setSelected();
+                }
+                buttonBar.setSelected();
+                updateUI();
+            });
 
-            JMenuItem prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
-            prevModel.addActionListener(modelActionListener);
+            // Goes to the previous model
+            prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
+            prevModel.addActionListener(e -> {
+                if (model.getSelectedVertex() == null) {
+                    model.prevModel();
+                } else {
+                    buttonBar.setSelected();
+                    model.prevModel();
+                }
+
+                buttonBar.setSelected();
+                updateUI();
+            });
 
             add(nextModel);
             add(prevModel);
         }
     }
 
-    public MenuBar(GraphModel model, ButtonBar buttonBar){
-        this.buttonBar = buttonBar;
-        add(new fileMenu(model));
+    // Creates the menu and adds the two menus to it
+    public MenuBar(GraphModel model, ButtonBar buttonBar) {
+        add(new fileMenu(model, buttonBar));
         add(new ModelMenu(model, buttonBar));
         setBorderPainted(true);
     }
