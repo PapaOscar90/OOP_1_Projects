@@ -26,14 +26,8 @@ public class ButtonBar extends JToolBar {
         vertexButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                /*int newX = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Input x:", "Add Vertex 1/3", JOptionPane.PLAIN_MESSAGE, null, null, "x postion"));
-                int newY = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Input y:", "Add Vertex 2/3", JOptionPane.PLAIN_MESSAGE, null, null, "y position"));
-                int newWidth = 100;
-                int newHeight = 50;
-                String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 3/3", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
-
-                model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));*/
                 model.undoableEditHappened(new UndoableEditEvent(model,new UndoableAddVertex(model)));
+                updateUI();
             }
         });
 
@@ -43,6 +37,7 @@ public class ButtonBar extends JToolBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 edgeController.enableEdgeAdder();
+
             }
         });
 
@@ -51,8 +46,9 @@ public class ButtonBar extends JToolBar {
         removeVertex.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                model.removeSelectedVertex();
+                model.undoableEditHappened(new UndoableEditEvent(model, new UndoableRemoveVertex(model)));
                 setSelected();
+                updateUI();
             }
         });
 

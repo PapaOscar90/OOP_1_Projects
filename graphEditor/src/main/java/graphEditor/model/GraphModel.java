@@ -125,10 +125,12 @@ public class GraphModel extends Observable implements Observer {
         }
     }
 
-    public void removeSelectedVertex() {
+    public List<GraphEdge> removeSelectedVertex() {
         // Find all edges that have an end at the vertex to be removed and remove it (linear time 2n)
+        List<GraphEdge> edgesRemoved = new ArrayList<>();
         for (int i = 0; i < edges.size(); i++) {
             if (edges.get(i).getVertexAt(0) == selectedVertex || edges.get(i).getVertexAt(1) == selectedVertex) {
+                edgesRemoved.add(edges.get(i));
                 removeEdge(edges.get(i));
                 i--;
             }
@@ -137,6 +139,7 @@ public class GraphModel extends Observable implements Observer {
         selectedVertex = null;
         setChanged();
         notifyObservers();
+        return edgesRemoved;
     }
 
     // TODO: Change to serialization method
