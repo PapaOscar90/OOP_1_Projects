@@ -1,6 +1,8 @@
 package graphEditor.model;
 
 
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 import java.io.*;
 import java.util.ArrayList;
@@ -18,7 +20,7 @@ public class GraphModel extends Observable implements Observer {
     private List<List<GraphVertex>> activeVertices;
     private List<List<GraphEdge>> activeEdges;
     private List<GraphVertex> activeSelected;
-    private UndoManager undoManager;
+    private UndoManager undoManager = new UndoManager();
     private int currentList = 0;
     private GraphVertex selectedVertex;
     private int mousePosX;
@@ -257,6 +259,24 @@ public class GraphModel extends Observable implements Observer {
 
     public void setMousePosY(int mousePosY) {
         this.mousePosY = mousePosY;
+        setChanged();
+        notifyObservers();
+    }
+
+    public void undoableEditHappened(UndoableEditEvent event) {
+        undoManager.undoableEditHappened(event);
+    }
+
+    public Boolean canUndo(){
+        return undoManager.canUndo();
+    }
+
+    public void undoLast(){
+        try {
+            this.undoManager.undo();
+        }catch (CannotUndoException cre){
+            cre.printStackTrace();
+        }
         setChanged();
         notifyObservers();
     }

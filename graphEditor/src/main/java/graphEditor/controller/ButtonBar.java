@@ -1,9 +1,9 @@
 package graphEditor.controller;
 
 import graphEditor.model.GraphModel;
-import graphEditor.model.GraphVertex;
 
 import javax.swing.*;
+import javax.swing.event.UndoableEditEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,13 +26,14 @@ public class ButtonBar extends JToolBar {
         vertexButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int newX = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Input x:", "Add Vertex 1/3", JOptionPane.PLAIN_MESSAGE, null, null, "x postion"));
+                /*int newX = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Input x:", "Add Vertex 1/3", JOptionPane.PLAIN_MESSAGE, null, null, "x postion"));
                 int newY = Integer.parseInt((String) JOptionPane.showInputDialog(null, "Input y:", "Add Vertex 2/3", JOptionPane.PLAIN_MESSAGE, null, null, "y position"));
                 int newWidth = 100;
                 int newHeight = 50;
                 String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 3/3", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
 
-                model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
+                model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));*/
+                model.undoableEditHappened(new UndoableEditEvent(model,new UndoableAddVertex(model)));
             }
         });
 
@@ -74,11 +75,23 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        JButton undoButton = new JButton("Undo");
+        undoButton.setEnabled(false);
+        undoButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                model.undoLast();
+                setSelected();
+                updateUI();
+            }
+        });
+
         add(vertexButton);
         add(edgeButton);
         add(removeEdge);
         add(removeVertex);
         add(renameVertex);
+        add(undoButton);
     }
 
     void setSelected() {
@@ -90,6 +103,12 @@ public class ButtonBar extends JToolBar {
             for (int i = 1; i < 5; i++) {
                 this.getComponentAtIndex(i).setEnabled(false);
             }
+        }
+
+        if(model.canUndo()){
+            this.getComponentAtIndex(5).setEnabled(true);
+        }else{
+            this.getComponentAtIndex(5).setEnabled(false);
         }
 
         this.updateUI();
