@@ -20,6 +20,8 @@ public class GraphEditor {
         if (args.length > 0) {
             fileName = args[0];
             model.loadFromFile(fileName);
+        }else{
+            model.loadFromFile("persistent.txt");
         }
         GraphFrame frame = new GraphFrame(model);
     }
