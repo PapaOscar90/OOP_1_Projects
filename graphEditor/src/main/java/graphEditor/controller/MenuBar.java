@@ -88,6 +88,7 @@ public class MenuBar extends JMenuBar {
                     model.nextModel();
                     buttonBar.setSelected();
                 }
+                buttonBar.setSelected();
                 updateUI();
             });
 
@@ -99,6 +100,9 @@ public class MenuBar extends JMenuBar {
                     buttonBar.setSelected();
                     model.prevModel();
                 }
+
+                buttonBar.setSelected();
+                updateUI();
             });
 
             add(nextModel);

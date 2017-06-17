@@ -21,10 +21,12 @@ public class UndoableAddEdge extends AbstractUndoableEdit{
     }
 
     public void undo(){
+        super.undo();
         model.removeEdge(edge);
     }
 
     public void redo(){
+        super.redo();
         model.addEdge(edge);
     }
 }

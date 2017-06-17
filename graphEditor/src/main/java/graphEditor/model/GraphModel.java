@@ -21,6 +21,7 @@ public class GraphModel extends Observable implements Observer {
     private List<List<GraphVertex>> activeVertices;
     private List<List<GraphEdge>> activeEdges;
     private List<GraphVertex> activeSelected;
+    private List<UndoManager> activeManager;
     private UndoManager undoManager = new UndoManager();
     private int currentList = 0;
     private GraphVertex selectedVertex;
@@ -35,8 +36,10 @@ public class GraphModel extends Observable implements Observer {
         this.activeSelected = new ArrayList<>();
         activeVertices = new ArrayList<>();
         activeEdges = new ArrayList<>();
+        activeManager = new ArrayList<>();
         this.activeVertices.add(vertices);
         this.activeEdges.add(edges);
+        this.activeManager.add(undoManager);
         mousePosX = 0;
         mousePosY = 0;
         isEdgeSelection = false;
@@ -48,14 +51,17 @@ public class GraphModel extends Observable implements Observer {
             this.vertices = activeVertices.get(currentList);
             this.edges = activeEdges.get(currentList);
             this.selectedVertex = null;
+            this.undoManager = activeManager.get(currentList);
         } else {
             currentList++;
             activeEdges.add(new ArrayList<>());
             activeVertices.add(new ArrayList<>());
             activeSelected.add(null);
+            activeManager.add(new UndoManager());
             this.vertices = activeVertices.get(currentList);
             this.edges = activeEdges.get(currentList);
             this.selectedVertex = null;
+            this.undoManager = activeManager.get(currentList);
         }
         setChanged();
         notifyObservers();
@@ -66,6 +72,7 @@ public class GraphModel extends Observable implements Observer {
             currentList--;
             this.vertices = activeVertices.get(currentList);
             this.edges = activeEdges.get(currentList);
+            this.undoManager = activeManager.get(currentList);
             this.selectedVertex = null;
         }
         setChanged();
