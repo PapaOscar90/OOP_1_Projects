@@ -197,7 +197,7 @@ public class GraphModel extends Observable implements Observer {
             String[] sVerts;
             String[] sParts;
             String line = bufferedReader.readLine();
-
+            String name = "";
 
             while (line != null) {
                 int numSpaces;
@@ -207,8 +207,16 @@ public class GraphModel extends Observable implements Observer {
                     edgesToMake.add(line);
                 } else {
                     try { //Catch an issue with data not being set right in file
-                        GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]), Integer.parseInt(sParts[1]), Integer.parseInt(sParts[2]), Integer.parseInt(sParts[3]), sParts[4]);
+                        for(int i=4; i<sParts.length; i++){
+                            if(i==4){
+                                name = sParts[i];
+                            }else {
+                                name = name + " " + sParts[i];
+                            }
+                        }
+                        GraphVertex loadVertex = new GraphVertex(Integer.parseInt(sParts[0]), Integer.parseInt(sParts[1]), Integer.parseInt(sParts[2]), Integer.parseInt(sParts[3]), name);
                         addVertex(loadVertex);
+                        name="";
                     } catch (Exception e) {
                         System.out.println("sParts threw an error. Check valid input!");
                     }
