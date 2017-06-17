@@ -6,6 +6,7 @@ import graphEditor.model.GraphVertex;
 import graphEditor.view.GraphPanel;
 
 import javax.swing.event.MouseInputAdapter;
+import javax.swing.event.UndoableEditEvent;
 import java.awt.event.MouseEvent;
 
 /**
@@ -32,7 +33,7 @@ public class EdgeController extends MouseInputAdapter {
             if (model.getSelectedVertex() != null) {
                 vertex2 = model.getSelectedVertex();
                 GraphEdge edge = new GraphEdge(vertex1, vertex2);
-                model.addEdge(edge);
+                model.undoableEditHappened(new UndoableEditEvent(model, new UndoableAddEdge(model, edge)));
             }
             panel.removeMouseMotionListener(this);
             model.setEdgeSelection(false);
@@ -43,7 +44,7 @@ public class EdgeController extends MouseInputAdapter {
             if (model.getSelectedVertex() != null) {
                 vertex2 = model.getSelectedVertex();
                 GraphEdge edge = new GraphEdge(vertex1, vertex2);
-                model.removeEdge(edge);
+                model.undoableEditHappened(new UndoableEditEvent(model, new UndoableEdgeRemove(model, edge)));
             }
         }
         panel.removeMouseListener(this);
