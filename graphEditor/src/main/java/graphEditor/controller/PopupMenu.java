@@ -43,11 +43,11 @@ public class PopupMenu extends MouseInputAdapter {
             int newY = mouseEventY;
             int newWidth = 100;
             int newHeight = 50;
-            String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
+            String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Choose Name", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
             model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
         });
         renameVertex.addActionListener(e -> {
-            String newName2 = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
+            String newName2 = (String) JOptionPane.showInputDialog(null, "Input name:", "Choose Name", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
             model.getSelectedVertex().setName(newName2);
         });
         addEdge.addActionListener(e -> ec.enableEdgeAdder());
