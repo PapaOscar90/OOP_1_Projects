@@ -14,7 +14,7 @@ import java.util.Observable;
 public class GraphEdge extends Observable {
     private List<GraphVertex> connects;
 
-    // Index 0 is from, index 1 is to
+    // Index 0 is from, index 1 is to. Would allow directed graphs
     public GraphEdge(GraphVertex from, GraphVertex to) {
         this.connects = new ArrayList<>();
         this.connects.add(from);

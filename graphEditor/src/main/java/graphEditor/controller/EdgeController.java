@@ -12,6 +12,8 @@ import java.awt.event.MouseEvent;
 /**
  * Created by saidf on 6/16/2017.
  */
+
+// Controls how the user creates and deletes the edges
 public class EdgeController extends MouseInputAdapter {
     private GraphModel model;
     private GraphPanel panel;

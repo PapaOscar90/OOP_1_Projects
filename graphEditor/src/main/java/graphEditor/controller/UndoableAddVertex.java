@@ -28,6 +28,16 @@ public class UndoableAddVertex extends AbstractUndoableEdit {
         model.addVertex(newVertex);
     }
 
+    public UndoableAddVertex(GraphModel model, int x, int y){
+        this.model = model;
+        int newWidth = 100;
+        int newHeight = 50;
+        String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 3/3", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
+        newVertex = new GraphVertex(x, y, newWidth, newHeight, newName);
+
+        model.addVertex(newVertex);
+    }
+
     public String getPresentationName(){
         return "Vertex Addition";
     }

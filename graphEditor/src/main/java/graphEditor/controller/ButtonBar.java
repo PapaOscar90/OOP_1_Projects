@@ -7,6 +7,8 @@ import javax.swing.event.UndoableEditEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.security.Key;
 
 /**
  * Created by PhilO on 09-Jun-17.
@@ -14,7 +16,7 @@ import java.awt.event.ActionListener;
 public class ButtonBar extends JToolBar {
     private GraphModel model;
 
-
+    // Constructor for button bar
     public ButtonBar(GraphModel model, EdgeController edgeController) {
         super("Toolbar");
         this.model = model;
@@ -22,6 +24,7 @@ public class ButtonBar extends JToolBar {
         this.setBorderPainted(true);
         this.setBackground(Color.darkGray);
 
+        // Add Vertex Button and Action
         JButton vertexButton = new JButton("Add Vertex");
         vertexButton.addActionListener(new ActionListener() {
             @Override
@@ -32,6 +35,7 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        // Add Edge button and Action
         JButton edgeButton = new JButton("Add Edge");
         edgeButton.setEnabled(false);
         edgeButton.addActionListener(new ActionListener() {
@@ -42,6 +46,7 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        // Remove Vertex Button and Action
         JButton removeVertex = new JButton("Remove Vertex");
         removeVertex.setEnabled(false);
         removeVertex.addActionListener(new ActionListener() {
@@ -53,6 +58,7 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        // Remove Edge Button and Action
         JButton removeEdge = new JButton("Remove Edge");
         removeEdge.setEnabled(false);
         removeEdge.addActionListener(new ActionListener() {
@@ -62,6 +68,7 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        // Rename Vertex Button and Action
         JButton renameVertex = new JButton("Rename Vertex");
         renameVertex.setEnabled(false);
         renameVertex.addActionListener(new ActionListener() {
@@ -73,6 +80,7 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        // Undo Button and Action
         JButton undoButton = new JButton("Undo");
         undoButton.setEnabled(false);
         undoButton.addActionListener(new ActionListener() {
@@ -84,6 +92,8 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+
+        // Redo Button and Action
         JButton redoButton = new JButton("Redo");
         redoButton.setEnabled(false);
         redoButton.addActionListener(new ActionListener() {
@@ -95,6 +105,7 @@ public class ButtonBar extends JToolBar {
             }
         });
 
+        // Add the buttons to the bar now that they are configured correctly
         add(vertexButton);
         add(edgeButton);
         add(removeEdge);
@@ -104,6 +115,7 @@ public class ButtonBar extends JToolBar {
         add(redoButton);
     }
 
+    // Updated the UI and enables/disables components that must have a selected vertex to work
     void setSelected() {
         if (model.getSelectedVertex() != null) {
             for (int i = 1; i < 5; i++) {

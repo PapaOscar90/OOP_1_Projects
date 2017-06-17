@@ -35,13 +35,21 @@ public class GraphPanel extends JPanel implements Observer {
         String label;
         Graphics2D g2 = (Graphics2D) g;
         Color vColor = new Color(200, 255, 255);
+        int lineX0;
+        int lineY0;
+        int lineX1;
+        int lineY1;
 
         g2.setStroke(new BasicStroke(2));
         if (model.isEdgeSelection() && (model.getMousePosX() != 0 || model.getMousePosY() != 0)) {
             g2.drawLine(getLineX(model.getSelectedVertex()), getLineY(model.getSelectedVertex()), model.getMousePosX(), model.getMousePosY());
         }
         for (int i = 0; i < model.getNumberEdges(); i++) {
-            g2.drawLine(getLineX(model.getEdges(i).getVertexAt(0)), getLineY(model.getEdges(i).getVertexAt(0)), getLineX(model.getEdges(i).getVertexAt(1)), getLineY(model.getEdges(i).getVertexAt(1)));
+            lineX0 = getLineX(model.getEdges(i).getVertexAt(0));
+            lineY0 = getLineY(model.getEdges(i).getVertexAt(0));
+            lineX1 = getLineX(model.getEdges(i).getVertexAt(1));
+            lineY1 =  getLineY(model.getEdges(i).getVertexAt(1));
+            g2.drawLine(lineX0, lineY0,lineX1,lineY1);
         }
         for (int i = 0; i < model.getVertexCount(); i++) {
             vertex = model.getVertex(i);

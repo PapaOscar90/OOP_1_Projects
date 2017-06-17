@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 /**
  * Created by saidf on 6/13/2017.
  */
+
+// Controller to handle dragging objects
 public class DraggingController extends MouseInputAdapter {
     private GraphModel model;
     private int startX;
