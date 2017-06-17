@@ -13,11 +13,11 @@ import graphEditor.view.GraphFrame;
 
 import javax.swing.*;
 
-public class GraphEditor{
-    public static void main(String[] args){
+public class GraphEditor {
+    public static void main(String[] args) {
         String fileName;
         GraphModel model = new GraphModel();
-        if(args.length >0){
+        if (args.length > 0) {
             fileName = args[0];
             model.loadFromFile(fileName);
         }

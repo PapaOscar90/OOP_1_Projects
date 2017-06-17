@@ -15,85 +15,61 @@ import java.awt.event.MouseEvent;
  */
 public class PopupMenu extends MouseInputAdapter {
 
-    private JMenuItem rm;
-    private JMenuItem add;
-    private JMenuItem rn;
+    private JMenuItem removeVertex;
+    private JMenuItem addVertex;
+    private JMenuItem renameVertex;
     private JMenuItem addEdge;
     private JMenuItem removeEdge;
-    private GraphPanel panel;
     private GraphModel model;
-    private SelectionController sc;
-    private EdgeController ec;
     private int mouseEventX;
     private int mouseEventY;
 
 
-    public PopupMenu(GraphPanel panel, GraphModel model, SelectionController sc, EdgeController ec){
-        this.panel = panel;
+    public PopupMenu(GraphPanel panel, GraphModel model, SelectionController sc, EdgeController ec) {
         this.model = model;
-        this.sc = sc;
-        this.ec = ec;
         this.mouseEventX = 0;
         this.mouseEventY = 0;
-        this.rm = new JMenuItem("Remove vertex");
-        this.add = new JMenuItem("Add vertex here");
-        this.rn = new JMenuItem("Rename vertex");
+        this.removeVertex = new JMenuItem("Remove vertex");
+        this.addVertex = new JMenuItem("Add vertex here");
+        this.renameVertex = new JMenuItem("Rename vertex");
         this.addEdge = new JMenuItem("Add edge");
         this.removeEdge = new JMenuItem("Remove edge");
-        rm.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                model.removeSelectedVertex();
-                sc.getButtonBar().setSelected();
-            }
+        removeVertex.addActionListener(e -> {
+            model.removeSelectedVertex();
+            sc.getButtonBar().setSelected();
         });
-        add.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int newX = mouseEventX;
-                int newY = mouseEventY;
-                int newWidth = 100;
-                int newHeight = 50;
-                String newName = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
-                model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
-            }
+        addVertex.addActionListener(e -> {
+            int newX = mouseEventX;
+            int newY = mouseEventY;
+            int newWidth = 100;
+            int newHeight = 50;
+            String newName = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
+            model.addVertex(new GraphVertex(newX, newY, newWidth, newHeight, newName));
         });
-        rn.addActionListener(new ActionListener(){
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String newName2 = (String) JOptionPane.showInputDialog(null,"Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE,null,null,"Name");
-                model.getSelectedVertex().setName(newName2);
-            }
+        renameVertex.addActionListener(e -> {
+            String newName2 = (String) JOptionPane.showInputDialog(null, "Input name:", "Add Vertex 5/5", JOptionPane.PLAIN_MESSAGE, null, null, "Name");
+            model.getSelectedVertex().setName(newName2);
         });
-        addEdge.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ec.enableEdgeAdder();
-            }
-        });
-        removeEdge.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ec.enableEdgeRemover();
-            }
-        });
+        addEdge.addActionListener(e -> ec.enableEdgeAdder());
+        removeEdge.addActionListener(e -> ec.enableEdgeRemover());
         panel.addMouseListener(this);
     }
+
     @Override
     public void mouseReleased(MouseEvent e) {
         mouseEventX = e.getX();
         mouseEventY = e.getY();
-        if (SwingUtilities.isRightMouseButton(e)){
+        if (SwingUtilities.isRightMouseButton(e)) {
             if (model.getSelectedVertex() != null) {
                 JPopupMenu MainPopup = new JPopupMenu();
-                MainPopup.add(rm);
-                MainPopup.add(rn);
+                MainPopup.add(removeVertex);
+                MainPopup.add(renameVertex);
                 MainPopup.add(addEdge);
                 MainPopup.add(removeEdge);
                 MainPopup.show(e.getComponent(), e.getX(), e.getY());
             } else {
                 JPopupMenu MainPopup = new JPopupMenu();
-                MainPopup.add(add);
+                MainPopup.add(addVertex);
                 MainPopup.show(e.getComponent(), e.getX(), e.getY());
             }
         }

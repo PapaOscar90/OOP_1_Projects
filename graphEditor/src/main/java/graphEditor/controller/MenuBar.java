@@ -13,69 +13,56 @@ import java.io.File;
  */
 
 
-
 public class MenuBar extends JMenuBar {
-    private ButtonBar buttonBar;
 
-    private class fileMenu extends JMenu{
+    private class fileMenu extends JMenu {
         private JMenuItem nw;
         private JMenuItem save;
         private JMenuItem open;
         private JMenuItem exit;
-        public fileMenu(GraphModel model, ButtonBar buttonbar){
+
+        fileMenu(GraphModel model, ButtonBar buttonbar) {
             super("File");
 
             nw = new JMenuItem("New", KeyEvent.VK_N);
-            nw.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("Creating new Model");
-                    buttonbar.setSelected();
-                    model.deleteAll();
-                }
+            nw.addActionListener(e -> {
+                System.out.println("Creating new Model");
+                buttonbar.setSelected();
+                model.deleteAll();
             });
 
 
             save = new JMenuItem("Save Current", KeyEvent.VK_S);
-            save.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("Switch save");
-                    JFileChooser fileChooser = new JFileChooser();
-                    File workingDirectory = new File(System.getProperty("user.dir"));
-                    fileChooser.setCurrentDirectory(workingDirectory);
-                    int returnVal = fileChooser.showOpenDialog(null);
-                    if(returnVal == JFileChooser.APPROVE_OPTION) {
-                        model.saveToFile(fileChooser.getSelectedFile().getAbsolutePath());
-                    }
+            save.addActionListener(e -> {
+                System.out.println("Switch save");
+                JFileChooser fileChooser = new JFileChooser();
+                File workingDirectory = new File(System.getProperty("user.dir"));
+                fileChooser.setCurrentDirectory(workingDirectory);
+                int returnVal = fileChooser.showOpenDialog(null);
+                if (returnVal == JFileChooser.APPROVE_OPTION) {
+                    model.saveToFile(fileChooser.getSelectedFile().getAbsolutePath());
                 }
             });
 
 
             open = new JMenuItem("Open", KeyEvent.VK_S);
-            open.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    System.out.println("Switch Load");
-                    JFileChooser loadChooser = new JFileChooser();
-                    File loadDirectory = new File(System.getProperty("user.dir"));
-                    loadChooser.setCurrentDirectory(loadDirectory);
-                    int returnV = loadChooser.showOpenDialog(null);
-                    if(returnV == JFileChooser.APPROVE_OPTION) {
-                        model.loadFromFile(loadChooser.getSelectedFile().getAbsolutePath());
-                    }
-                    buttonbar.setSelected();
+            open.addActionListener(e -> {
+                System.out.println("Switch Load");
+                JFileChooser loadChooser = new JFileChooser();
+                File loadDirectory = new File(System.getProperty("user.dir"));
+                loadChooser.setCurrentDirectory(loadDirectory);
+                int returnV = loadChooser.showOpenDialog(null);
+                if (returnV == JFileChooser.APPROVE_OPTION) {
+                    model.loadFromFile(loadChooser.getSelectedFile().getAbsolutePath());
                 }
+                buttonbar.setSelected();
             });
 
 
             exit = new JMenuItem("Exit", KeyEvent.VK_S);
-            exit.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    model.saveToFile("persistent.txt");
-                    System.exit(0);
-                }
+            exit.addActionListener(e -> {
+                model.saveToFile("persistent.txt");
+                System.exit(0);
             });
 
             add(nw);
@@ -85,36 +72,32 @@ public class MenuBar extends JMenuBar {
         }
     }
 
-    private class ModelMenu extends JMenu{
+    private class ModelMenu extends JMenu {
         private JMenuItem nextModel;
         private JMenuItem prevModel;
-        public ModelMenu(GraphModel model, ButtonBar buttonBar){
+
+        ModelMenu(GraphModel model, ButtonBar buttonBar) {
             super("Model");
 
             nextModel = new JMenuItem("Next Model", KeyEvent.VK_N);
-            nextModel.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(model.getSelectedVertex()==null){
-                        model.nextModel();
-                    }else{
-                        buttonBar.setSelected();
-                        model.setSelectedVertex(null);
-                        model.nextModel();
-                    }
+            nextModel.addActionListener(e -> {
+                if (model.getSelectedVertex() == null) {
+                    model.nextModel();
+                } else {
+                    model.setSelectedVertex(null);
+                    model.nextModel();
+                    buttonBar.setSelected();
                 }
+                updateUI();
             });
 
             prevModel = new JMenuItem("Prev Model", KeyEvent.VK_P);
-            prevModel.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    if(model.getSelectedVertex()==null){
-                        model.prevModel();
-                    }else{
-                        buttonBar.setSelected();
-                        model.prevModel();
-                    }
+            prevModel.addActionListener(e -> {
+                if (model.getSelectedVertex() == null) {
+                    model.prevModel();
+                } else {
+                    buttonBar.setSelected();
+                    model.prevModel();
                 }
             });
 
@@ -123,8 +106,7 @@ public class MenuBar extends JMenuBar {
         }
     }
 
-    public MenuBar(GraphModel model, ButtonBar buttonBar){
-        this.buttonBar = buttonBar;
+    public MenuBar(GraphModel model, ButtonBar buttonBar) {
         add(new fileMenu(model, buttonBar));
         add(new ModelMenu(model, buttonBar));
         setBorderPainted(true);

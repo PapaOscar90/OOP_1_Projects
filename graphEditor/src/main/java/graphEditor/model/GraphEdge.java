@@ -11,17 +11,17 @@ import java.util.Observable;
 /**
  * Created by PhilO on 03-Jun-17.
  */
-public class GraphEdge extends Observable{
+public class GraphEdge extends Observable {
     private List<GraphVertex> connects;
 
     // Index 0 is from, index 1 is to
-    public GraphEdge(GraphVertex from, GraphVertex to){
-        this.connects = new ArrayList<GraphVertex>();
+    public GraphEdge(GraphVertex from, GraphVertex to) {
+        this.connects = new ArrayList<>();
         this.connects.add(from);
         this.connects.add(to);
     }
 
-    public void set(int i, GraphVertex vertex){
+    public void set(int i, GraphVertex vertex) {
         this.connects.set(i, vertex);
         setChanged();
         notifyObservers();
@@ -37,10 +37,9 @@ public class GraphEdge extends Observable{
         return connects != null ? connects.equals(graphEdge.connects) : graphEdge.connects == null;
     }
 
-    public GraphVertex getVertexAt(int i){
+    public GraphVertex getVertexAt(int i) {
         return connects.get(i);
     }
-
 
 
 }

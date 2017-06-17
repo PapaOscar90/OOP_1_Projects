@@ -17,7 +17,6 @@ public class EdgeController extends MouseInputAdapter {
     private GraphVertex vertex1;
     private GraphVertex vertex2;
     private boolean isEdgeAdder;
-    private boolean isEdgeRemover;
 
     public EdgeController(GraphModel model, GraphPanel panel) {
         this.model = model;
@@ -50,7 +49,7 @@ public class EdgeController extends MouseInputAdapter {
         panel.removeMouseListener(this);
     }
 
-    public void enableEdgeAdder(){
+    void enableEdgeAdder() {
         isEdgeAdder = true;
         vertex1 = model.getSelectedVertex();
         panel.addMouseListener(this);
@@ -58,7 +57,7 @@ public class EdgeController extends MouseInputAdapter {
         model.setEdgeSelection(true);
     }
 
-    public void enableEdgeRemover(){
+    void enableEdgeRemover() {
         vertex1 = model.getSelectedVertex();
         panel.addMouseListener(this);
     }

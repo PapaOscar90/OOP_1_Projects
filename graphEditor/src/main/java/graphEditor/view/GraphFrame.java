@@ -11,16 +11,15 @@ import java.awt.*;
  * Created by PhilO on 06-Jun-17.
  */
 public class GraphFrame extends JFrame {
-    private GraphPanel panel;
 
     public GraphFrame(GraphModel model) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(1280,720));
+        setSize(new Dimension(1280, 720));
         setLocationRelativeTo(null);
         setTitle("Graph Editor");
         setBackground(Color.gray);
 
-        panel = new GraphPanel(model);
+        GraphPanel panel = new GraphPanel(model);
 
         EdgeController ec = new EdgeController(model, panel);
         ButtonBar buttonBar = new ButtonBar(model, ec);

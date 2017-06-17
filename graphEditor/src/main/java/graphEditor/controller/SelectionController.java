@@ -12,40 +12,38 @@ import java.awt.event.MouseEvent;
  */
 public class SelectionController extends MouseInputAdapter {
     private GraphModel model;
-    private GraphPanel panel;
     private ButtonBar buttonBar;
 
     public SelectionController(GraphModel model, GraphPanel panel, ButtonBar buttonBar) {
         this.model = model;
-        this.panel = panel;
         this.buttonBar = buttonBar;
         panel.addMouseListener(this);
     }
 
-    private void selectVertex(int x, int y){
+    private void selectVertex(int x, int y) {
         GraphVertex vertex;
         GraphVertex topVertex = null;
 
-        for(int i = 0; i < model.getVertexCount(); i++){
+        for (int i = 0; i < model.getVertexCount(); i++) {
             vertex = model.getVertex(i);
             if (x > vertex.getX() &&
                     x < vertex.getX() + vertex.getWidth() &&
                     y > vertex.getY() &&
-                    y < vertex.getY() + vertex.getHeight()){
-                    topVertex = vertex;
-            } else if (model.getSelectedVertex()!=null){
+                    y < vertex.getY() + vertex.getHeight()) {
+                topVertex = vertex;
+            } else if (model.getSelectedVertex() != null) {
                 model.setSelectedVertex(null);
                 buttonBar.setSelected();
             }
         }
-        if (topVertex != null && model.getSelectedVertex()!=topVertex){
+        if (topVertex != null && model.getSelectedVertex() != topVertex) {
             model.setSelectedVertex(topVertex);
             buttonBar.setSelected();
         }
     }
 
 
-    public ButtonBar getButtonBar() {
+    ButtonBar getButtonBar() {
         return buttonBar;
     }
 
