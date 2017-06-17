@@ -25,10 +25,10 @@ public class DraggingController extends MouseInputAdapter {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (model.getSelectedVertex() != null) {
-            startX = e.getX() - model.getSelectedVertex().getX();
-            startY = e.getY() - model.getSelectedVertex().getY();
-        }
+            if (model.getSelectedVertex() != null) {
+                startX = e.getX() - model.getSelectedVertex().getX();
+                startY = e.getY() - model.getSelectedVertex().getY();
+            }
     }
 
     @Override

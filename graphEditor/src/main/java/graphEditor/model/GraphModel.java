@@ -70,14 +70,29 @@ public class GraphModel extends Observable implements Observer {
     }
 
     public void addVertex(GraphVertex vertex){
-        this.vertices.add(vertex);
-        vertex.addObserver(this);
-        setChanged();
-        notifyObservers();
+        if (vertex.getName() != null) {
+            this.vertices.add(vertex);
+            vertex.addObserver(this);
+            setChanged();
+            notifyObservers();
+        }
     }
 
+    private boolean isEdgeExist(GraphEdge testEdge){
+        for (GraphEdge edge : edges){
+            if (edge.equals(testEdge)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //TODO: maybe fix horrible edge "equals" implementation, by possibly changing how edge functions entirely.
     public void addEdge(GraphEdge edge){
-        this.edges.add(edge);
+        GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
+        if (!isEdgeExist(edge) || !isEdgeExist(edge2)) {
+            edges.add(edge);
+        }
         setChanged();
         notifyObservers();
     }
@@ -90,10 +105,18 @@ public class GraphModel extends Observable implements Observer {
 
     public int getVertexCount(){return vertices.size();}
 
+    //TODO: maybe fix horrible edge "equals" implementation, by possibly changing how edge functions entirely.
     public void removeEdge(GraphEdge edge){
-        edges.remove(edge);
-        setChanged();
-        notifyObservers();
+        GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
+        for (GraphEdge e : edges){
+            if (e.equals(edge) || e.equals(edge2)){
+                edges.remove(edge);
+                edges.remove(edge2);
+                setChanged();
+                notifyObservers();
+                break;
+            }
+        }
     }
 
     public void removeSelectedVertex() {

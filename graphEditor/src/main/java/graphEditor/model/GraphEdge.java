@@ -27,6 +27,16 @@ public class GraphEdge extends Observable{
         notifyObservers();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GraphEdge)) return false;
+
+        GraphEdge graphEdge = (GraphEdge) o;
+
+        return connects != null ? connects.equals(graphEdge.connects) : graphEdge.connects == null;
+    }
+
     public GraphVertex getVertexAt(int i){
         return connects.get(i);
     }

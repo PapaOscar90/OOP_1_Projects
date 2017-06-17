@@ -5,7 +5,6 @@ import graphEditor.controller.PopupMenu;
 import graphEditor.model.GraphModel;
 
 import javax.swing.*;
-import javax.swing.undo.UndoManager;
 import java.awt.*;
 
 /**
@@ -21,15 +20,15 @@ public class GraphFrame extends JFrame {
         setTitle("Graph Editor");
         setBackground(Color.gray);
 
-
         panel = new GraphPanel(model);
 
-        ButtonBar buttonBar = new ButtonBar(model);
+        EdgeController ec = new EdgeController(model, panel);
+        ButtonBar buttonBar = new ButtonBar(model, ec);
         SelectionController sc = new SelectionController(model, panel, buttonBar);
         DraggingController dc = new DraggingController(panel, model);
         setJMenuBar(new graphEditor.controller.MenuBar(model, buttonBar));
         panel.add(buttonBar);
-        PopupMenu pm = new PopupMenu(panel, model, sc);
+        PopupMenu pm = new PopupMenu(panel, model, sc, ec);
         add(panel);
         setVisible(true);
     }

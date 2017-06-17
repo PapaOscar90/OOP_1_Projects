@@ -10,20 +10,17 @@ public class GraphVertex extends Observable{
     private String      name;
     private Rectangle   rectangle;
 
-    public  GraphVertex(int id){
-        this.name = "Vertex";
-        this.rectangle = new Rectangle(50,20);
-    }
-
     public GraphVertex(int x, int y, int w, int h, String name){
         this.name = name;
         this.rectangle = new Rectangle(x,y,w,h);
     }
 
     public void setName(String s){
-        this.name = s;
-        setChanged();
-        notifyObservers();
+        if (s != null){
+            this.name = s;
+            setChanged();
+            notifyObservers();
+        }
     }
 
     public void setPosition(int x, int y){
@@ -51,6 +48,17 @@ public class GraphVertex extends Observable{
     }
     public int getHeight(){
         return this.rectangle.height;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GraphVertex)) return false;
+
+        GraphVertex that = (GraphVertex) o;
+
+        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        return rectangle != null ? rectangle.equals(that.rectangle) : that.rectangle == null;
     }
 
     public Rectangle getRectangle(){

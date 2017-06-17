@@ -12,6 +12,7 @@ import java.util.*;
  */
 public class GraphPanel extends JPanel implements Observer{
     private GraphModel model;
+    private boolean isEdgeAdding;
 
     private int getLineX(GraphVertex vertex){
         return vertex.getX()+((vertex.getWidth())/2);
@@ -36,6 +37,9 @@ public class GraphPanel extends JPanel implements Observer{
         Color vColor = new Color(200,255,255);
 
         g2.setStroke(new BasicStroke(2));
+        if (model.isEdgeSelection() && (model.getMousePosX() != 0 || model.getMousePosY() != 0)){
+            g2.drawLine(getLineX(model.getSelectedVertex()), getLineY(model.getSelectedVertex()),model.getMousePosX(), model.getMousePosY());
+        }
         for(int i = 0; i< model.getNumberEdges(); i++){
             g2.drawLine(getLineX(model.getEdges(i).getVertexAt(0)),getLineY(model.getEdges(i).getVertexAt(0)),getLineX(model.getEdges(i).getVertexAt(1)),getLineY(model.getEdges(i).getVertexAt(1)));
         }
