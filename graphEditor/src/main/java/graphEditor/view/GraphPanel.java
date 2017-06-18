@@ -55,6 +55,10 @@ public class GraphPanel extends JPanel implements Observer {
             vertex = model.getVertex(i);
             rectangle = vertex.getRectangle();
             label = vertex.getName();
+            int textWidth = g.getFontMetrics().stringWidth(label);
+            if (vertex.getWidth() != textWidth + 25){
+                vertex.setSize(textWidth + 25, vertex.getHeight());
+            }
             if (model.getSelectedVertex() == vertex) {
                 g2.setColor(Color.green);
                 g2.fill(rectangle);
@@ -65,7 +69,6 @@ public class GraphPanel extends JPanel implements Observer {
             }
             g2.setColor(Color.black);
             g2.drawRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
-            int textWidth = g.getFontMetrics().stringWidth(label);
             g2.drawString(label, (rectangle.x + ((rectangle.width / 2)) - textWidth / 2), (rectangle.y + (rectangle.height / 2)));
         }
     }

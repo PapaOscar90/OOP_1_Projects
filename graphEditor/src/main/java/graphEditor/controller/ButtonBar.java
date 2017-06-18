@@ -10,6 +10,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.security.Key;
 
+import static java.awt.event.KeyEvent.VK_DELETE;
+
 /**
  * Created by PhilO on 09-Jun-17.
  */
