@@ -97,6 +97,7 @@ public class GraphModel extends Observable implements Observer {
         return false;
     }
 
+
     public void addEdge(GraphEdge edge) {
         GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
         if (!isEdgeExist(edge) || !isEdgeExist(edge2)) {

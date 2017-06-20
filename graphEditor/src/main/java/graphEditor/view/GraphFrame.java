@@ -13,7 +13,7 @@ import java.awt.*;
 public class GraphFrame extends JFrame {
 
     public GraphFrame(GraphModel model) {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(new Dimension(1280, 720));
         setLocationRelativeTo(null);
         setTitle("Graph Editor");

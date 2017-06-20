@@ -1,6 +1,7 @@
 package graphEditor.controller;
 
 import graphEditor.model.GraphModel;
+import graphEditor.view.GraphFrame;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -17,6 +18,8 @@ public class MenuBar extends JMenuBar {
 
     private class fileMenu extends JMenu {
         private JMenuItem nw;
+        private JMenuItem newWindow;
+        private JMenuItem closeWindow;
         private JMenuItem save;
         private JMenuItem open;
         private JMenuItem exit;
@@ -30,6 +33,14 @@ public class MenuBar extends JMenuBar {
                 System.out.println("Creating new Model");
                 buttonbar.setSelected();
                 model.deleteAll();
+            });
+
+            newWindow = new JMenuItem("New Window");
+            newWindow.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    GraphFrame newFrame = new GraphFrame(model);
+                }
             });
 
             // Saves the currently viewed model to a user inputted location
@@ -67,6 +78,7 @@ public class MenuBar extends JMenuBar {
             });
 
             add(nw);
+            add(newWindow);
             add(save);
             add(open);
             add(exit);
