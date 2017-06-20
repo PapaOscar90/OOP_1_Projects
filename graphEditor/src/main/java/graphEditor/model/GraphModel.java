@@ -97,7 +97,6 @@ public class GraphModel extends Observable implements Observer {
         return false;
     }
 
-    //TODO: maybe fix horrible edge "equals" implementation, by possibly changing how edge functions entirely.
     public void addEdge(GraphEdge edge) {
         GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
         if (!isEdgeExist(edge) || !isEdgeExist(edge2)) {
@@ -119,7 +118,6 @@ public class GraphModel extends Observable implements Observer {
         return vertices.size();
     }
 
-    //TODO: maybe fix horrible edge "equals" implementation, by possibly changing how edge functions entirely.
     public void removeEdge(GraphEdge edge) {
         GraphEdge edge2 = new GraphEdge(edge.getVertexAt(1), edge.getVertexAt(0)); //edges with reversed verticies are the same
         for (GraphEdge e : edges) {
@@ -150,7 +148,6 @@ public class GraphModel extends Observable implements Observer {
         return edgesRemoved;
     }
 
-    // TODO: Change to serialization method
     public void saveToFile(String filename) {
 
         try {
