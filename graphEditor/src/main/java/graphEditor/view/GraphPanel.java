@@ -27,20 +27,11 @@ public class GraphPanel extends JPanel implements Observer {
         this.model.addObserver(this);
     }
 
-
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        GraphVertex vertex;
-        Rectangle rectangle;
-        String label;
-        Graphics2D g2 = (Graphics2D) g;
-        Color vColor = new Color(200, 255, 255);
+    private void paintEdges(Graphics2D g2){
         int lineX0;
         int lineY0;
         int lineX1;
         int lineY1;
-
-        g2.setStroke(new BasicStroke(2));
         if (model.isEdgeSelection() && (model.getMousePosX() != 0 || model.getMousePosY() != 0)) {
             g2.drawLine(getLineX(model.getSelectedVertex()), getLineY(model.getSelectedVertex()), model.getMousePosX(), model.getMousePosY());
         }
@@ -51,6 +42,13 @@ public class GraphPanel extends JPanel implements Observer {
             lineY1 =  getLineY(model.getEdges(i).getVertexAt(1));
             g2.drawLine(lineX0, lineY0,lineX1,lineY1);
         }
+    }
+
+    private void paintVertices(Graphics2D g2, Graphics g){
+        GraphVertex vertex;
+        Rectangle rectangle;
+        String label;
+        Color vColor = new Color(200, 255, 255);
         for (int i = 0; i < model.getVertexCount(); i++) {
             vertex = model.getVertex(i);
             rectangle = vertex.getRectangle();
@@ -71,6 +69,15 @@ public class GraphPanel extends JPanel implements Observer {
             g2.drawRect((int) rectangle.getX(), (int) rectangle.getY(), (int) rectangle.getWidth(), (int) rectangle.getHeight());
             g2.drawString(label, (rectangle.x + ((rectangle.width / 2)) - textWidth / 2), (rectangle.y + (rectangle.height / 2)));
         }
+    }
+
+
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setStroke(new BasicStroke(2));
+        paintEdges(g2);
+        paintVertices(g2, g);
     }
 
     @Override
