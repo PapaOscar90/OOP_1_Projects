@@ -21,12 +21,6 @@ public class GraphEdge extends Observable {
         this.connects.add(to);
     }
 
-    public void set(int i, GraphVertex vertex) {
-        this.connects.set(i, vertex);
-        setChanged();
-        notifyObservers();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
