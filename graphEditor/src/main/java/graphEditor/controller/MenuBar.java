@@ -16,6 +16,13 @@ import java.io.File;
 // The File/Model menu bar contains application options and controls which model to view
 public class MenuBar extends JMenuBar {
 
+    // Creates the menu and adds the two menus to it
+    public MenuBar(GraphModel model, ButtonBar buttonBar) {
+        add(new fileMenu(model, buttonBar));
+        add(new ModelMenu(model, buttonBar));
+        setBorderPainted(true);
+    }
+
     private class fileMenu extends JMenu {
         private JMenuItem nw;
         private JMenuItem newWindow;
@@ -124,12 +131,5 @@ public class MenuBar extends JMenuBar {
             add(nextModel);
             add(prevModel);
         }
-    }
-
-    // Creates the menu and adds the two menus to it
-    public MenuBar(GraphModel model, ButtonBar buttonBar) {
-        add(new fileMenu(model, buttonBar));
-        add(new ModelMenu(model, buttonBar));
-        setBorderPainted(true);
     }
 }
